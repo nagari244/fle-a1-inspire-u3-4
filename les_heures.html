@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Heure et la Journée - FLE A1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --clock-size: 260px;
+        }
+        @media (min-width: 768px) {
+            :root { --clock-size: 300px; }
+        }
+
+        .clock {
+            width: var(--clock-size);
+            height: var(--clock-size);
+            border: 8px solid #1e293b;
+            border-radius: 50%;
+            position: relative;
+            background: white;
+            margin: 20px auto;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            border-radius: 10px;
+            transition: transform 0.5s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+        }
+
+        .hour-hand { width: 8px; height: 25%; background: #1e293b; margin-left: -4px; z-index: 3; }
+        .minute-hand { width: 4px; height: 40%; background: #64748b; margin-left: -2px; z-index: 2; }
+        
+        .center-dot {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 14px; height: 14px;
+            background: #ef4444; border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .number {
+            position: absolute;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #1e293b;
+            transform: translate(-50%, -50%);
+        }
+
+        .clock-hidden {
+            filter: blur(25px) grayscale(1);
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .drop-zone {
+            min-height: 120px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .drop-zone.over { border-color: #3b82f6; background: #eff6ff; }
+
+        input[type=range] {
+            accent-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans p-4 pb-12">
+
+<div class="max-w-4xl mx-auto">
+    <header class="text-center mb-8">
+        <h1 class="text-3xl font-black text-slate-900">L'Heure et la Journée</h1>
+        <p class="text-slate-500 font-medium">Conception : Nadia Aguilar Neri</p>
+    </header>
+
+    <nav class="flex flex-wrap justify-center gap-3 mb-8">
+        <button onclick="switchMode('learn')" class="px-5 py-2.5 bg-blue-600 text-white rounded-full font-bold shadow-md hover:bg-blue-700 transition">Apprendre</button>
+        <button onclick="switchMode('quiz')" class="px-5 py-2.5 bg-emerald-600 text-white rounded-full font-bold shadow-md hover:bg-emerald-700 transition">Quiz Visuel</button>
+        <button onclick="switchMode('audio')" class="px-5 py-2.5 bg-rose-600 text-white rounded-full font-bold shadow-md hover:bg-rose-700 transition">Défi Auditif</button>
+        <button onclick="switchMode('routine')" class="px-5 py-2.5 bg-amber-500 text-white rounded-full font-bold shadow-md hover:bg-amber-600 transition">Ma Routine</button>
+    </nav>
+
+    <main class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 md:p-10">
+        
+        <!-- Horloge et Instructions -->
+        <div id="display-container" class="mb-8">
+            <h2 id="instructions" class="text-xl font-bold text-center text-slate-700 mb-6">Explorez l'horloge !</h2>
+            
+            <div class="relative">
+                <div id="audio-visual-cue" class="hidden absolute inset-0 flex items-center justify-center z-20">
+                    <span class="text-8xl animate-pulse">👂</span>
+                </div>
+                <div class="clock" id="main-clock">
+                    <div id="hour-hand" class="hand hour-hand"></div>
+                    <div id="minute-hand" class="hand minute-hand"></div>
+                    <div class="center-dot"></div>
+                </div>
+            </div>
+
+            <div id="time-text-display" class="text-2xl md:text-3xl font-black text-center text-blue-600 h-12 mt-4"></div>
+        </div>
+
+        <!-- Section Apprendre -->
+        <div id="learn-controls" class="max-w-md mx-auto space-y-6">
+            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl">
+                <span class="w-20 font-bold text-slate-400 text-xs uppercase">Heures</span>
+                <input type="range" id="hour-slider" min="0" max="23" value="10" class="flex-1 cursor-pointer" oninput="updateFromSliders()">
+                <span id="hour-val" class="w-12 font-mono font-bold text-lg">10h</span>
+            </div>
+            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl">
+                <span class="w-20 font-bold text-slate-400 text-xs uppercase">Minutes</span>
+                <input type="range" id="minute-slider" min="0" max="55" step="5" value="0" class="flex-1 cursor-pointer" oninput="updateFromSliders()">
+                <span id="min-val" class="w-12 font-mono font-bold text-lg">00</span>
+            </div>
+            <button onclick="speakCurrentTime()" class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-slate-800 transition">
+                <span>🔊 Écouter</span>
+            </button>
+        </div>
+
+        <!-- Section Quiz -->
+        <div id="quiz-area" class="hidden">
+            <div id="audio-trigger" class="hidden flex justify-center mb-6">
+                <button onclick="speakCurrentTime()" class="group flex items-center gap-3 bg-rose-50 text-rose-600 px-8 py-4 rounded-2xl hover:bg-rose-100 transition border-2 border-rose-100">
+                    <span class="text-2xl group-hover:scale-110 transition">🔊</span>
+                    <span class="font-bold">Écouter l'heure</span>
+                </button>
+            </div>
+            <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+            <div id="feedback" class="mt-6 p-4 rounded-2xl text-center font-bold hidden"></div>
+            <button id="next-btn" onclick="generateNewRound()" class="mt-6 w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-lg hidden">Question suivante</button>
+        </div>
+
+        <!-- Section Routine -->
+        <div id="routine-area" class="hidden space-y-8">
+            <div id="verbs-bank" class="flex flex-wrap justify-center gap-2 p-4 bg-slate-50 rounded-2xl"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="space-y-3">
+                    <h3 class="font-black text-blue-500 text-center flex items-center justify-center gap-2">🌅 Le Matin</h3>
+                    <div id="morning-zone" class="drop-zone p-3 space-y-2" data-period="morning"></div>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="font-black text-orange-500 text-center flex items-center justify-center gap-2">☀️ L'Après-midi</h3>
+                    <div id="afternoon-zone" class="drop-zone p-3 space-y-2" data-period="afternoon"></div>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="font-black text-indigo-900 text-center flex items-center justify-center gap-2">🌙 Le Soir</h3>
+                    <div id="evening-zone" class="drop-zone p-3 space-y-2" data-period="evening"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    let currentMode = 'learn';
+    let targetHour = 10, targetMin = 0;
+    let score = 0, rounds = 0;
+
+    const verbs = [
+        { id: 1, text: "Se lever", periods: ["morning"] },
+        { id: 2, text: "Prendre le petit déjeuner", periods: ["morning"] },
+        { id: 3, text: "Se doucher", periods: ["morning", "evening"] },
+        { id: 5, text: "Déjeuner", periods: ["afternoon"] },
+        { id: 7, text: "Travailler", periods: ["morning", "afternoon"] },
+        { id: 8, text: "Prendre un goûter", periods: ["afternoon"] },
+        { id: 9, text: "Rentrer à la maison", periods: ["afternoon", "evening"] },
+        { id: 11, text: "Dîner", periods: ["evening"] },
+        { id: 14, text: "Se brosser les dents", periods: ["morning", "evening"] },
+        { id: 15, text: "Se coucher", periods: ["evening"] }
+    ];
+
+    // Synthèse Vocale Native (SpeechSynthesis)
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'fr-FR';
+            msg.rate = 0.9; // Légèrement plus lent pour le FLE
+            msg.pitch = 1;
+            window.speechSynthesis.speak(msg);
+        }
+    }
+
+    function speakCurrentTime() {
+        speak(numberToWords(targetHour, targetMin));
+    }
+
+    function createClockNumbers() {
+        const clock = document.getElementById('main-clock');
+        const size = clock.offsetWidth;
+        const radius = (size / 2) - 30;
+        const center = size / 2;
+
+        for (let i = 1; i <= 12; i++) {
+            const num = document.createElement('div');
+            num.className = 'number';
+            num.innerText = i;
+            const angle = (i * 30) * (Math.PI / 180);
+            num.style.left = (center + radius * Math.sin(angle)) + 'px';
+            num.style.top = (center - radius * Math.cos(angle)) + 'px';
+            clock.appendChild(num);
+        }
+    }
+
+    function updateClock(h, m) {
+        const hDeg = (h % 12) * 30 + (m / 60) * 30;
+        const mDeg = m * 6;
+        document.getElementById('hour-hand').style.transform = `rotate(${hDeg}deg)`;
+        document.getElementById('minute-hand').style.transform = `rotate(${mDeg}deg)`;
+    }
+
+    function numberToWords(h, m) {
+        const hoursWords = ["minuit", "une heure", "deux heures", "trois heures", "quatre heures", "cinq heures", "six heures", "sept heures", "huit heures", "neuf heures", "dix heures", "onze heures", "midi", "treize heures", "quatorze heures", "quinze heures", "seize heures", "dix-sept heures", "dix-huit heures", "dix-neuf heures", "vingt heures", "vingt et une heures", "vingt-deux heures", "vingt-trois heures"];
+        
+        if (m === 0) return `Il est ${h === 12 ? "midi" : (h === 0 ? "minuit" : hoursWords[h])}`;
+        if (m === 15) return `Il est ${h === 12 ? "midi" : (h === 0 ? "minuit" : hoursWords[h])} et quart`;
+        if (m === 30) return `Il est ${h === 12 ? "midi" : (h === 0 ? "minuit" : hoursWords[h])} et demie`;
+        if (m === 45) {
+            const nextH = (h + 1) % 24;
+            const hText = nextH === 12 ? "midi" : (nextH === 0 ? "minuit" : hoursWords[nextH]);
+            return `Il est ${hText} moins le quart`;
+        }
+        return `Il est ${h === 12 ? "midi" : (h === 0 ? "minuit" : hoursWords[h])} ${m}`;
+    }
+
+    function updateFromSliders() {
+        targetHour = parseInt(document.getElementById('hour-slider').value);
+        targetMin = parseInt(document.getElementById('minute-slider').value);
+        document.getElementById('hour-val').innerText = targetHour + 'h';
+        document.getElementById('min-val').innerText = targetMin < 10 ? '0' + targetMin : targetMin;
+        updateClock(targetHour, targetMin);
+        document.getElementById('time-text-display').innerText = numberToWords(targetHour, targetMin);
+    }
+
+    function switchMode(mode) {
+        currentMode = mode;
+        rounds = 0; score = 0;
+        
+        // Reset UI
+        document.getElementById('learn-controls').classList.add('hidden');
+        document.getElementById('quiz-area').classList.add('hidden');
+        document.getElementById('routine-area').classList.add('hidden');
+        document.getElementById('main-clock').classList.remove('clock-hidden');
+        document.getElementById('audio-visual-cue').classList.add('hidden');
+        document.getElementById('time-text-display').classList.remove('hidden');
+        document.getElementById('display-container').classList.remove('hidden');
+
+        if (mode === 'learn') {
+            document.getElementById('instructions').innerText = "Manipulez les curseurs pour apprendre !";
+            document.getElementById('learn-controls').classList.remove('hidden');
+            updateFromSliders();
+        } else if (mode === 'quiz' || mode === 'audio') {
+            document.getElementById('quiz-area').classList.remove('hidden');
+            document.getElementById('audio-trigger').classList.toggle('hidden', mode !== 'audio');
+            document.getElementById('instructions').innerText = mode === 'quiz' ? "Quelle heure est-il ?" : "Écoutez et choisissez la bonne heure :";
+            generateNewRound();
+        } else if (mode === 'routine') {
+            document.getElementById('display-container').classList.add('hidden');
+            document.getElementById('routine-area').classList.remove('hidden');
+            initRoutineGame();
+        }
+    }
+
+    function generateNewRound() {
+        if (rounds >= 10) {
+            showFinalScore();
+            return;
+        }
+        
+        targetHour = Math.floor(Math.random() * 24);
+        targetMin = [0, 15, 30, 45, 10, 20, 40, 50][Math.floor(Math.random() * 8)];
+        updateClock(targetHour, targetMin);
+
+        const isAudio = currentMode === 'audio';
+        document.getElementById('main-clock').classList.toggle('clock-hidden', isAudio);
+        document.getElementById('audio-visual-cue').classList.toggle('hidden', !isAudio);
+        document.getElementById('time-text-display').innerText = "";
+        
+        const correct = isAudio ? 
+            `${targetHour.toString().padStart(2, '0')}:${targetMin.toString().padStart(2, '0')}` : 
+            numberToWords(targetHour, targetMin);
+
+        const options = [correct];
+        while (options.length < 4) {
+            let h = Math.floor(Math.random() * 24);
+            let m = [0, 15, 30, 45][Math.floor(Math.random() * 4)];
+            let val = isAudio ? `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}` : numberToWords(h, m);
+            if (!options.includes(val)) options.push(val);
+        }
+        options.sort(() => Math.random() - 0.5);
+
+        const container = document.getElementById('quiz-options');
+        container.innerHTML = '';
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = "p-4 border-2 border-slate-200 rounded-2xl bg-white hover:border-blue-500 transition font-bold text-slate-700 shadow-sm";
+            btn.innerText = opt;
+            btn.onclick = () => validateQuiz(opt, correct);
+            container.appendChild(btn);
+        });
+
+        document.getElementById('feedback').classList.add('hidden');
+        document.getElementById('next-btn').classList.add('hidden');
+        if(isAudio) speakCurrentTime();
+    }
+
+    function validateQuiz(selected, correct) {
+        const f = document.getElementById('feedback');
+        document.getElementById('main-clock').classList.remove('clock-hidden');
+        document.getElementById('audio-visual-cue').classList.add('hidden');
+        document.getElementById('time-text-display').innerText = numberToWords(targetHour, targetMin);
+        
+        rounds++;
+        f.classList.remove('hidden');
+        if (selected === correct) {
+            score++;
+            f.className = "mt-6 p-4 rounded-2xl bg-emerald-100 text-emerald-700 font-bold text-center";
+            f.innerText = "Excellent ! ✅";
+        } else {
+            f.className = "mt-6 p-4 rounded-2xl bg-rose-100 text-rose-700 font-bold text-center";
+            f.innerText = `Dommage ! La réponse était : ${correct}`;
+        }
+        
+        document.getElementById('next-btn').classList.remove('hidden');
+        document.querySelectorAll('#quiz-options button').forEach(b => b.disabled = true);
+    }
+
+    function showFinalScore() {
+        const container = document.getElementById('quiz-area');
+        container.innerHTML = `
+            <div class="text-center p-10 bg-blue-50 rounded-3xl border-2 border-blue-100">
+                <h3 class="text-3xl font-black text-blue-900 mb-2">Terminé !</h3>
+                <p class="text-xl text-blue-700 font-bold mb-6">Votre score : ${score} / 10</p>
+                <button onclick="switchMode('${currentMode}')" class="px-8 py-3 bg-blue-600 text-white rounded-xl font-bold shadow-lg">Recommencer</button>
+            </div>
+        `;
+    }
+
+    // Jeu de Routine
+    function initRoutineGame() {
+        const bank = document.getElementById('verbs-bank');
+        bank.innerHTML = '';
+        ['morning-zone', 'afternoon-zone', 'evening-zone'].forEach(id => document.getElementById(id).innerHTML = '');
+        
+        [...verbs].sort(() => Math.random() - 0.5).forEach(v => {
+            const el = document.createElement('div');
+            el.className = "bg-white border-2 border-slate-200 px-4 py-2 rounded-xl shadow-sm text-sm font-bold cursor-grab active:cursor-grabbing hover:border-blue-300 transition";
+            el.innerText = v.text;
+            el.draggable = true;
+            el.dataset.id = v.id;
+            el.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('verbId', v.id);
+                speak(v.text);
+            });
+            bank.appendChild(el);
+        });
+
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.add('over');
+            });
+            zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+            zone.addEventListener('drop', (e) => {
+                zone.classList.remove('over');
+                const verbId = e.dataTransfer.getData('verbId');
+                const verb = verbs.find(v => v.id == verbId);
+                if (verb && verb.periods.includes(zone.dataset.period)) {
+                    const el = document.querySelector(`[data-id="${verbId}"]`);
+                    el.className = "bg-emerald-50 border-2 border-emerald-200 px-4 py-2 rounded-xl text-emerald-700 font-bold text-sm w-full";
+                    el.draggable = false;
+                    zone.appendChild(el);
+                } else {
+                    zone.classList.add('bg-rose-50');
+                    setTimeout(() => zone.classList.remove('bg-rose-50'), 400);
+                }
+            });
+        });
+    }
+
+    window.onload = () => {
+        createClockNumbers();
+        switchMode('learn');
+    };
+</script>
+
+</body>
+</html>
