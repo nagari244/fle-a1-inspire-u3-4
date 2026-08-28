@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Révision : Aller et Futur Proche</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+
+        .tab-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .tab-btn.active {
+            background-color: white;
+            color: #0f172a; /* slate-900 */
+            border-bottom: 3px solid #3b82f6; /* blue-500 */
+            font-weight: 800;
+        }
+
+        .qcm-label {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            margin: 6px 0;
+            background: #f1f5f9; /* slate-100 */
+            border-radius: 12px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .qcm-label:hover { 
+            background: #e2e8f0; /* slate-200 */
+        }
+        
+        .qcm-label input[type="radio"] {
+            display: none;
+        }
+        
+        .qcm-radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #94a3b8; /* slate-400 */
+            border-radius: 50%;
+            margin-right: 12px;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .qcm-label input[type="radio"]:checked + .qcm-radio-custom {
+            border-color: #3b82f6; /* blue-500 */
+            background-color: white;
+        }
+        
+        .qcm-label input[type="radio"]:checked + .qcm-radio-custom::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #3b82f6; /* blue-500 */
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .qcm-label input[type="radio"]:checked ~ span { 
+            font-weight: 700; 
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <header class="bg-[#1e293b] border-b border-slate-700 shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-slate-800 border border-slate-600 text-amber-400 flex items-center justify-center shadow-inner flex-shrink-0">
+                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold text-slate-300 tracking-wider uppercase">
+                        Niveau A1 — Français Langue Étrangère
+                    </span>
+                    <h1 class="text-xl sm:text-2xl font-black text-white mt-0.5">Aller & Futur Proche</h1>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Onglets -->
+        <div class="max-w-6xl mx-auto px-4 mt-2 flex overflow-x-auto hide-scrollbar">
+            <button onclick="switchTab('tab-aller')" id="btn-aller" class="tab-btn active px-6 py-3 rounded-t-xl text-slate-300 font-semibold whitespace-nowrap flex items-center gap-2">
+                <i data-lucide="pencil-line" class="w-4 h-4"></i> 1. Le verbe Aller
+            </button>
+            <button onclick="switchTab('tab-futur')" id="btn-futur" class="tab-btn px-6 py-3 rounded-t-xl text-slate-300 font-semibold whitespace-nowrap flex items-center gap-2">
+                <i data-lucide="calendar-clock" class="w-4 h-4"></i> 2. Le Futur Proche
+            </button>
+            <button onclick="switchTab('tab-pratique')" id="btn-pratique" class="tab-btn px-6 py-3 rounded-t-xl text-slate-300 font-semibold whitespace-nowrap flex items-center gap-2">
+                <i data-lucide="dumbbell" class="w-4 h-4"></i> 3. Pratique
+            </button>
+            <button onclick="switchTab('tab-ecoute')" id="btn-ecoute" class="tab-btn px-6 py-3 rounded-t-xl text-slate-300 font-semibold whitespace-nowrap flex items-center gap-2">
+                <i data-lucide="headphones" class="w-4 h-4"></i> 4. Écoute
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full">
+
+        <div id="tab-aller" class="tab-content space-y-8">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                    <div class="w-12 h-12 rounded-full bg-[#66004D] text-white flex items-center justify-center shadow-md">
+                        <i data-lucide="book-open" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900">Révision : Verbe "Aller"</h2>
+                        <p class="text-sm text-slate-500 font-medium">Présent de l'indicatif</p>
+                    </div>
+                </div>
+
+                <!-- Tableau de conjugaison -->
+                <div class="overflow-x-auto rounded-xl border border-slate-200 mb-8">
+                    <table class="w-full text-left bg-white">
+                        <thead class="bg-slate-50 text-slate-700">
+                            <tr>
+                                <th class="p-4 font-bold">Sujet</th>
+                                <th class="p-4 font-bold">Verbe</th>
+                                <th class="p-4 font-bold">Phonétique</th>
+                                <th class="p-4 font-bold text-center">Écouter</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-800 font-medium">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4">Je</td><td class="p-4 font-bold text-[#66004D]">vais</td><td class="p-4 text-slate-500">[vɛ]</td>
+                                <td class="p-4 text-center"><button onclick="speak('Je vais')" class="p-2 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 transition"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4">Tu</td><td class="p-4 font-bold text-[#66004D]">vas</td><td class="p-4 text-slate-500">[va]</td>
+                                <td class="p-4 text-center"><button onclick="speak('Tu vas')" class="p-2 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 transition"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4">Il / Elle / On</td><td class="p-4 font-bold text-[#66004D]">va</td><td class="p-4 text-slate-500">[va]</td>
+                                <td class="p-4 text-center"><button onclick="speak('Il va')" class="p-2 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 transition"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4">Nous</td><td class="p-4 font-bold text-[#66004D]">allons</td><td class="p-4 text-slate-500">[a.lɔ̃]</td>
+                                <td class="p-4 text-center"><button onclick="speak('Nous allons')" class="p-2 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 transition"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4">Vous</td><td class="p-4 font-bold text-[#66004D]">allez</td><td class="p-4 text-slate-500">[a.le]</td>
+                                <td class="p-4 text-center"><button onclick="speak('Vous allez')" class="p-2 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 transition"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4">Ils / Elles</td><td class="p-4 font-bold text-[#66004D]">vont</td><td class="p-4 text-slate-500">[vɔ̃]</td>
+                                <td class="p-4 text-center"><button onclick="speak('Ils vont')" class="p-2 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 transition"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Activité 1 -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="edit-3" class="w-5 h-5 text-[#66004D]"></i> Activité 1 : Complétez les phrases</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="container-act1">
+                        <!-- Généré en JS pour éviter la répétition -->
+                    </div>
+                </div>
+
+                <!-- Activité 2 -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="shuffle" class="w-5 h-5 text-[#66004D]"></i> Activité 2 : Associez le sujet au verbe</h3>
+                    <div class="grid gap-3 max-w-md mx-auto" id="container-act2">
+                         <!-- Généré en JS -->
+                    </div>
+                </div>
+
+                <!-- Activité 3 -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="ear" class="w-5 h-5 text-[#66004D]"></i> Activité 3 : Compréhension Orale</h3>
+                    <div class="space-y-6" id="container-act3">
+                        <!-- Généré en JS -->
+                    </div>
+                </div>
+
+                <!-- Bouton Vérifier Onglet 1 -->
+                <div class="text-center pt-6 border-t border-slate-200">
+                    <button onclick="verifierOnglet1()" class="bg-[#1e293b] hover:bg-slate-800 text-white font-bold py-3 px-8 rounded-xl shadow-md transition flex items-center justify-center gap-2 mx-auto">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i> Vérifier mes réponses (Aller)
+                    </button>
+                    <div id="score-onglet1" class="hidden mt-4 p-4 rounded-xl font-bold text-xl"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-futur" class="tab-content hidden space-y-8">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                    <div class="w-12 h-12 rounded-full bg-[#0284c7] text-white flex items-center justify-center shadow-md">
+                        <i data-lucide="fast-forward" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900">Le Futur Proche</h2>
+                        <p class="text-sm text-slate-500 font-medium">Parler de ses projets</p>
+                    </div>
+                </div>
+
+                <!-- Image et Formation -->
+                <div class="mb-8">
+                    <img src="verbe aller + futur proche.jpg" alt="Le Futur Proche avec les expressions" class="w-full rounded-xl shadow-sm border border-slate-200 mb-6 object-contain" onerror="this.style.display='none'">
+                    
+                    <div class="bg-sky-50 p-6 rounded-2xl border border-sky-100 flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-[#0284c7] mb-3 flex items-center gap-2">
+                                <i data-lucide="info" class="w-5 h-5"></i> Formation
+                            </h3>
+                            <p class="text-slate-700 font-medium mb-3">
+                                Sujet + <span class="font-bold text-[#0284c7]">Verbe Aller (au présent)</span> + Verbe à l'infinitif
+                            </p>
+                            <p class="text-slate-600 text-sm bg-white p-3 rounded-lg border border-sky-100 shadow-sm">
+                                <em>Exemple :</em> Je <span class="font-bold text-[#0284c7]">vais</span> manger. / Nous <span class="font-bold text-[#0284c7]">allons</span> partir.
+                            </p>
+                        </div>
+                        <div class="flex-1 bg-white p-5 rounded-xl border border-sky-200 shadow-sm">
+                            <h3 class="text-base font-bold text-[#0284c7] mb-3 flex items-center gap-2">
+                                <i data-lucide="calendar-days" class="w-5 h-5"></i> Expressions de temps
+                            </h3>
+                            <ul class="text-sm text-slate-700 space-y-2">
+                                <li><span class="font-bold text-slate-900">Demain</span> / <span class="font-bold text-slate-900">Ce soir</span></li>
+                                <li><span class="font-bold text-slate-900">Plus tard</span> / <span class="font-bold text-slate-900">Bientôt</span></li>
+                                <li class="pt-2 mt-2 border-t border-slate-100">
+                                    <strong>L'utilisation de "prochain / prochaine" :</strong><br>
+                                    <span class="inline-block mt-1 text-sky-700">- <strong>Lundi, mardi...</strong> prochain</span><br>
+                                    <span class="text-sky-700">- <strong>Le week-end / Le mois</strong> prochain</span><br>
+                                    <span class="text-sky-700">- <strong>La semaine</strong> prochaine (fém.)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compréhension Écrite -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="book-open-text" class="w-6 h-6 text-[#0284c7]"></i>
+                        Compréhension Écrite
+                    </h3>
+                    
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-inner mb-6 relative">
+                        <i data-lucide="quote" class="absolute top-4 left-4 w-8 h-8 text-slate-200"></i>
+                        <p class="text-slate-700 leading-relaxed relative z-10 pl-6 text-sm sm:text-base font-medium">
+                            Salut, je vais parler de mes activités de samedi prochain. 
+                            Samedi prochain, je vais commencer ma journée à 9h. D'abord, je vais prendre mon petit déjeuner en famille. Après je vais faire la vaisselle, je vais me préparer et je vais aller au cinéma avec des amis. Nous allons regarder le dernier film à la mode. Le soir, mes amis et moi, nous allons prendre un café et nous allons parler de notre semaine. Samedi prochain va être un jour calme, avec des gens que j'apprécie.
+                        </p>
+                    </div>
+
+                    <h4 class="font-bold mb-4">Vrai ou Faux ?</h4>
+                    <div class="space-y-4" id="container-vrai-faux">
+                        <!-- Généré en JS -->
+                    </div>
+                </div>
+
+                <!-- Bouton Vérifier Onglet 2 -->
+                <div class="text-center pt-6 border-t border-slate-200">
+                    <button onclick="verifierOnglet2()" class="bg-[#0284c7] hover:bg-sky-700 text-white font-bold py-3 px-8 rounded-xl shadow-md transition flex items-center justify-center gap-2 mx-auto">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i> Vérifier la lecture
+                    </button>
+                    <div id="score-onglet2" class="hidden mt-4 p-4 rounded-xl font-bold text-xl"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-pratique" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                    <div class="w-12 h-12 rounded-full bg-indigo-700 text-white flex items-center justify-center shadow-md">
+                        <i data-lucide="keyboard" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900">Pratique</h2>
+                        <p class="text-sm text-slate-500 font-medium">Systématisation et écriture</p>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold mb-2 flex items-center gap-2 text-indigo-900">
+                        <i data-lucide="pen-tool" class="w-5 h-5"></i> Transformez les phrases au Futur Proche
+                    </h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Attention à la ponctuation et aux majuscules. N'oubliez pas le "ne...pas" pour les phrases négatives.</p>
+                    
+                    <div class="space-y-4 bg-indigo-50/50 p-4 sm:p-6 rounded-2xl border border-indigo-100" id="container-pratique">
+                         <!-- Généré en JS -->
+                    </div>
+                </div>
+
+                <!-- Bouton Vérifier Onglet 3 -->
+                <div class="text-center pt-6 border-t border-slate-200">
+                    <button onclick="verifierOnglet3()" class="bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-3 px-8 rounded-xl shadow-md transition flex items-center justify-center gap-2 mx-auto">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i> Vérifier la grammaire
+                    </button>
+                    <div id="score-onglet3" class="hidden mt-4 p-4 rounded-xl font-bold text-xl"></div>
+                </div>
+                
+                <div class="mt-8 text-center p-6 bg-amber-50 rounded-2xl border border-amber-200">
+                    <h3 class="font-bold text-amber-800 flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-5 h-5"></i> Production Écrite (Classroom)
+                    </h3>
+                    <p class="mt-2 text-sm text-amber-900">Quels sont vos projets pour le week-end prochain ? (Où, avec qui, quelles activités...). Rendez-vous sur Classroom pour poster votre texte.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-ecoute" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                    <div class="w-12 h-12 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-md">
+                        <i data-lucide="headphones" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900">Compréhension Orale</h2>
+                        <p class="text-sm text-slate-500 font-medium">Écoutez le dialogue et répondez</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center mb-8 shadow-inner">
+                    <p class="mb-4 font-bold text-slate-700">Écoutez la conversation entre Alice et Thomas :</p>
+                    <audio controls class="w-full max-w-md mx-auto outline-none">
+                        <source src="convers_proche.mp3" type="audio/mpeg">
+                        Votre navigateur ne supporte pas la balise audio.
+                    </audio>
+                </div>
+
+                <div class="space-y-6" id="container-ecoute">
+                    <!-- Généré en JS -->
+                </div>
+
+                <!-- Bouton Vérifier Onglet 4 -->
+                <div class="text-center pt-8 border-t border-slate-200">
+                    <button onclick="verifierOnglet4()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 px-8 rounded-xl shadow-md transition flex items-center justify-center gap-2 mx-auto">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i> Vérifier l'écoute
+                    </button>
+                    <div id="score-onglet4" class="hidden mt-4 p-4 rounded-xl font-bold text-xl"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-[#1e293b] text-slate-400 py-8 text-center text-xs sm:text-sm mt-auto">
+        <div class="max-w-6xl mx-auto px-4 space-y-2">
+            <p class="font-bold text-slate-300 flex items-center justify-center gap-2 flex-wrap">
+                <i data-lucide="award" class="w-5 h-5 text-amber-500"></i>
+                <span>Conception pédagogique : Nadia Aguilar Neri via Gemini.</span>
+            </p>
+            <p class="text-slate-500 text-xs">
+                Activité FLE Niveau A1 - Optimisé pour tous les supports.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Fonction de navigation entre les onglets
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId.split('-')[1]).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Fonction de synthèse vocale
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                // Arrêter la lecture en cours si on reclique
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'fr-FR';
+                utterance.rate = 0.9; // Légèrement ralenti pour A1
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("La synthèse vocale n'est pas supportée par votre navigateur.");
+            }
+        }
+
+        /* -----------------------------------------------------------
+           GÉNÉRATION DU CONTENU ET LOGIQUE DE VÉRIFICATION
+        ----------------------------------------------------------- */
+
+        window.addEventListener('DOMContentLoaded', () => {
+            
+            // --- ONGLET 1 : ALLER ---
+
+            // Act 1 : Phrases à trous
+            const a1_data = [
+                { p: "Je", s: "au supermarché.", a: "vais" },
+                { p: "Tu", s: "à la bibliothèque ?", a: "vas" },
+                { p: "Il", s: "travailler demain.", a: "va" },
+                { p: "Nous", s: "manger au restaurant.", a: "allons" },
+                { p: "Vous", s: "regarder un film ?", a: "allez" },
+                { p: "Ils", s: "partir en vacances.", a: "vont" },
+                { p: "Elle", s: "faire du sport.", a: "va" },
+                { p: "On", s: "au parc.", a: "va" },
+                { p: "Elles", s: "écouter de la musique.", a: "vont" },
+                { p: "Marie", s: "acheter du pain.", a: "va" }
+            ];
+            const c_a1 = document.getElementById('container-act1');
+            a1_data.forEach((item, i) => {
+                c_a1.innerHTML += `
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex items-center gap-2 text-sm sm:text-base">
+                        <span class="font-bold min-w-[35px]">${item.p}</span>
+                        <input type="text" id="a1_q${i}" data-ans="${item.a}" class="w-16 sm:w-20 border-b-2 border-slate-400 bg-transparent text-center focus:outline-none focus:border-[#66004D] font-bold text-[#66004D]">
+                        <span>${item.s}</span>
+                    </div>`;
+            });
+
+            // Act 2 : Association Sujet/Verbe (Ordre mélangé manuellement pour plus de défi)
+            const a2_data = [
+                { s: 'Nous', a: 'allons' },
+                { s: 'Je', a: 'vais' },
+                { s: 'Ils / Elles', a: 'vont' },
+                { s: 'Tu', a: 'vas' },
+                { s: 'Vous', a: 'allez' },
+                { s: 'Marie', a: 'va' },
+                { s: 'Il / Elle / On', a: 'va' }
+            ];
+            const verbs = ['vais', 'vas', 'va', 'allons', 'allez', 'vont'];
+            const c_a2 = document.getElementById('container-act2');
+            a2_data.forEach((item, i) => {
+                let opts = verbs.map(v => `<option value="${v}">${v}</option>`).join('');
+                c_a2.innerHTML += `
+                    <div class="flex items-center justify-between bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
+                        <span class="font-bold text-slate-700 w-1/2">${item.s}</span>
+                        <select id="a2_q${i}" data-ans="${item.a}" class="bg-slate-100 border border-slate-300 text-slate-700 text-sm rounded-lg focus:ring-[#66004D] focus:border-[#66004D] block w-1/2 p-2 outline-none">
+                            <option value="">Choisir...</option>
+                            ${opts}
+                        </select>
+                    </div>`;
+            });
+
+            // Act 3 : Écoute et QCM (10 phrases)
+            const a3_data = [
+                { t: "Tu vas au supermarché.", o: ["Il va au supermarché.", "Vous allez au supermarché.", "Tu vas au supermarché."], a: 2 },
+                { t: "Nous allons manger.", o: ["Nous allons manger.", "Ils vont manger.", "Vous allez manger."], a: 0 },
+                { t: "Je vais travailler.", o: ["Tu vas travailler.", "Je vais travailler.", "Elle va travailler."], a: 1 },
+                { t: "Ils vont partir.", o: ["Il va partir.", "Ils vont partir.", "Elles vont partir."], a: 1 },
+                { t: "Vous allez bien ?", o: ["Tu vas bien ?", "Vous allez bien ?", "Ils vont bien ?"], a: 1 },
+                { t: "Elle va lire.", o: ["Il va lire.", "Elle va lire.", "On va lire."], a: 1 },
+                { t: "On va au parc.", o: ["On va au parc.", "Ils vont au parc.", "Je vais au parc."], a: 0 },
+                { t: "Je vais faire du sport.", o: ["Tu vas faire du sport.", "Il va faire du sport.", "Je vais faire du sport."], a: 2 },
+                { t: "Nous allons regarder un film.", o: ["Vous allez regarder un film.", "Nous allons regarder un film.", "Ils vont regarder un film."], a: 1 },
+                { t: "Tu vas écouter de la musique.", o: ["Il va écouter de la musique.", "Tu vas écouter de la musique.", "Je vais écouter de la musique."], a: 1 }
+            ];
+            const c_a3 = document.getElementById('container-act3');
+            a3_data.forEach((item, i) => {
+                let optsHTML = item.o.map((opt, j) => `
+                    <label class="qcm-label w-full">
+                        <input type="radio" name="a3_r${i}" value="${j}">
+                        <div class="qcm-radio-custom"></div>
+                        <span class="text-sm">${opt}</span>
+                    </label>
+                `).join('');
+                c_a3.innerHTML += `
+                    <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200" id="a3_block_${i}" data-ans="${item.a}">
+                        <div class="flex items-center gap-3 mb-4">
+                            <button onclick="speak('${item.t}')" class="w-12 h-12 rounded-full bg-[#66004D] text-white flex items-center justify-center hover:bg-[#52003e] shadow-md shrink-0 transition" title="Écouter la phrase">
+                                <i data-lucide="volume-2" class="w-6 h-6"></i>
+                            </button>
+                            <span class="font-medium text-slate-700 text-sm">Cliquez sur le cercle pour écouter et identifier la phrase correcte (${i + 1}) :</span>
+                        </div>
+                        <div class="grid gap-2 pl-2 sm:pl-14">
+                            ${optsHTML}
+                        </div>
+                    </div>`;
+            });
+
+            // --- ONGLET 2 : LECTURE ---
+            const tf_data = [
+                { q: "1. La personne va commencer sa journée à 8h.", a: 0 }, // Faux
+                { q: "2. Elle va prendre son petit déjeuner en famille.", a: 1 }, // Vrai
+                { q: "3. Elle va aller au cinéma seule.", a: 0 }, // Faux
+                { q: "4. Le film est un vieux film.", a: 0 }, // Faux (dernier film à la mode)
+                { q: "5. Le soir, elle va boire un café avec ses amis.", a: 1 }, // Vrai
+                { q: "6. Samedi prochain va être un jour stressant.", a: 0 } // Faux (calme)
+            ];
+            const c_tf = document.getElementById('container-vrai-faux');
+            tf_data.forEach((item, i) => {
+                c_tf.innerHTML += `
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm" id="tf_block_${i}" data-ans="${item.a}">
+                        <p class="font-medium mb-3 text-slate-800">${item.q}</p>
+                        <div class="flex gap-4">
+                            <label class="qcm-label flex-1 m-0 justify-center">
+                                <input type="radio" name="tf_r${i}" value="1">
+                                <div class="qcm-radio-custom"></div><span>Vrai</span>
+                            </label>
+                            <label class="qcm-label flex-1 m-0 justify-center">
+                                <input type="radio" name="tf_r${i}" value="0">
+                                <div class="qcm-radio-custom"></div><span>Faux</span>
+                            </label>
+                        </div>
+                    </div>`;
+            });
+
+            // --- ONGLET 3 : PRATIQUE ---
+            const p_data = [
+                { q: "1. (Regarder / Je) la télé :", a: "je vais regarder la télé" },
+                { q: "2. (NÉGATIF : ne pas / Vous / Dormir) :", a: "vous n'allez pas dormir", red: true },
+                { q: "3. (Manger / Nous) une pizza :", a: "nous allons manger une pizza" },
+                { q: "4. (NÉGATIF : ne pas / Tu / Sortir) :", a: "tu ne vas pas sortir", red: true },
+                { q: "5. (Écouter / Elles) de la musique :", a: "elles vont écouter de la musique" },
+                { q: "6. (NÉGATIF : ne pas / Je / Travailler) demain :", a: "je ne vais pas travailler demain", red: true },
+                { q: "7. (Voyager / Il) en France :", a: "il va voyager en france" }, // Case insens géré plus tard
+                { q: "8. (NÉGATIF : ne pas / Nous / Acheter) de pain :", a: "nous n'allons pas acheter de pain", red: true },
+                { q: "9. (Faire / On) du sport :", a: "on va faire du sport" },
+                { q: "10. (NÉGATIF : ne pas / Elles / Regarder) le film :", a: "elles ne vont pas regarder le film", red: true }
+            ];
+            const c_p = document.getElementById('container-pratique');
+            p_data.forEach((item, i) => {
+                c_p.innerHTML += `
+                    <div>
+                        <p class="font-medium ${item.red ? 'text-red-600' : 'text-slate-700'} mb-1">${item.q}</p>
+                        <input type="text" id="p_q${i}" data-ans="${item.a}" class="border-2 p-3 rounded-lg w-full focus:ring-2 focus:ring-indigo-400 outline-none text-slate-800" placeholder="Écrivez votre phrase ici...">
+                    </div>`;
+            });
+
+            // --- ONGLET 4 : ÉCOUTE ---
+            const e_data = [
+                { q: "1. Quand se passe l'action ?", o: ["Dimanche prochain.", "Samedi prochain.", "Ce soir."], a: 1 },
+                { q: "2. Que va faire Thomas samedi matin ?", o: ["Il va travailler.", "Il va aller au marché.", "Il va rester à la maison."], a: 1 },
+                { q: "3. Avec qui Thomas va-t-il faire ces activités ?", o: ["Avec sa sœur.", "Avec des amis.", "Avec sa femme."], a: 2 },
+                { q: "4. Qu'est-ce qu'ils vont acheter ?", o: ["De la viande et des légumes.", "Des fruits et des légumes.", "Des fruits seulement."], a: 1 },
+                { q: "5. Que va faire Alice le matin ?", o: ["Elle va faire les courses.", "Elle va cuisiner.", "Elle va lire et se reposer."], a: 2 },
+                { q: "6. Où est-ce qu'Alice va faire ces activités ?", o: ["Chez elle.", "À la bibliothèque.", "Au parc."], a: 0 },
+                { q: "7. Avec qui Alice va-t-elle au cinéma ?", o: ["Avec Thomas.", "Avec des amis.", "Seule."], a: 1 },
+                { q: "8. Quel film Alice et ses amis vont-ils regarder ?", o: ["Un film italien.", "Un film français.", "Un film d'action."], a: 1 },
+                { q: "9. Quelle est l'activité de Thomas l'après-midi ?", o: ["Il va jardiner.", "Il va dormir.", "Il va aller au cinéma."], a: 0 },
+                { q: "10. Où Thomas et sa femme vont-ils dîner le soir ?", o: ["À la maison.", "Dans un restaurant près de la gare.", "Chez Alice."], a: 1 }
+            ];
+            const c_e = document.getElementById('container-ecoute');
+            e_data.forEach((item, i) => {
+                let optsHTML = item.o.map((opt, j) => `
+                    <label class="qcm-label">
+                        <input type="radio" name="e_r${i}" value="${j}">
+                        <div class="qcm-radio-custom"></div><span>${opt}</span>
+                    </label>
+                `).join('');
+                c_e.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm" id="e_block_${i}" data-ans="${item.a}">
+                        <p class="font-bold text-slate-800 mb-3">${item.q}</p>
+                        <div class="grid gap-2">${optsHTML}</div>
+                    </div>`;
+            });
+
+            // Initialiser les icônes générées dynamiquement
+            lucide.createIcons();
+        });
+
+        // --- FONCTIONS DE VÉRIFICATION ---
+
+        function showScore(elementId, score, total, colorClassBase) {
+            const el = document.getElementById(elementId);
+            el.innerHTML = `Résultat : ${score} / ${total}`;
+            el.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-orange-100', 'text-orange-800', 'bg-red-100', 'text-red-800');
+            
+            let percentage = score / total;
+            if (percentage >= 0.8) el.classList.add('bg-green-100', 'text-green-800');
+            else if (percentage >= 0.5) el.classList.add('bg-orange-100', 'text-orange-800');
+            else el.classList.add('bg-red-100', 'text-red-800');
+        }
+
+        // Vérification Onglet 1 (3 act = 27 pts max)
+        window.verifierOnglet1 = function() {
+            let s1 = 0, s2 = 0, s3 = 0;
+            
+            // Act 1 (10)
+            for(let i=0; i<10; i++){
+                let input = document.getElementById(`a1_q${i}`);
+                if(input.value.trim().toLowerCase() === input.dataset.ans.toLowerCase()) {
+                    s1++; input.className = "w-16 sm:w-20 border-b-2 border-green-500 bg-green-50 text-center focus:outline-none font-bold text-green-700";
+                } else {
+                    input.className = "w-16 sm:w-20 border-b-2 border-red-500 bg-red-50 text-center focus:outline-none font-bold text-red-700";
+                }
+            }
+            
+            // Act 2 (7)
+            for(let i=0; i<7; i++){
+                let sel = document.getElementById(`a2_q${i}`);
+                if(sel.value === sel.dataset.ans) {
+                    s2++; sel.classList.add('bg-green-50', 'border-green-500', 'text-green-700');
+                    sel.classList.remove('bg-red-50', 'border-red-500', 'text-red-700', 'bg-slate-100');
+                } else {
+                    sel.classList.add('bg-red-50', 'border-red-500', 'text-red-700');
+                    sel.classList.remove('bg-green-50', 'border-green-500', 'text-green-700', 'bg-slate-100');
+                }
+            }
+            
+            // Act 3 (10)
+            for(let i=0; i<10; i++){
+                let block = document.getElementById(`a3_block_${i}`);
+                let ans = block.dataset.ans;
+                let checked = document.querySelector(`input[name="a3_r${i}"]:checked`);
+                
+                block.querySelectorAll('.qcm-label').forEach(l => l.classList.remove('border-green-500', 'bg-green-100', 'border-red-500', 'bg-red-100'));
+                
+                if(checked) {
+                    if(checked.value === ans) {
+                        s3++;
+                        checked.closest('.qcm-label').classList.add('border-green-500', 'bg-green-100');
+                    } else {
+                        checked.closest('.qcm-label').classList.add('border-red-500', 'bg-red-100');
+                    }
+                }
+            }
+
+            showScore('score-onglet1', s1 + s2 + s3, 27);
+        }
+
+        // Vérification Onglet 2 (6 pts max)
+        window.verifierOnglet2 = function() {
+            let score = 0;
+            for(let i=0; i<6; i++){
+                let block = document.getElementById(`tf_block_${i}`);
+                let ans = block.dataset.ans;
+                let checked = document.querySelector(`input[name="tf_r${i}"]:checked`);
+                
+                block.querySelectorAll('.qcm-label').forEach(l => l.classList.remove('border-green-500', 'bg-green-100', 'border-red-500', 'bg-red-100'));
+                
+                if(checked) {
+                    if(checked.value === ans) {
+                        score++;
+                        checked.closest('.qcm-label').classList.add('border-green-500', 'bg-green-100');
+                    } else {
+                        checked.closest('.qcm-label').classList.add('border-red-500', 'bg-red-100');
+                    }
+                }
+            }
+            showScore('score-onglet2', score, 6);
+        }
+
+        // Vérification Onglet 3 (10 pts max)
+        window.verifierOnglet3 = function() {
+            let score = 0;
+            for(let i=0; i<10; i++){
+                let input = document.getElementById(`p_q${i}`);
+                let userVal = input.value.trim().toLowerCase().replace(/’/g, "'");
+                let ansVal = input.dataset.ans.toLowerCase();
+                
+                if(userVal === ansVal) {
+                    score++;
+                    input.classList.add('bg-green-50', 'border-green-500');
+                    input.classList.remove('bg-red-50', 'border-red-500');
+                } else {
+                    input.classList.add('bg-red-50', 'border-red-500');
+                    input.classList.remove('bg-green-50', 'border-green-500');
+                }
+            }
+            showScore('score-onglet3', score, 10);
+        }
+
+        // Vérification Onglet 4 (10 pts max)
+        window.verifierOnglet4 = function() {
+            let score = 0;
+            for(let i=0; i<10; i++){
+                let block = document.getElementById(`e_block_${i}`);
+                let ans = block.dataset.ans;
+                let checked = document.querySelector(`input[name="e_r${i}"]:checked`);
+                
+                block.querySelectorAll('.qcm-label').forEach(l => l.classList.remove('border-green-500', 'bg-green-100', 'border-red-500', 'bg-red-100'));
+                
+                if(checked) {
+                    if(checked.value === ans) {
+                        score++;
+                        checked.closest('.qcm-label').classList.add('border-green-500', 'bg-green-100');
+                    } else {
+                        checked.closest('.qcm-label').classList.add('border-red-500', 'bg-red-100');
+                    }
+                }
+            }
+            showScore('score-onglet4', score, 10);
+        }
+
+    </script>
+</body>
+</html>
