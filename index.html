@@ -54,7 +54,6 @@
 
     <main class="max-w-6xl mx-auto px-4 py-8 sm:py-10 flex-1 space-y-8 w-full">
 
-        <!-- HERO BANNER (Solid, sophisticated deep theme) -->
         <div class="solid-hero rounded-3xl p-6 sm:p-10 text-white shadow-lg relative overflow-hidden border border-slate-800">
             <div class="max-w-2xl space-y-4 relative z-10">
                 <div class="inline-flex items-center gap-2 bg-slate-800 text-slate-200 text-xs font-bold px-3 py-1 rounded-full border border-slate-700">
@@ -76,10 +75,11 @@
                     <i data-lucide="layout-grid" class="w-5 h-5 text-slate-700"></i>
                     Menu des Activités Interactives
                 </h3>
-                <span class="text-xs font-bold text-slate-600 bg-slate-200 px-2.5 py-1 rounded-full">3 Activités</span>
+                <span class="text-xs font-bold text-slate-600 bg-slate-200 px-2.5 py-1 rounded-full">4 Activités</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Grille optimisée pour 4 cartes (1 colonne mobile, 2 tablettes, 4 grand écran) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <!-- ACTIVITÉ 1 CARD - Solid Guinda / Burgundy (#66004D) -->
                 <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 flex flex-col justify-between shadow-sm relative overflow-hidden group">
@@ -189,6 +189,42 @@
                     </div>
                 </div>
 
+                <!-- ACTIVITÉ 4 CARD - Solid Emerald Green (#047857) -->
+                <div class="activity-card bg-white rounded-2xl p-6 border border-slate-200 flex flex-col justify-between shadow-sm relative overflow-hidden group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="w-10 h-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-black text-lg shadow-sm">
+                                4
+                            </span>
+                            <span class="text-xs font-bold px-2.5 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full">
+                                Unité 4
+                            </span>
+                        </div>
+
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition">
+                                Aller & Futur Proche
+                            </h4>
+                            <p class="text-xs text-slate-600 mt-1.5 font-medium leading-relaxed">
+                                Révision du verbe aller au présent, marqueurs temporels, projets du week-end, et quiz de compréhension orale.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 rounded">aller</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 rounded">futur proche</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 rounded">projets</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 mt-4 border-t border-slate-100">
+                        <a href="futur_proche.html" class="w-full py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition shadow flex items-center justify-center gap-2">
+                            <span>Accéder à l'activité 4</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -215,7 +251,7 @@
 
     </main>
 
-    <footer class="bg-white border-t border-slate-200 py-8 text-center text-slate-600 text-xs sm:text-sm">
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-slate-600 text-xs sm:text-sm mt-auto">
         <div class="max-w-6xl mx-auto px-4 space-y-2">
             <p class="font-bold text-slate-900 flex items-center justify-center gap-2 flex-wrap">
                 <i data-lucide="award" class="w-5 h-5 text-amber-600"></i>
