@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Adjectifs Démonstratifs - FLE A1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            oif: {
+              blue: '#0072CE',
+              cyan: '#009EE0',
+              green: '#009A44',
+              yellow: '#FFB81C',
+              red: '#EF3340',
+              purple: '#7D3F98',
+              dark: '#1E293B'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Optimisation des zones de saisie pour mobile */
+    input[type="text"] {
+      -webkit-appearance: none;
+      font-size: 16px; /* Empêche le zoom auto sur iOS */
+    }
+    .custom-ring:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 114, 206, 0.35);
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col text-slate-800 antialiased">
+
+  <!-- En-tête avec bannière chromatique OIF -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="h-2 w-full grid grid-cols-5">
+      <div class="bg-[#0072CE]"></div>
+      <div class="bg-[#FFB81C]"></div>
+      <div class="bg-[#EF3340]"></div>
+      <div class="bg-[#009A44]"></div>
+      <div class="bg-[#7D3F98]"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div>
+        <span class="text-xs font-bold tracking-wider uppercase text-oif-blue bg-blue-50 px-2 py-0.5 rounded">FLE Niveau A1</span>
+        <h1 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Les Adjectifs Démonstratifs</h1>
+      </div>
+      <!-- Tableau de bord récapitulatif du score -->
+      <div class="flex items-center gap-2 bg-slate-100 rounded-xl px-4 py-2 border border-slate-200">
+        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Score total</span>
+        <span id="global-score-badge" class="text-xl font-extrabold text-oif-blue">0 / 35</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mémento grammatical rapide (rappel A1) -->
+  <section class="max-w-4xl mx-auto w-full px-4 pt-6">
+    <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
+        <svg class="w-4 h-4 text-oif-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Rappel de grammaire
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+        <div class="p-3 bg-blue-50/70 border border-blue-100 rounded-xl">
+          <span class="block font-black text-oif-blue text-base">CE</span>
+          <span class="text-xs text-slate-600">Masculin singulier (+ consonne)</span>
+          <p class="text-xs italic text-slate-500 mt-1">Ex: ce livre</p>
+        </div>
+        <div class="p-3 bg-yellow-50/80 border border-yellow-200 rounded-xl">
+          <span class="block font-black text-amber-600 text-base">CET</span>
+          <span class="text-xs text-slate-600">Masculin singulier (+ voyelle / h)</span>
+          <p class="text-xs italic text-slate-500 mt-1">Ex: cet hôtel</p>
+        </div>
+        <div class="p-3 bg-red-50/70 border border-red-100 rounded-xl">
+          <span class="block font-black text-oif-red text-base">CETTE</span>
+          <span class="text-xs text-slate-600">Féminin singulier (tous les cas)</span>
+          <p class="text-xs italic text-slate-500 mt-1">Ex: cette robe</p>
+        </div>
+        <div class="p-3 bg-green-50/70 border border-green-100 rounded-xl">
+          <span class="block font-black text-oif-green text-base">CES</span>
+          <span class="text-xs text-slate-600">Pluriel (masculin &amp; féminin)</span>
+          <p class="text-xs italic text-slate-500 mt-1">Ex: ces amis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zone Principale des Exercices -->
+  <main class="max-w-4xl mx-auto w-full px-4 py-6 space-y-8 flex-1">
+
+    <!-- ========================================== -->
+    <!-- SECTION 1 : Production écrite (15 items) -->
+    <!-- ========================================== -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+      <div class="flex flex-wrap items-center justify-between pb-4 border-b border-slate-100 gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-oif-blue">Exercice 1</span>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900">Complétez avec le démonstratif adéquat</h2>
+        </div>
+        <span id="score-s1" class="text-sm font-semibold bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200">0 / 15</span>
+      </div>
+
+      <div class="my-4 p-3 bg-amber-50 text-amber-900 border-l-4 border-oif-yellow rounded-r text-sm">
+        <strong>Consigne :</strong> Tapez <code class="bg-amber-100 px-1.5 py-0.5 rounded text-amber-900 font-mono">ce</code>, <code class="bg-amber-100 px-1.5 py-0.5 rounded text-amber-900 font-mono">cet</code>, <code class="bg-amber-100 px-1.5 py-0.5 rounded text-amber-900 font-mono">cette</code> ou <code class="bg-amber-100 px-1.5 py-0.5 rounded text-amber-900 font-mono">ces</code>.
+        <br><span class="text-xs text-amber-800">Note : Les mots suivis d'un <strong>*</strong> sont féminins.</span>
+      </div>
+
+      <!-- Grille des 15 items -->
+      <div id="grid-s1" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        <!-- Rempli dynamiquement par JS -->
+      </div>
+
+      <!-- Barre d'action -->
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100">
+        <button id="btn-check-s1" type="button" class="w-full sm:w-auto px-6 py-2.5 bg-oif-blue text-white font-semibold rounded-xl hover:bg-blue-700 active:scale-95 transition">
+          Vérifier l'exercice 1
+        </button>
+        <span id="msg-s1" class="text-sm font-medium"></span>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 2 : QCM Contextualisé (10 items)  -->
+    <!-- ========================================== -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+      <div class="flex flex-wrap items-center justify-between pb-4 border-b border-slate-100 gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-oif-purple">Exercice 2</span>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900">QCM : Choisissez la bonne forme</h2>
+        </div>
+        <span id="score-s2" class="text-sm font-semibold bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200">0 / 10</span>
+      </div>
+
+      <p class="my-4 text-sm text-slate-600">
+        <strong>Consigne :</strong> Sélectionnez le démonstratif qui convient le mieux au contexte de la phrase.
+      </p>
+
+      <div id="list-s2" class="space-y-4">
+        <!-- Rempli dynamiquement par JS -->
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100">
+        <button id="btn-check-s2" type="button" class="w-full sm:w-auto px-6 py-2.5 bg-oif-purple text-white font-semibold rounded-xl hover:bg-purple-800 active:scale-95 transition">
+          Vérifier l'exercice 2
+        </button>
+        <span id="msg-s2" class="text-sm font-medium"></span>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 3 : Discrimination auditive - Synthèse vocale (10 items) -->
+    <!-- ============================================================== -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+      <div class="flex flex-wrap items-center justify-between pb-4 border-b border-slate-100 gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-oif-green">Exercice 3</span>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900">Synthèse vocale : Singulier ou Pluriel ?</h2>
+        </div>
+        <span id="score-s3" class="text-sm font-semibold bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200">0 / 10</span>
+      </div>
+
+      <div class="my-4 p-3 bg-emerald-50 text-emerald-950 border-l-4 border-oif-green rounded-r text-sm">
+        <strong>Consigne :</strong> Cliquez sur le bouton audio pour écouter la phrase, puis indiquez si le syntagme est au <strong>singulier</strong> ou au <strong>pluriel</strong>.
+      </div>
+
+      <div id="list-s3" class="space-y-3">
+        <!-- Rempli dynamiquement par JS -->
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100">
+        <button id="btn-check-s3" type="button" class="w-full sm:w-auto px-6 py-2.5 bg-oif-green text-white font-semibold rounded-xl hover:bg-emerald-700 active:scale-95 transition">
+          Vérifier l'exercice 3
+        </button>
+        <span id="msg-s3" class="text-sm font-medium"></span>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- BILAN FINAL & RÉINITIALISATION             -->
+    <!-- ========================================== -->
+    <section class="bg-slate-900 text-white rounded-2xl p-6 shadow-md text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-5">
+      <div>
+        <h3 class="text-xl font-black">Bilan de l'évaluation</h3>
+        <p id="final-verdict" class="text-sm text-slate-300 mt-1">Complétez et vérifiez les trois sections pour obtenir votre résultat global.</p>
+      </div>
+      <button id="btn-reset" type="button" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-sm font-bold text-white transition active:scale-95">
+        Recommencer tous les exercices
+      </button>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+    Matériel pédagogique FLE (A1) • Conforme aux règles d'euphonie et d'accord en genre et en nombre.
+  </footer>
+
+  <script>
+    /* ====================================================================
+       DONNÉES PÉDAGOGIQUES
+       Lexique ciblé A1 : vêtements, lieux, métiers, vie quotidienne.
+       ==================================================================== */
+
+    // 15 items pour la Section 1
+    // SVG minimalistes et standardisés
+    const svgIcons = {
+      pantalon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 3h12v7l-2 11H13l-1-7-1 7H8L6 10V3z"/>',
+      impermeable: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4l8 2 8-2v5c0 6-3.5 10-8 12C7.5 19 4 15 4 9V4z"/>',
+      chemise: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 3l4 4-2 3-2-1v12H8V9L6 10 4 7l4-4 4 2 4-2z"/>',
+      chaussures: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 13l4-2 3 3 7-1 4 3v3H3v-5z"/>',
+      cinema: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 3h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1z"/>',
+      hopital: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4v16m-8-8h16M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>',
+      mairie: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 21h18M4 18h16M6 18V10M10 18V10M14 18V10M18 18V10M12 3l9 6H3l9-6z"/>',
+      infirmiers: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>',
+      ordinateur: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 17L9 20l2 1h2l2-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>',
+      sac: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>',
+      boulangerie: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 10h16M5 10a7 7 0 0114 0v9a2 2 0 01-2 2H7a2 2 0 01-2-2v-9z"/>',
+      lunettes: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M2 12a4 4 0 008 0 4 4 0 00-8 0zm12 0a4 4 0 008 0 4 4 0 00-8 0zm-4 0h4"/>',
+      acteur: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+      robe: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 3l3 2 3-2 2 4-2 14H7L5 7l2-4h2z"/>',
+      cles: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 7a4 4 0 10-6 3.465V17l2 2h2l2-2v-1l-2-2v-1.535A4 4 0 0015 7z"/>'
+    };
+
+    const dataS1 = [
+      { id: 1, noun: "pantalon", icon: "pantalon", correct: "ce", expl: "Masculin singulier commençant par une consonne." },
+      { id: 2, noun: "imperméable", icon: "impermeable", correct: "cet", expl: "Masculin singulier commençant par une voyelle." },
+      { id: 3, noun: "chemise*", icon: "chemise", correct: "cette", expl: "Féminin singulier." },
+      { id: 4, noun: "chaussures", icon: "chaussures", correct: "ces", expl: "Pluriel." },
+      { id: 5, noun: "cinéma", icon: "cinema", correct: "ce", expl: "Masculin singulier." },
+      { id: 6, noun: "hôpital", icon: "hopital", correct: "cet", expl: "Masculin singulier commençant par un 'h' muet." },
+      { id: 7, noun: "mairie*", icon: "mairie", correct: "cette", expl: "Féminin singulier." },
+      { id: 8, noun: "infirmiers", icon: "infirmiers", correct: "ces", expl: "Pluriel." },
+      { id: 9, noun: "ordinateur", icon: "ordinateur", correct: "cet", expl: "Masculin singulier commençant par une voyelle." },
+      { id: 10, noun: "sac", icon: "sac", correct: "ce", expl: "Masculin singulier." },
+      { id: 11, noun: "boulangerie*", icon: "boulangerie", correct: "cette", expl: "Féminin singulier." },
+      { id: 12, noun: "lunettes", icon: "lunettes", correct: "ces", expl: "Pluriel." },
+      { id: 13, noun: "acteur", icon: "acteur", correct: "cet", expl: "Masculin singulier commençant par une voyelle." },
+      { id: 14, noun: "robe*", icon: "robe", correct: "cette", expl: "Féminin singulier." },
+      { id: 15, noun: "clés", icon: "cles", correct: "ces", expl: "Pluriel." }
+    ];
+
+    // 10 items pour la Section 2 (QCM)
+    const dataS2 = [
+      {
+        id: 1,
+        prefix: "J'adore",
+        suffix: "imperméable bleu pour l'automne.",
+        options: ["ce", "cet", "cette"],
+        correct: "cet",
+        expl: "'Imperméable' est masculin et commence par une voyelle -> 'cet'."
+      },
+      {
+        id: 2,
+        prefix: "Regarde",
+        suffix: "belle robe dans la vitrine !",
+        options: ["ce", "cette", "ces"],
+        correct: "cette",
+        expl: "'Robe' est féminin singulier -> 'cette'."
+      },
+      {
+        id: 3,
+        prefix: "Vous connaissez",
+        suffix: "médecin de l'hôpital ?",
+        options: ["ce", "cet", "ces"],
+        correct: "ce",
+        expl: "'Médecin' est masculin singulier (+ consonne) -> 'ce'."
+      },
+      {
+        id: 4,
+        prefix: "J'habite dans",
+        suffix: "immeuble moderne près du parc.",
+        options: ["ce", "cet", "cette"],
+        correct: "cet",
+        expl: "'Immeuble' est masculin commençant par une voyelle -> 'cet'."
+      },
+      {
+        id: 5,
+        prefix: "Nous visitons",
+        suffix: "musée d'art moderne ce matin.",
+        options: ["ce", "cet", "ces"],
+        correct: "ce",
+        expl: "'Musée' est masculin singulier -> 'ce'."
+      },
+      {
+        id: 6,
+        prefix: "Tu achètes",
+        suffix: "chaussures de sport noires ?",
+        options: ["ce", "cette", "ces"],
+        correct: "ces",
+        expl: "'Chaussures' est au pluriel -> 'ces'."
+      },
+      {
+        id: 7,
+        prefix: "Elle travaille à",
+        suffix: "mairie depuis deux ans.",
+        options: ["ce", "cet", "cette"],
+        correct: "cette",
+        expl: "'Mairie' est féminin singulier -> 'cette'."
+      },
+      {
+        id: 8,
+        prefix: "Combien coûte",
+        suffix: "ordinateur portable ?",
+        options: ["ce", "cet", "cette"],
+        correct: "cet",
+        expl: "'Ordinateur' est masculin commençant par une voyelle -> 'cet'."
+      },
+      {
+        id: 9,
+        prefix: "Paul admire",
+        suffix: "tableau dans le salon.",
+        options: ["ce", "cette", "ces"],
+        correct: "ce",
+        expl: "'Tableau' est masculin singulier -> 'ce'."
+      },
+      {
+        id: 10,
+        prefix: "Prenez",
+        suffix: "clés sur la table avant de sortir.",
+        options: ["ce", "cet", "ces"],
+        correct: "ces",
+        expl: "'Clés' est au pluriel -> 'ces'."
+      }
+    ];
+
+    // 10 items pour la Section 3 (Synthèse vocale : Singulier vs Pluriel)
+    // Sélection permettant une distinction auditive nette A1 :
+    // - opposition /sə/ vs /se/ (ce manteau vs ces manteaux)
+    // - opposition /sɛt/ vs /se/ (cette veste vs ces vestes)
+    // - liaison [t] vs [z] (cet hôtel [sɛtotɛl] vs ces hôtels [sezotɛl])
+    const dataS3 = [
+      { id: 1, text: "Ce pantalon", correct: "singulier", phonetic: "/sə/" },
+      { id: 2, text: "Ces lunettes", correct: "pluriel", phonetic: "/se/" },
+      { id: 3, text: "Cet hôtel", correct: "singulier", phonetic: "Liaison en [t]" },
+      { id: 4, text: "Ces amis", correct: "pluriel", phonetic: "Liaison en [z]" },
+      { id: 5, text: "Cette boulangerie", correct: "singulier", phonetic: "/sɛt/" },
+      { id: 6, text: "Ces stylos", correct: "pluriel", phonetic: "/se/" },
+      { id: 7, text: "Ce cinéma", correct: "singulier", phonetic: "/sə/" },
+      { id: 8, text: "Ces manteaux", correct: "pluriel", phonetic: "/se/" },
+      { id: 9, text: "Cet enfant", correct: "singulier", phonetic: "Liaison en [t]" },
+      { id: 10, text: "Cette veste", correct: "singulier", phonetic: "/sɛt/" }
+    ];
+
+    /* ====================================================================
+       GESTION DES ÉTATS & SCORE
+       ==================================================================== */
+    const scores = { s1: 0, s2: 0, s3: 0 };
+    const checked = { s1: false, s2: false, s3: false };
+
+    function updateGlobalScore() {
+      const total = scores.s1 + scores.s2 + scores.s3;
+      document.getElementById('global-score-badge').innerText = `${total} / 35`;
+
+      const verdictEl = document.getElementById('final-verdict');
+      if (checked.s1 && checked.s2 && checked.s3) {
+        if (total >= 32) {
+          verdictEl.innerHTML = `<span class="text-emerald-400 font-bold">Excellent niveau !</span> Maîtrise solide des adjectifs démonstratifs (score : ${total}/35).`;
+        } else if (total >= 25) {
+          verdictEl.innerHTML = `<span class="text-amber-400 font-bold">Bon résultat !</span> Quelques confusions persistent entre masculin vocalique et féminin (score : ${total}/35).`;
+        } else {
+          verdictEl.innerHTML = `<span class="text-rose-400 font-bold">À revoir.</span> Consultez le mémento au début de la page et réessayez (score : ${total}/35).`;
+        }
+      }
+    }
+
+    /* ====================================================================
+       INITIALISATION : SECTION 1
+       ==================================================================== */
+    function initSection1() {
+      const container = document.getElementById('grid-s1');
+      container.innerHTML = '';
+      dataS1.forEach(item => {
+        const card = document.createElement('div');
+        card.id = `card-s1-${item.id}`;
+        card.className = "p-3.5 bg-slate-50 border border-slate-200 rounded-xl transition duration-150 flex flex-col justify-between";
+        card.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-oif-blue flex-shrink-0 shadow-2xs">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                ${svgIcons[item.icon] || ''}
+              </svg>
+            </div>
+            <div class="flex items-center gap-1.5 flex-1 min-w-0">
+              <input 
+                type="text" 
+                id="input-s1-${item.id}" 
+                placeholder="..." 
+                autocomplete="off" 
+                autocapitalize="none" 
+                spellcheck="false"
+                class="w-20 px-2 py-1.5 text-center font-bold text-slate-800 bg-white border border-slate-300 rounded-lg custom-ring text-sm transition"
+              />
+              <span class="font-semibold text-slate-800 text-sm truncate">${item.noun}</span>
+            </div>
+          </div>
+          <div id="feedback-s1-${item.id}" class="mt-2 text-xs hidden"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkSection1() {
+      let score = 0;
+      dataS1.forEach(item => {
+        const input = document.getElementById(`input-s1-${item.id}`);
+        const card = document.getElementById(`card-s1-${item.id}`);
+        const fb = document.getElementById(`feedback-s1-${item.id}`);
+        const val = input.value.trim().toLowerCase();
+
+        fb.classList.remove('hidden');
+        if (val === item.correct) {
+          score++;
+          card.className = "p-3.5 bg-emerald-50/60 border border-emerald-300 rounded-xl flex flex-col justify-between";
+          input.className = "w-20 px-2 py-1.5 text-center font-bold text-emerald-800 bg-white border border-emerald-400 rounded-lg text-sm";
+          fb.innerHTML = `<span class="text-emerald-700 font-semibold">Correct !</span> <span class="text-slate-500">${item.expl}</span>`;
+        } else {
+          card.className = "p-3.5 bg-rose-50/60 border border-rose-300 rounded-xl flex flex-col justify-between";
+          input.className = "w-20 px-2 py-1.5 text-center font-bold text-rose-800 bg-white border border-rose-400 rounded-lg text-sm";
+          fb.innerHTML = `<span class="text-rose-700 font-semibold">Attendu : <strong>${item.correct}</strong>.</span> <span class="text-slate-500">${item.expl}</span>`;
+        }
+      });
+
+      scores.s1 = score;
+      checked.s1 = true;
+      document.getElementById('score-s1').innerText = `${score} / 15`;
+      document.getElementById('msg-s1').innerHTML = `<span class="${score === 15 ? 'text-emerald-600' : 'text-slate-700'} font-bold">Résultat : ${score} sur 15</span>`;
+      updateGlobalScore();
+    }
+
+    /* ====================================================================
+       INITIALISATION : SECTION 2 (QCM)
+       ==================================================================== */
+    function initSection2() {
+      const container = document.getElementById('list-s2');
+      container.innerHTML = '';
+
+      dataS2.forEach(item => {
+        const qBox = document.createElement('div');
+        qBox.id = `qcm-box-${item.id}`;
+        qBox.className = "p-3.5 bg-slate-50 border border-slate-200 rounded-xl";
+
+        let optionsHtml = item.options.map(opt => `
+          <label class="cursor-pointer flex-1 sm:flex-initial">
+            <input type="radio" name="qcm-${item.id}" value="${opt}" class="sr-only peer">
+            <span class="block px-3.5 py-1.5 text-center text-sm font-bold rounded-lg border border-slate-300 bg-white text-slate-700 peer-checked:bg-oif-purple peer-checked:text-white peer-checked:border-oif-purple hover:bg-slate-100 transition active:scale-95 shadow-2xs">
+              ${opt}
+            </span>
+          </label>
+        `).join('');
+
+        qBox.innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="text-xs font-bold text-slate-600 mr-1.5">${item.id}.</span>
+              ${item.prefix} 
+              <span id="qcm-target-${item.id}" class="inline-block px-2 py-0.5 mx-1 font-bold text-oif-purple bg-purple-50 border border-purple-200 rounded">[ ... ]</span> 
+              ${item.suffix}
+            </p>
+            <div class="flex items-center gap-2" id="group-opt-${item.id}">
+              ${optionsHtml}
+            </div>
+          </div>
+          <div id="feedback-s2-${item.id}" class="mt-2 text-xs hidden"></div>
+        `;
+        container.appendChild(qBox);
+
+        // Mettre à jour l'aperçu du texte en direct
+        const radios = qBox.querySelectorAll(`input[name="qcm-${item.id}"]`);
+        radios.forEach(radio => {
+          radio.addEventListener('change', (e) => {
+            const preview = document.getElementById(`qcm-target-${item.id}`);
+            preview.innerText = e.target.value;
+          });
+        });
+      });
+    }
+
+    function checkSection2() {
+      let score = 0;
+      dataS2.forEach(item => {
+        const box = document.getElementById(`qcm-box-${item.id}`);
+        const fb = document.getElementById(`feedback-s2-${item.id}`);
+        const selected = document.querySelector(`input[name="qcm-${item.id}"]:checked`);
+        const val = selected ? selected.value : null;
+
+        fb.classList.remove('hidden');
+
+        if (val === item.correct) {
+          score++;
+          box.className = "p-3.5 bg-emerald-50/60 border border-emerald-300 rounded-xl";
+          fb.innerHTML = `<span class="text-emerald-700 font-semibold">Correct !</span> <span class="text-slate-500">${item.expl}</span>`;
+        } else {
+          box.className = "p-3.5 bg-rose-50/60 border border-rose-300 rounded-xl";
+          fb.innerHTML = `<span class="text-rose-700 font-semibold">Erreur. La réponse correcte était <strong>${item.correct}</strong>.</span> <span class="text-slate-500">${item.expl}</span>`;
+        }
+      });
+
+      scores.s2 = score;
+      checked.s2 = true;
+      document.getElementById('score-s2').innerText = `${score} / 10`;
+      document.getElementById('msg-s2').innerHTML = `<span class="${score === 10 ? 'text-emerald-600' : 'text-slate-700'} font-bold">Résultat : ${score} sur 10</span>`;
+      updateGlobalScore();
+    }
+
+    /* ====================================================================
+       INITIALISATION : SECTION 3 (Synthèse Vocale)
+       ==================================================================== */
+    function playAudioText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert("La synthèse vocale n'est pas supportée par votre navigateur.");
+        return;
+      }
+      window.speechSynthesis.cancel(); // Arrêter toute lecture en cours
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'fr-FR';
+      utterance.rate = 0.85; // Vitesse ralentie adaptée au A1
+      utterance.pitch = 1.0;
+
+      // Sélection d'une voix française disponible si existante
+      const voices = window.speechSynthesis.getVoices();
+      const frVoice = voices.find(v => v.lang.startsWith('fr') || v.lang.startsWith('FR'));
+      if (frVoice) utterance.voice = frVoice;
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function initSection3() {
+      const container = document.getElementById('list-s3');
+      container.innerHTML = '';
+
+      dataS3.forEach(item => {
+        const row = document.createElement('div');
+        row.id = `audio-row-${item.id}`;
+        row.className = "p-3 bg-slate-50 border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3";
+
+        row.innerHTML = `
+          <div class="flex items-center gap-3">
+            <button 
+              type="button" 
+              onclick="playAudioText('${item.text}')" 
+              class="w-10 h-10 rounded-full bg-oif-green text-white flex items-center justify-center hover:bg-emerald-700 active:scale-90 transition shadow-sm flex-shrink-0"
+              title="Écouter"
+              aria-label="Écouter l'item ${item.id}"
+            >
+              <svg class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+              </svg>
+            </button>
+            <div class="flex flex-col">
+              <span class="text-xs font-bold text-slate-500">Item ${item.id}</span>
+              <span class="text-sm font-semibold text-slate-700 italic">"Cliquez pour écouter"</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <label class="cursor-pointer flex-1 sm:flex-initial">
+              <input type="radio" name="audio-choice-${item.id}" value="singulier" class="sr-only peer">
+              <span class="block px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border border-slate-300 bg-white text-slate-700 peer-checked:bg-oif-green peer-checked:text-white peer-checked:border-oif-green hover:bg-slate-100 transition shadow-2xs text-center">
+                Singulier
+              </span>
+            </label>
+            <label class="cursor-pointer flex-1 sm:flex-initial">
+              <input type="radio" name="audio-choice-${item.id}" value="pluriel" class="sr-only peer">
+              <span class="block px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border border-slate-300 bg-white text-slate-700 peer-checked:bg-oif-green peer-checked:text-white peer-checked:border-oif-green hover:bg-slate-100 transition shadow-2xs text-center">
+                Pluriel
+              </span>
+            </label>
+          </div>
+
+          <div id="feedback-s3-${item.id}" class="text-xs hidden w-full sm:w-auto mt-2 sm:mt-0"></div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function checkSection3() {
+      let score = 0;
+      dataS3.forEach(item => {
+        const row = document.getElementById(`audio-row-${item.id}`);
+        const fb = document.getElementById(`feedback-s3-${item.id}`);
+        const selected = document.querySelector(`input[name="audio-choice-${item.id}"]:checked`);
+        const val = selected ? selected.value : null;
+
+        fb.classList.remove('hidden');
+
+        if (val === item.correct) {
+          score++;
+          row.className = "p-3 bg-emerald-50/60 border border-emerald-300 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3";
+          fb.innerHTML = `<span class="text-emerald-700 font-bold">Bien entendu !</span> <span class="text-slate-500">Texte: "${item.text}" (${item.phonetic})</span>`;
+        } else {
+          row.className = "p-3 bg-rose-50/60 border border-rose-300 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3";
+          fb.innerHTML = `<span class="text-rose-700 font-bold">Erreur (${item.correct}).</span> <span class="text-slate-500">Texte: "${item.text}" (${item.phonetic})</span>`;
+        }
+      });
+
+      scores.s3 = score;
+      checked.s3 = true;
+      document.getElementById('score-s3').innerText = `${score} / 10`;
+      document.getElementById('msg-s3').innerHTML = `<span class="${score === 10 ? 'text-emerald-600' : 'text-slate-700'} font-bold">Résultat : ${score} sur 10</span>`;
+      updateGlobalScore();
+    }
+
+    /* ====================================================================
+       RÉINITIALISATION TOTALE
+       ==================================================================== */
+    function resetAll() {
+      scores.s1 = 0;
+      scores.s2 = 0;
+      scores.s3 = 0;
+      checked.s1 = false;
+      checked.s2 = false;
+      checked.s3 = false;
+
+      document.getElementById('score-s1').innerText = "0 / 15";
+      document.getElementById('score-s2').innerText = "0 / 10";
+      document.getElementById('score-s3').innerText = "0 / 10";
+      document.getElementById('msg-s1').innerHTML = "";
+      document.getElementById('msg-s2').innerHTML = "";
+      document.getElementById('msg-s3').innerHTML = "";
+      document.getElementById('final-verdict').innerText = "Complétez et vérifiez les trois sections pour obtenir votre résultat global.";
+
+      initSection1();
+      initSection2();
+      initSection3();
+      updateGlobalScore();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ====================================================================
+       ÉCOUTEURS D'ÉVÉNEMENTS AU CHARGEMENT DU DOM
+       ==================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      initSection1();
+      initSection2();
+      initSection3();
+
+      document.getElementById('btn-check-s1').addEventListener('click', checkSection1);
+      document.getElementById('btn-check-s2').addEventListener('click', checkSection2);
+      document.getElementById('btn-check-s3').addEventListener('click', checkSection3);
+      document.getElementById('btn-reset').addEventListener('click', resetAll);
+
+      // Préchargement des voix de synthèse
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          window.speechSynthesis.getVoices();
+        };
+      }
+    });
+  </script>
+</body>
+</html>
