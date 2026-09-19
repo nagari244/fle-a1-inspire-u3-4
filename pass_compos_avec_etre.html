@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Passé Composé avec l'Auxiliaire Être - FLE A1</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Atkinson Hyperlegible Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Atkinson Hyperlegible', 'sans-serif'],
+                    },
+                    colors: {
+                        oif: {
+                            blue: '#0072CE',
+                            red: '#E0232E',
+                            yellow: '#FFC72C',
+                            green: '#00A859',
+                            purple: '#66004D',
+                            teal: '#0d9488'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .correct-glow {
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+            border-color: #10b981 !important;
+        }
+        .incorrect-glow {
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+            border-color: #ef4444 !important;
+        }
+        .bg-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .word-tile {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+        .word-tile:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-pattern text-slate-800 font-sans leading-relaxed min-h-screen flex flex-col justify-between">
+
+    <header class="bg-gradient-to-r from-teal-800 via-teal-700 to-emerald-700 text-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+                    <span class="bg-amber-400 text-slate-900 text-xs font-black uppercase px-2.5 py-0.5 rounded-full">Inspire 1 • Unité 6</span>
+                    <span class="bg-white/20 text-white text-xs font-semibold px-2 py-0.5 rounded-full">FLE Niveau A1</span>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-black">Raconter un événement passé</h1>
+                <p class="text-teal-100 text-sm mt-0.5 font-medium">
+                    Le passé composé avec l'auxiliaire <strong class="text-amber-300 underline decoration-2">ÊTRE</strong>, le cas de <em class="not-italic text-white underline">passer</em> et la <strong class="text-rose-200 underline">négation</strong>
+                </p>
+            </div>
+
+            <!-- Score global dynamique -->
+            <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2.5 rounded-2xl border border-white/20">
+                <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center text-lg font-black shadow-sm">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div>
+                    <span class="text-[10px] text-teal-100 font-bold uppercase tracking-wider block">Score Total de l'Activité 7</span>
+                    <div class="flex items-baseline gap-1.5">
+                        <span id="globalScoreDisplay" class="text-xl font-black text-white">0</span>
+                        <span class="text-teal-200 text-xs font-semibold">/ 64 pts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white border-b border-teal-100 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-2.5 flex items-center overflow-x-auto whitespace-nowrap gap-1.5 scrollbar-thin">
+            <button onclick="switchTab('tab-intro')" id="btn-tab-intro" class="tab-btn px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 text-white transition-all flex items-center gap-1.5">
+                <span>📖</span> 1. La Règle
+            </button>
+            <button onclick="switchTab('tab-maison')" id="btn-tab-maison" class="tab-btn px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border border-slate-200 hover:bg-teal-50 transition-all flex items-center gap-1.5">
+                <span>🏡</span> 2. Les 14 Verbes
+            </button>
+            <button onclick="switchTab('tab-audio')" id="btn-tab-audio" class="tab-btn px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border border-slate-200 hover:bg-teal-50 transition-all flex items-center gap-1.5">
+                <span>🎧</span> 3. Écoute Active
+            </button>
+            <button onclick="switchTab('tab-accords')" id="btn-tab-accords" class="tab-btn px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border border-slate-200 hover:bg-teal-50 transition-all flex items-center gap-1.5">
+                <span>✏️</span> 4. L'Accord
+            </button>
+            <button onclick="switchTab('tab-devinettes')" id="btn-tab-devinettes" class="tab-btn px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border border-slate-200 hover:bg-teal-50 transition-all flex items-center gap-1.5">
+                <span>🕵️‍♂️</span> 5. Les Devinettes
+            </button>
+            <button onclick="switchTab('tab-defi')" id="btn-tab-defi" class="tab-btn px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border border-slate-200 hover:bg-teal-50 transition-all flex items-center gap-1.5">
+                <span>🔥</span> 6. Le Défi
+            </button>
+            <button onclick="switchTab('tab-negation')" id="btn-tab-negation" class="tab-btn px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-rose-50 text-rose-800 border border-rose-200 hover:bg-rose-100 transition-all flex items-center gap-1.5">
+                <span>🚫</span> 7. La Négation
+            </button>
+        </div>
+    </div>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full space-y-6">
+
+        <!-- ================================================================= -->
+        <!-- ONGLET 1 : LA RÈGLE + TABLEAU SPÉCIAL VERBE PASSER               -->
+        <!-- ================================================================= -->
+        <section id="tab-intro" class="tab-content block space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
+                    <span class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-black text-xl">💡</span>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900">Pourquoi l'auxiliaire « Être » ?</h2>
+                        <p class="text-xs sm:text-sm text-slate-500">Comprendre le fonctionnement et la règle d'accord au niveau A1</p>
+                    </div>
+                </div>
+
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed mb-6">
+                    La majorité des verbes français utilisent l'auxiliaire <strong class="text-teal-700 font-bold">AVOIR</strong>. Cependant, un groupe de <strong>14 verbes de déplacement et de changement d'état</strong> (ainsi que les verbes pronominaux) utilise l'auxiliaire <strong class="text-amber-600 font-bold">ÊTRE</strong>.
+                    <br><span class="text-rose-600 font-bold">Règle essentielle :</span> avec l'auxiliaire <em>être</em>, le participe passé s'accorde obligatoirement en <strong>genre</strong> (masculin/féminin) et en <strong>nombre</strong> (singulier/pluriel) avec le <strong>sujet</strong> !
+                </p>
+
+                <!-- Tableau complet de conjugaison avec Être -->
+                <div class="bg-white rounded-2xl shadow-sm border border-teal-200 overflow-hidden mb-8">
+                    <div class="bg-gradient-to-r from-teal-800 to-emerald-700 text-white p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-2 font-bold text-sm sm:text-base">
+                            <i class="fa-solid fa-table-cells"></i>
+                            <span>La Formule Complète : Sujet + ÊTRE + Participe Passé</span>
+                        </div>
+                        <span class="text-xs bg-white/20 px-2.5 py-0.5 rounded-full">Exemple : ALLER</span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                            <thead>
+                                <tr class="bg-teal-50 text-teal-900 font-bold border-b border-teal-100">
+                                    <th class="p-3">Sujet</th>
+                                    <th class="p-3">Auxiliaire ÊTRE</th>
+                                    <th class="p-3">Participe Passé</th>
+                                    <th class="p-3">Règle d'accord appliquée</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-3 font-bold text-slate-800">Je</td>
+                                    <td class="p-3 font-mono font-bold text-amber-600">suis</td>
+                                    <td class="p-3 font-bold text-teal-800">allé <span class="text-slate-400 font-normal">/</span> allé<span class="text-rose-600 font-black">e</span></td>
+                                    <td class="p-3 text-slate-600 text-xs">On ajoute un <span class="text-rose-600 font-bold">e</span> si la personne qui parle est une femme.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-3 font-bold text-slate-800">Tu</td>
+                                    <td class="p-3 font-mono font-bold text-amber-600">es</td>
+                                    <td class="p-3 font-bold text-teal-800">allé <span class="text-slate-400 font-normal">/</span> allé<span class="text-rose-600 font-black">e</span></td>
+                                    <td class="p-3 text-slate-600 text-xs">On ajoute un <span class="text-rose-600 font-bold">e</span> si la personne à qui l'on parle est féminine.</td>
+                                </tr>
+                                <tr class="bg-sky-50/40 hover:bg-sky-50">
+                                    <td class="p-3 font-bold text-sky-900">Il</td>
+                                    <td class="p-3 font-mono font-bold text-amber-600">est</td>
+                                    <td class="p-3 font-bold text-sky-800">allé</td>
+                                    <td class="p-3 text-sky-700 text-xs font-medium">Masculin singulier : forme de base (pas de "e").</td>
+                                </tr>
+                                <tr class="bg-rose-50/40 hover:bg-rose-50">
+                                    <td class="p-3 font-bold text-rose-900">Elle</td>
+                                    <td class="p-3 font-mono font-bold text-amber-600">est</td>
+                                    <td class="p-3 font-bold text-rose-800">allé<span class="text-rose-600 font-black">e</span></td>
+                                    <td class="p-3 text-rose-700 text-xs font-medium">Féminin singulier : on ajoute obligatoirement un <strong class="text-rose-600 font-black">e</strong>.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-3 font-bold text-slate-800">Nous</td>
+                                    <td class="p-3 font-mono font-bold text-amber-600">sommes</td>
+                                    <td class="p-3 font-bold text-teal-800">allé<span class="text-amber-600 font-black">s</span> <span class="text-slate-400 font-normal">/</span> allé<span class="text-rose-600 font-black">es</span></td>
+                                    <td class="p-3 text-slate-600 text-xs">Pluriel mixte ou masculin : <span class="text-amber-600 font-bold">+ s</span>. Pluriel féminin : <span class="text-rose-600 font-bold">+ es</span>.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-3 font-bold text-slate-800">Vous</td>
+                                    <td class="p-3 font-mono font-bold text-amber-600">êtes</td>
+                                    <td class="p-3 font-bold text-teal-800">allé(e)(s)(es)</td>
+                                    <td class="p-3 text-slate-600 text-xs">S'accorde avec le destinataire réel (politesse ou groupe).</td>
+                                </tr>
+                                <tr class="bg-sky-50/40 hover:bg-sky-50">
+                                    <td class="p-3 font-bold text-sky-900">Ils</td>
+                                    <td class="p-3 font-mono font-bold text-amber-600">sont</td>
+                                    <td class="p-3 font-bold text-sky-800">allé<span class="text-amber-600 font-black">s</span></td>
+                                    <td class="p-3 text-sky-700 text-xs font-medium">Masculin pluriel (ou groupe mixte) : on ajoute toujours un <strong class="text-amber-600 font-black">s</strong>.</td>
+                                </tr>
+                                <tr class="bg-rose-50/40 hover:bg-rose-50">
+                                    <td class="p-3 font-bold text-rose-900">Elles</td>
+                                    <td class="p-3 font-mono font-bold text-amber-600">sont</td>
+                                    <td class="p-3 font-bold text-rose-800">allé<span class="text-rose-600 font-black">es</span></td>
+                                    <td class="p-3 text-rose-700 text-xs font-medium">Féminin pluriel : on ajoute obligatoirement <strong class="text-rose-600 font-black">es</strong>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TABLEAU SPÉCIAL : LE CAS DU VERBE PASSER -->
+                <div class="bg-amber-50/60 rounded-2xl border-2 border-amber-300 p-5 md:p-6 shadow-sm space-y-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-lg shadow-sm">⚠️</span>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-black text-amber-900">
+                                Attention Spéciale : Le verbe « PASSER »
+                            </h3>
+                            <p class="text-xs sm:text-sm text-amber-800 font-medium">
+                                Passer utilise l'auxiliaire <strong>ÊTRE</strong> ou l'auxiliaire <strong>AVOIR</strong> selon le sens !
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-4 border border-amber-200 text-xs sm:text-sm text-slate-700 space-y-3">
+                        <div class="p-3 bg-teal-50 border-l-4 border-teal-600 rounded-r-lg">
+                            <strong class="text-teal-900 block font-bold mb-1">1. Quand « passer » exprime un déplacement (sans COD) &rarr; Auxiliaire ÊTRE :</strong>
+                            <p class="italic text-teal-800">« Le facteur <strong>est passé</strong> ce matin. » / « Elle <strong>est passée</strong> devant la boulangerie. »</p>
+                            <span class="text-[11px] text-teal-700 font-semibold block mt-0.5">Le verbe décrit un mouvement d'un endroit à un autre. On fait l'accord avec le sujet !</span>
+                        </div>
+
+                        <div class="p-3 bg-amber-100/70 border-l-4 border-amber-600 rounded-r-lg">
+                            <strong class="text-amber-950 block font-bold mb-1">2. Quand « passer » est suivi d'un COD (temps, vacances, moment, examen) &rarr; Auxiliaire AVOIR :</strong>
+                            <p class="text-slate-800 font-medium mb-2">
+                                Si le verbe répond à la question « passer <em>quoi ?</em> », il a un <strong>Complément d'Objet Direct (COD)</strong>. On utilise alors l'auxiliaire <strong>AVOIR</strong> et il n'y a <u>aucun accord</u> avec le sujet !
+                            </p>
+                            <ul class="space-y-2 mt-2">
+                                <li class="bg-white p-2.5 rounded-lg border border-amber-200">
+                                    • Marie <strong class="text-amber-700 font-black">a passé</strong> <u class="font-bold text-slate-900 decoration-amber-500 decoration-2">de bonnes vacances</u>.
+                                    <span class="text-xs text-slate-500 block mt-0.5">&rarr; « <span class="font-semibold text-amber-800">de bonnes vacances</span> » est le <strong>COD</strong> (Marie a passé <em>quoi ?</em> de bonnes vacances). Pas d'accord avec Marie !</span>
+                                </li>
+                                <li class="bg-white p-2.5 rounded-lg border border-amber-200">
+                                    • Mes parents <strong class="text-amber-700 font-black">ont passé</strong> <u class="font-bold text-slate-900 decoration-amber-500 decoration-2">leur enfance</u> à la campagne.
+                                    <span class="text-xs text-slate-500 block mt-0.5">&rarr; « <span class="font-semibold text-amber-800">leur enfance</span> » est le <strong>COD</strong>. On emploie <em>ont passé</em> (auxiliaire avoir).</span>
+                                </li>
+                                <li class="bg-white p-2.5 rounded-lg border border-amber-200">
+                                    • Lucia <strong class="text-amber-700 font-black">a passé</strong> <u class="font-bold text-slate-900 decoration-amber-500 decoration-2">un bon moment</u> avec ses amis.
+                                    <span class="text-xs text-slate-500 block mt-0.5">&rarr; « <span class="font-semibold text-amber-800">un bon moment</span> » est le <strong>COD</strong>. Pas d'accord au féminin !</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 text-center">
+                    <button onclick="switchTab('tab-maison')" class="bg-teal-700 hover:bg-teal-800 text-white font-bold py-3 px-8 rounded-xl shadow transition flex items-center gap-2 mx-auto text-sm sm:text-base">
+                        <span>Découvrir la Maison d'Être</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- ONGLET 2 : LA MAISON D'ÊTRE (14 VERBES)                           -->
+        <!-- ================================================================= -->
+        <section id="tab-maison" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <span class="text-xs font-bold text-teal-800 uppercase tracking-wider bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
+                        Lexique & Mémorisation A1
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">La Maison d'Être (14 Verbes)</h2>
+                    <p class="text-slate-600 text-xs sm:text-sm mt-1.5">
+                        Cliquez sur chaque verbe pour afficher ses 4 formes d'accord (masculin/féminin, singulier/pluriel), son contraire et un exemple contextualisé.
+                    </p>
+                </div>
+
+                <!-- Grille des 14 verbes -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4" id="verbs-container">
+                    <!-- Rempli par JavaScript -->
+                </div>
+
+                <!-- Carte de détail dynamique -->
+                <div id="verb-detail-card" class="mt-8 bg-teal-50/70 rounded-2xl p-6 border-2 border-teal-500 transition-all hidden">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-4xl" id="detail-emoji">🏠</span>
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-black text-teal-900" id="detail-infinitive">Verbe</h3>
+                                <p class="text-xs sm:text-sm text-slate-600" id="detail-translation">Définition...</p>
+                            </div>
+                        </div>
+                        <div class="bg-white px-3.5 py-1.5 rounded-xl border border-teal-200 text-right">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase block">Contraire</span>
+                            <span class="text-sm font-black text-amber-600" id="detail-opposite">Opposé</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                        <div class="bg-white p-2.5 rounded-xl text-center shadow-xs border border-slate-200">
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block">🧑 Masc. Sing.</span>
+                            <span class="text-sm font-black text-slate-800" id="part-m-s">-</span>
+                        </div>
+                        <div class="bg-white p-2.5 rounded-xl text-center shadow-xs border border-rose-200">
+                            <span class="text-[10px] text-rose-500 font-bold uppercase block">👩 Fém. Sing.</span>
+                            <span class="text-sm font-black text-rose-600" id="part-f-s">-</span>
+                        </div>
+                        <div class="bg-white p-2.5 rounded-xl text-center shadow-xs border border-slate-200">
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block">🧑🧑 Masc. Plur.</span>
+                            <span class="text-sm font-black text-slate-800" id="part-m-p">-</span>
+                        </div>
+                        <div class="bg-white p-2.5 rounded-xl text-center shadow-xs border border-rose-200">
+                            <span class="text-[10px] text-rose-500 font-bold uppercase block">👩👩 Fém. Plur.</span>
+                            <span class="text-sm font-black text-rose-600" id="part-f-p">-</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 bg-white p-3 rounded-xl border border-teal-100 text-xs sm:text-sm">
+                        <span class="text-[11px] font-bold uppercase text-teal-800 block">Exemple en contexte :</span>
+                        <p class="italic text-slate-700 mt-0.5" id="detail-example">"..."</p>
+                    </div>
+                </div>
+
+                <div class="pt-6 text-center">
+                    <button onclick="switchTab('tab-audio')" class="bg-teal-700 hover:bg-teal-800 text-white font-bold py-3 px-8 rounded-xl shadow transition text-xs sm:text-sm">
+                        Passer à l'Écoute Active (gwendoline.mp3) ➔
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- ONGLET 3 : ÉCOUTE ACTIVE (gwendoline.mp3)                          -->
+        <!-- ================================================================= -->
+        <section id="tab-audio" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 space-y-8">
+
+                <!-- Lecteur Audio gwendoline.mp3 avec Contrôle de Vitesse -->
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50 to-teal-50 rounded-2xl p-5 md:p-6 border border-teal-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-5">
+                    <div class="flex items-center gap-3.5 w-full md:w-auto">
+                        <div class="w-12 h-12 rounded-2xl bg-teal-700 text-white flex items-center justify-center text-xl flex-shrink-0 shadow-sm">
+                            <i class="fa-solid fa-headphones"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-teal-700 uppercase tracking-wider block">Document Sonore Authentique A1</span>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900">Le premier jour de travail de Gwendoline</h3>
+                            <p class="text-xs text-slate-500 font-medium">Dialogue entre Antoine et Gwendoline (fichier : <span class="font-mono text-teal-800">gwendoline.mp3</span>)</p>
+                        </div>
+                    </div>
+
+                    <!-- Lecteur HTML5 et réglage de vitesse -->
+                    <div class="w-full md:w-auto flex flex-col sm:flex-row items-center gap-3">
+                        <audio id="audio-gwendoline" controls class="w-full sm:w-64 h-10 rounded-xl shadow-xs">
+                            <source src="gwendoline.mp3" type="audio/mp3">
+                            Votre navigateur ne prend pas en charge la balise audio.
+                        </audio>
+
+                        <div class="flex items-center gap-1 bg-white px-2.5 py-1.5 rounded-xl border border-teal-200 shadow-xs text-xs font-semibold text-slate-700">
+                            <i class="fa-solid fa-gauge text-teal-700 text-xs"></i>
+                            <span>Vitesse :</span>
+                            <button onclick="setAudioSpeed(0.75)" id="spd-075" class="px-2 py-0.5 rounded text-slate-600 hover:bg-teal-50">0.75x</button>
+                            <button onclick="setAudioSpeed(1.0)" id="spd-100" class="px-2 py-0.5 rounded bg-teal-700 text-white font-bold">1x</button>
+                            <button onclick="setAudioSpeed(1.25)" id="spd-125" class="px-2 py-0.5 rounded text-slate-600 hover:bg-teal-50">1.25x</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PARTIE A : 8 QUESTIONS DE COMPRÉHENSION GLOBALE A1 -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-lg bg-teal-700 text-white flex items-center justify-center font-black text-xs">A</span>
+                            <h4 class="text-base sm:text-lg font-black text-slate-900">Compréhension Globale (8 Questions)</h4>
+                        </div>
+                        <span id="score-audio-partA" class="text-xs font-bold text-teal-800 bg-teal-50 border border-teal-200 px-2.5 py-1 rounded-full">Score : 0/8</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="audio-qcm-container">
+                        <!-- Questions A injectées par JS -->
+                    </div>
+
+                    <div class="pt-2 flex justify-between items-center flex-wrap gap-3">
+                        <button onclick="checkAudioPartA()" class="py-2.5 px-6 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs sm:text-sm rounded-xl shadow transition flex items-center gap-2">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Vérifier la Partie A</span>
+                        </button>
+                        <button onclick="resetAudioPartA()" class="py-2 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+                            Réinitialiser la Partie A
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PARTIE B : ÉCOUTE DÉTAILLÉE & ACCORD DU PARTICIPE PASSÉ -->
+                <div class="space-y-4 pt-4 border-t border-slate-200">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center font-black text-xs">B</span>
+                            <div>
+                                <h4 class="text-base sm:text-lg font-black text-slate-900">Écoute Ciblée : Conjuguer et Accorder (8 Verbes)</h4>
+                                <p class="text-xs text-slate-500">Écoutez les phrases et tapez le verbe complet au passé composé (<em>auxiliaire + participe passé accordé</em>).</p>
+                            </div>
+                        </div>
+                        <span id="score-audio-partB" class="text-xs font-bold text-amber-800 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full">Score : 0/8</span>
+                    </div>
+
+                    <div class="space-y-3" id="audio-targeted-container">
+                        <!-- Phrases ciblées injectées par JS -->
+                    </div>
+
+                    <div class="pt-2 flex justify-between items-center flex-wrap gap-3">
+                        <button onclick="checkAudioPartB()" class="py-2.5 px-6 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow transition flex items-center gap-2">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Vérifier la Partie B</span>
+                        </button>
+                        <button onclick="toggleGwendolineTranscript()" id="btn-transcript-gwen" class="py-2.5 px-5 bg-teal-50 border border-teal-200 text-teal-800 hover:bg-teal-100 font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i>
+                            <span id="txt-transcript-label">Consulter la Transcription</span>
+                        </button>
+                    </div>
+
+                    <!-- Transcription cachée du dialogue -->
+                    <div id="box-transcript-gwendoline" class="hidden bg-slate-50 border border-slate-200 rounded-2xl p-5 text-xs sm:text-sm space-y-2.5 text-slate-700">
+                        <h5 class="font-bold text-teal-900 flex items-center gap-2">
+                            <i class="fa-solid fa-scroll"></i>
+                            <span>Transcription intégrale du dialogue :</span>
+                        </h5>
+                        <div class="space-y-1.5 font-mono text-xs leading-relaxed bg-white p-4 rounded-xl border border-slate-200 max-h-60 overflow-y-auto">
+                            <p><strong class="text-teal-800">Antoine :</strong> Bonsoir ma chérie.</p>
+                            <p><strong class="text-rose-700">Gwendoline :</strong> Salut Antoine. Tu <u>es rentré</u> tôt ce soir.</p>
+                            <p><strong class="text-teal-800">Antoine :</strong> Et oui. Alors, ta première journée de travail s'est bien passée ?</p>
+                            <p><strong class="text-rose-700">Gwendoline :</strong> Oui, très bien. Je suis contente.</p>
+                            <p><strong class="text-teal-800">Antoine :</strong> Tu <u>es arrivée</u> à l'heure ?</p>
+                            <p><strong class="text-rose-700">Gwendoline :</strong> Oui, je <u>suis même arrivée</u> en avance ! Mais pour le premier jour, je préfère. J'<u>ai pris</u> le métro finalement. Ça va, c'est assez direct. Je suis au bureau en une demi-heure.</p>
+                            <p><strong class="text-teal-800">Antoine :</strong> Et bien raconte-moi !</p>
+                            <p><strong class="text-rose-700">Gwendoline :</strong> Ben, j'<u>ai fait</u> la connaissance de mes nouveaux collègues. On a déjeuné ensemble à midi. Je <u>suis allée</u> au bureau du personnel et j'<u>ai signé</u> mon contrat.</p>
+                            <p><strong class="text-teal-800">Antoine :</strong> Et tu <u>as commencé</u> à travailler ?</p>
+                            <p><strong class="text-rose-700">Gwendoline :</strong> Oui, j'<u>ai assisté</u> à une réunion. J'ai pris beaucoup de notes et j'ai suivi comme j'ai pu. Ah ! Et je me suis familiarisée avec le programme informatique de l'entreprise. Et toi, tu <u>as passé</u> une bonne journée ?</p>
+                            <p><strong class="text-teal-800">Antoine :</strong> Très bonne. Bon, on va fêter ça alors ! J'<u>ai préparé</u> ton plat préféré et j'<u>ai acheté</u> une bouteille de champagne.</p>
+                            <p><strong class="text-rose-700">Gwendoline :</strong> Oh merci ! Dis, quand est-ce qu'on se marie ?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 text-center">
+                    <button onclick="switchTab('tab-accords')" class="bg-teal-700 hover:bg-teal-800 text-white font-bold py-3 px-8 rounded-xl shadow transition text-xs sm:text-sm">
+                        Passer à l'Atelier des Accords ➔
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- ONGLET 4 : L'ACCORD DU PARTICIPE PASSÉ (10 QUESTIONS)             -->
+        <!-- ================================================================= -->
+        <section id="tab-accords" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-200 pb-4 mb-6">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-black text-slate-900">L'Atelier des Accords</h2>
+                        <p class="text-xs sm:text-sm text-slate-500">Choisissez la forme correcte en observant le sujet (et attention au piège de <em>passer</em> !)</p>
+                    </div>
+                    <span id="accords-score" class="text-xs sm:text-sm font-black text-teal-800 bg-teal-50 border border-teal-200 px-3.5 py-1.5 rounded-xl">
+                        Score : 0/10
+                    </span>
+                </div>
+
+                <div class="space-y-4" id="accords-exercises-container">
+                    <!-- Rempli par JavaScript -->
+                </div>
+
+                <div class="pt-6 flex justify-between items-center flex-wrap gap-3">
+                    <button onclick="resetAccords()" class="py-2.5 px-5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm rounded-xl transition">
+                        Réinitialiser l'Atelier
+                    </button>
+                    <button onclick="switchTab('tab-devinettes')" class="bg-teal-700 hover:bg-teal-800 text-white font-bold py-2.5 px-6 rounded-xl shadow transition text-xs sm:text-sm">
+                        Continuer vers les Devinettes ➔
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- ONGLET 5 : LES DEVINETTES MYSTÈRES                                -->
+        <!-- ================================================================= -->
+        <section id="tab-devinettes" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 space-y-6">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900">Les Devinettes Mystères</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                        Complétez les textes au passé composé. Tapez <strong class="text-amber-600">l'auxiliaire être</strong> ET le <strong class="text-teal-700">participe passé correctement accordé</strong>.
+                    </p>
+                    <div class="bg-teal-50 border border-teal-200 text-teal-900 p-3 rounded-xl text-xs mt-3 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-teal-700"></i>
+                        <span>Modèles d'écriture : « <span class="font-mono font-bold">est né</span> », « <span class="font-mono font-bold">est partie</span> », « <span class="font-mono font-bold">sont tombés</span> ».</span>
+                    </div>
+                </div>
+
+                <!-- Boutons sélecteurs de devinettes -->
+                <div class="flex border-b border-slate-200">
+                    <button onclick="switchRiddle(0)" id="btn-riddle-0" class="riddle-tab-btn flex-1 py-2.5 text-center font-bold text-xs sm:text-sm border-b-2 border-teal-700 text-teal-800">1. Conte de fées (8 pts)</button>
+                    <button onclick="switchRiddle(1)" id="btn-riddle-1" class="riddle-tab-btn flex-1 py-2.5 text-center font-bold text-xs sm:text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-700">2. Sorcier célèbre (11 pts)</button>
+                    <button onclick="switchRiddle(2)" id="btn-riddle-2" class="riddle-tab-btn flex-1 py-2.5 text-center font-bold text-xs sm:text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-700">3. Voyageur de l'espace (7 pts)</button>
+                </div>
+
+                <div id="riddles-container">
+                    <!-- Devinette 1 (Shrek) -->
+                    <div id="riddle-card-0" class="riddle-panel block space-y-4">
+                        <div class="bg-slate-50 p-5 md:p-6 rounded-2xl border border-slate-200 leading-loose text-sm sm:text-base text-slate-800">
+                            Il <input type="text" id="r0-g1" data-answer="est né" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (1. naître) dans un marais. Un jour, il <input type="text" id="r0-g2" data-answer="est parti" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (2. partir) à la recherche d'une princesse. Il <input type="text" id="r0-g3" data-answer="est monté" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (3. monter) à la tour la plus élevée et il <input type="text" id="r0-g4" data-answer="est descendu" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (4. descendre) avec elle. Ils <input type="text" id="r0-g5" data-answer="sont partis" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (5. partir) ensemble de retour chez elle, mais dans le chemin la princesse <input type="text" id="r0-g6" data-answer="est devenue" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (6. devenir) ogresse. Alors, tous les deux <input type="text" id="r0-g7" data-answer="sont tombés" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (7. tomber) amoureux. Quelques années plus tard, leurs triplets <input type="text" id="r0-g8" data-answer="sont nés" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (8. naître). Qui est-ce ?
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 items-center justify-between pt-2">
+                            <button onclick="checkRiddle(0)" class="w-full sm:w-auto bg-teal-700 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-teal-800 transition text-xs sm:text-sm">Vérifier la devinette 1</button>
+                            <div id="riddle-reveal-0" class="hidden bg-emerald-50 text-emerald-800 px-4 py-2 rounded-xl border border-emerald-200 font-bold text-xs sm:text-sm">
+                                👹 C'est : <strong>Shrek !</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Devinette 2 (Harry Potter) -->
+                    <div id="riddle-card-1" class="riddle-panel hidden space-y-4">
+                        <div class="bg-slate-50 p-5 md:p-6 rounded-2xl border border-slate-200 leading-loose text-sm sm:text-base text-slate-800">
+                            Il <input type="text" id="r1-g1" data-answer="est resté" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (1. rester) orphelin parce que ses parents <input type="text" id="r1-g2" data-answer="sont morts" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (2. mourir) dans un combat. Il <input type="text" id="r1-g3" data-answer="est allé" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (3. aller) habiter chez un oncle, où il <input type="text" id="r1-g4" data-answer="est resté" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (4. rester) jusqu'au moment où une chouette blanche <input type="text" id="r1-g5" data-answer="est arrivée" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (5. arriver). C'est comme ça qu'il <input type="text" id="r1-g6" data-answer="est parti" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (6. partir) étudier de la magie. Il <input type="text" id="r1-g7" data-answer="est resté" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (7. rester) dans cette école longtemps, il <input type="text" id="r1-g8" data-answer="est tombé" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (8. tomber) amoureux de Ginny. Un jour, il <input type="text" id="r1-g9" data-answer="est mort" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (9. mourir), mais il <input type="text" id="r1-g10" data-answer="est retourné" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (10. retourner) à la vie. Il <input type="text" id="r1-g11" data-answer="est devenu" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (11. devenir) le magicien le plus célèbre.
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 items-center justify-between pt-2">
+                            <button onclick="checkRiddle(1)" class="w-full sm:w-auto bg-teal-700 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-teal-800 transition text-xs sm:text-sm">Vérifier la devinette 2</button>
+                            <div id="riddle-reveal-1" class="hidden bg-purple-50 text-purple-800 px-4 py-2 rounded-xl border border-purple-200 font-bold text-xs sm:text-sm">
+                                ⚡ C'est : <strong>Harry Potter !</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Devinette 3 (Le Petit Prince) -->
+                    <div id="riddle-card-2" class="riddle-panel hidden space-y-4">
+                        <div class="bg-slate-50 p-5 md:p-6 rounded-2xl border border-slate-200 leading-loose text-sm sm:text-base text-slate-800">
+                            Il <input type="text" id="r2-g1" data-answer="est né" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (1. naître) sur l'astéroïde B612. Pour découvrir l'univers, il <input type="text" id="r2-g2" data-answer="est parti" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (2. partir) explorer des planètes. Finalement, il <input type="text" id="r2-g3" data-answer="est arrivé" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (3. arriver) sur la planète Terre. Il <input type="text" id="r2-g4" data-answer="est tombé" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (4. tomber) dans un désert et il <input type="text" id="r2-g5" data-answer="est resté" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (5. rester) avec un aviateur. Là, il <input type="text" id="r2-g6" data-answer="est devenu" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (6. devenir) ami avec un renard. À la fin, il <input type="text" id="r2-g7" data-answer="est retourné" class="riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-slate-300 rounded-lg text-xs sm:text-sm font-bold" placeholder="aux + participe"> (7. retourner) auprès de sa rose.
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 items-center justify-between pt-2">
+                            <button onclick="checkRiddle(2)" class="w-full sm:w-auto bg-teal-700 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-teal-800 transition text-xs sm:text-sm">Vérifier la devinette 3</button>
+                            <div id="riddle-reveal-2" class="hidden bg-amber-50 text-amber-800 px-4 py-2 rounded-xl border border-amber-200 font-bold text-xs sm:text-sm">
+                                👑 C'est : <strong>Le Petit Prince !</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 text-center">
+                    <button onclick="switchTab('tab-defi')" class="bg-teal-700 hover:bg-teal-800 text-white font-bold py-2.5 px-6 rounded-xl shadow transition text-xs sm:text-sm">
+                        Continuer vers le Défi Être / Avoir ➔
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- ONGLET 6 : LE DÉFI DE TRI (ÊTRE OU AVOIR ?)                       -->
+        <!-- ================================================================= -->
+        <section id="tab-defi" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 space-y-6">
+                <div class="text-center max-w-xl mx-auto">
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900">Le Défi : Être ou Avoir ?</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                        Pour chaque verbe qui apparaît, cliquez sur le bon auxiliaire au passé composé.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+                    <!-- Zone Avoir -->
+                    <div class="md:col-span-4 bg-amber-50/60 rounded-2xl p-4 border-2 border-dashed border-amber-300 text-center min-h-[160px] flex flex-col justify-between">
+                        <div>
+                            <span class="text-2xl">☕</span>
+                            <h3 class="font-bold text-amber-900 text-sm mt-0.5">Auxiliaire AVOIR</h3>
+                            <p class="text-[11px] text-amber-700">Verbes d'action avec COD</p>
+                        </div>
+                        <div id="list-avoir" class="mt-3 flex flex-wrap gap-1.5 justify-center"></div>
+                    </div>
+
+                    <!-- Carte active au centre -->
+                    <div class="md:col-span-4 flex flex-col items-center justify-center p-6 bg-slate-50 rounded-2xl border border-slate-200 shadow-xs" id="deck-container">
+                        <div class="text-center w-full" id="active-card-box">
+                            <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider" id="challenge-progress">Verbe 1 sur 24</span>
+                            <div class="text-2xl sm:text-3xl font-black text-slate-900 my-4" id="active-verb-name">ALLER</div>
+                            <div class="flex justify-center gap-3 mt-4 w-full">
+                                <button onclick="classifyActiveVerb('AVOIR')" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-3 rounded-xl shadow-xs transition text-xs sm:text-sm">
+                                    AVOIR
+                                </button>
+                                <button onclick="classifyActiveVerb('ETRE')" class="flex-1 bg-teal-700 hover:bg-teal-800 text-white font-bold py-2.5 px-3 rounded-xl shadow-xs transition text-xs sm:text-sm">
+                                    ÊTRE
+                                </button>
+                            </div>
+                        </div>
+                        <div class="hidden text-center" id="game-finished-box">
+                            <span class="text-4xl">🎉</span>
+                            <h4 class="font-bold text-base text-teal-800 mt-1">Défi accompli !</h4>
+                            <p class="text-xs text-slate-500">Score Défi : 24 / 24</p>
+                        </div>
+                    </div>
+
+                    <!-- Zone Être -->
+                    <div class="md:col-span-4 bg-teal-50/60 rounded-2xl p-4 border-2 border-dashed border-teal-300 text-center min-h-[160px] flex flex-col justify-between">
+                        <div>
+                            <span class="text-2xl">🏡</span>
+                            <h3 class="font-bold text-teal-900 text-sm mt-0.5">Auxiliaire ÊTRE</h3>
+                            <p class="text-[11px] text-teal-700">Verbes de la Maison d'Être</p>
+                        </div>
+                        <div id="list-etre" class="mt-3 flex flex-wrap gap-1.5 justify-center"></div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center flex-wrap gap-3 pt-2">
+                    <button onclick="setupChallenge()" class="py-2 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+                        Réinitialiser le Défi
+                    </button>
+                    <button onclick="switchTab('tab-negation')" class="bg-rose-700 hover:bg-rose-800 text-white font-bold py-2.5 px-6 rounded-xl shadow transition text-xs sm:text-sm">
+                        Découvrir la Négation ➔
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- ONGLET 7 : LA NÉGATION AU PASSÉ COMPOSÉ                           -->
+        <!-- ================================================================= -->
+        <section id="tab-negation" class="tab-content hidden space-y-8">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 space-y-8">
+
+                <!-- Tableau explicatif de la Négation -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+                        <span class="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-black text-xl">🚫</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-black text-slate-900">La Négation au Passé Composé</h2>
+                            <p class="text-xs sm:text-sm text-slate-500">Règle d'or de syntaxe pour Avoir et Être au niveau A1</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-rose-50/70 border-2 border-rose-200 rounded-2xl p-5 md:p-6 space-y-4">
+                        <div class="bg-white p-4 rounded-xl border border-rose-200 text-center">
+                            <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider block mb-1">La Formule Visuelle Fondamentale</span>
+                            <div class="text-base sm:text-xl font-black text-slate-900 flex items-center justify-center gap-2 flex-wrap">
+                                <span class="bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">Sujet</span>
+                                <span class="text-rose-600">+</span>
+                                <span class="bg-rose-100 text-rose-700 px-3 py-1 rounded-lg border border-rose-300 font-mono">ne / n'</span>
+                                <span class="text-rose-600">+</span>
+                                <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-lg border border-amber-300">AUXILIAIRE</span>
+                                <span class="text-rose-600">+</span>
+                                <span class="bg-rose-100 text-rose-700 px-3 py-1 rounded-lg border border-rose-300 font-mono">pas</span>
+                                <span class="text-rose-600">+</span>
+                                <span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-lg border border-teal-300">Participe Passé</span>
+                            </div>
+                            <p class="text-xs text-rose-700 font-medium mt-2">
+                                Les deux mots de la négation encadrent <strong>uniquement l'auxiliaire</strong> ! Le participe passé reste après « pas ».
+                            </p>
+                        </div>
+
+                        <!-- Tableau comparatif Avoir vs Être -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+                            <div class="bg-white p-4 rounded-xl border border-amber-200 space-y-2">
+                                <span class="font-bold text-amber-900 block border-b border-amber-100 pb-1">Auxiliaire AVOIR</span>
+                                <p class="text-slate-700">• Il a mangé &rarr; Il <strong class="text-rose-600">n'</strong>a <strong class="text-rose-600">pas</strong> mangé.</p>
+                                <p class="text-slate-700">• Nous avons fini &rarr; Nous <strong class="text-rose-600">n'</strong>avons <strong class="text-rose-600">pas</strong> fini.</p>
+                                <p class="text-slate-700">• J'ai compris &rarr; Je <strong class="text-rose-600">n'</strong>ai <strong class="text-rose-600">pas</strong> compris.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-teal-200 space-y-2">
+                                <span class="font-bold text-teal-900 block border-b border-teal-100 pb-1">Auxiliaire ÊTRE (avec accord !)</span>
+                                <p class="text-slate-700">• Il est parti &rarr; Il <strong class="text-rose-600">n'</strong>est <strong class="text-rose-600">pas</strong> parti.</p>
+                                <p class="text-slate-700">• Elle est sortie &rarr; Elle <strong class="text-rose-600">n'</strong>est <strong class="text-rose-600">pas</strong> sorti<span class="text-rose-600 font-bold">e</span>.</p>
+                                <p class="text-slate-700">• Ils sont venus &rarr; Ils <strong class="text-rose-600">ne</strong> sont <strong class="text-rose-600">pas</strong> venu<span class="text-rose-600 font-bold">s</span>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTIVITÉ 1 : TRANSFORMATION À LA FORME NÉGATIVE (7 QUESTIONS) -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <div>
+                            <span class="text-xs font-bold text-rose-700 uppercase">Activité 1</span>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900">Mettez les phrases à la forme négative (7 phrases)</h3>
+                        </div>
+                        <span id="score-neg-trans" class="text-xs font-bold text-rose-800 bg-rose-50 border border-rose-200 px-2.5 py-1 rounded-full">Score : 0/7</span>
+                    </div>
+
+                    <div class="space-y-3.5" id="neg-trans-container">
+                        <!-- 7 phrases injectées par JS -->
+                    </div>
+
+                    <div class="pt-2 flex justify-between items-center flex-wrap gap-3">
+                        <button onclick="checkNegTransform()" class="py-2.5 px-6 bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs sm:text-sm rounded-xl shadow transition flex items-center gap-2">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Vérifier l'Activité 1</span>
+                        </button>
+                        <button onclick="resetNegTransform()" class="py-2 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+                            Réinitialiser
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ACTIVITÉ 2 : MÉLI-MÉLO DE MOTS (7 QUESTIONS) -->
+                <div class="space-y-4 pt-6 border-t border-slate-200">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <div>
+                            <span class="text-xs font-bold text-teal-700 uppercase">Activité 2</span>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900">Méli-mélo : Ordonnez les éléments (7 phrases)</h3>
+                            <p class="text-xs text-slate-500">Cliquez sur les mots dans le bon ordre pour reconstruire la phrase négative.</p>
+                        </div>
+                        <span id="score-neg-scramble" class="text-xs font-bold text-teal-800 bg-teal-50 border border-teal-200 px-2.5 py-1 rounded-full">Score : 0/7</span>
+                    </div>
+
+                    <div class="space-y-4" id="neg-scramble-container">
+                        <!-- 7 méli-mélos injectés par JS -->
+                    </div>
+
+                    <div class="pt-2 flex justify-between items-center flex-wrap gap-3">
+                        <button onclick="checkNegScramble()" class="py-2.5 px-6 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs sm:text-sm rounded-xl shadow transition flex items-center gap-2">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Vérifier l'Activité 2</span>
+                        </button>
+                        <button onclick="resetNegScramble()" class="py-2 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+                            Réinitialiser
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ACTIVITÉ 3 : QCM QUELLE EST LA PHRASE CORRECTE ? (8 QUESTIONS) -->
+                <div class="space-y-4 pt-6 border-t border-slate-200">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-700 uppercase">Activité 3</span>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900">QCM : Quelle est la phrase correcte ? (8 questions)</h3>
+                        </div>
+                        <span id="score-neg-qcm" class="text-xs font-bold text-indigo-800 bg-indigo-50 border border-indigo-200 px-2.5 py-1 rounded-full">Score : 0/8</span>
+                    </div>
+
+                    <div class="space-y-3.5" id="neg-qcm-container">
+                        <!-- 8 questions injectées par JS -->
+                    </div>
+
+                    <div class="pt-2 flex justify-between items-center flex-wrap gap-3">
+                        <button onclick="checkNegQCM()" class="py-2.5 px-6 bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs sm:text-sm rounded-xl shadow transition flex items-center gap-2">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Vérifier l'Activité 3</span>
+                        </button>
+                        <button onclick="resetNegQCM()" class="py-2 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+                            Réinitialiser
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 px-4 mt-12 border-t-4 border-teal-600">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+            <div>
+                <p class="text-white font-bold">Activité 7 • Le Passé Composé avec l'Auxiliaire Être & La Négation</p>
+                <p class="text-slate-500 mt-0.5">Inspire 1 FLE Niveau A1 • Conçu avec feedback immédiat et scoring individualisé.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="bg-slate-800 text-teal-400 px-2.5 py-1 rounded-lg font-mono">gwendoline.mp3</span>
+                <span class="bg-slate-800 text-white px-2.5 py-1 rounded-lg">FLE A1</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        // 1. Données des 14 verbes de la Maison d'Être
+        const verbsData = [
+            { infinitive: "naître", emoji: "🐣", translation: "Commencer sa vie.", opposite: "mourir", examples: "Je suis né en été.", partM: "né", partF: "née", partMP: "nés", partFP: "nées" },
+            { infinitive: "mourir", emoji: "🪦", translation: "Cesser de vivre.", opposite: "naître", examples: "Molière est mort à Paris.", partM: "mort", partF: "morte", partMP: "morts", partFP: "mortes" },
+            { infinitive: "monter", emoji: "🧗‍♀️", translation: "Aller vers le haut.", opposite: "descendre", examples: "Elle est montée au premier étage.", partM: "monté", partF: "montée", partMP: "montés", partFP: "montées" },
+            { infinitive: "descendre", emoji: "📉", translation: "Aller vers le bas.", opposite: "monter", examples: "Il est descendu dans la rue.", partM: "descendu", partF: "descendue", partMP: "descendus", partFP: "descendues" },
+            { infinitive: "entrer", emoji: "🚪", translation: "Passer de l'extérieur à l'intérieur.", opposite: "sortir", examples: "Elle est entrée dans la classe.", partM: "entré", partF: "entrée", partMP: "entrés", partFP: "entrées" },
+            { infinitive: "sortir", emoji: "🚶‍♂️", translation: "Passer de l'intérieur à l'extérieur.", opposite: "entrer", examples: "Mes amis sont sortis ce soir.", partM: "sorti", partF: "sortie", partMP: "sortis", partFP: "sorties" },
+            { infinitive: "aller", emoji: "✈️", translation: "Se déplacer vers un lieu.", opposite: "venir", examples: "Nous sommes allés en France.", partM: "allé", partF: "allée", partMP: "allés", partFP: "allées" },
+            { infinitive: "venir", emoji: "👋", translation: "Arriver vers le lieu d'origine.", opposite: "aller", examples: "Ils sont venus chez nous.", partM: "venu", partF: "venue", partMP: "venus", partFP: "venues" },
+            { infinitive: "arriver", emoji: "🏁", translation: "Atteindre la destination.", opposite: "partir", examples: "La lettre est arrivée à temps.", partM: "arrivé", partF: "arrivée", partMP: "arrivés", partFP: "arrivées" },
+            { infinitive: "partir", emoji: "🧳", translation: "Quitter un endroit.", opposite: "arriver", examples: "Le train est parti à l'heure.", partM: "parti", partF: "partie", partMP: "partis", partFP: "parties" },
+            { infinitive: "rester", emoji: "🛋️", translation: "Demeurer dans le même lieu.", opposite: "partir", examples: "Nous sommes restés à la maison.", partM: "resté", partF: "restée", partMP: "restés", partFP: "restées" },
+            { infinitive: "tomber", emoji: "🍂", translation: "Être entraîné vers le sol.", opposite: "monter", examples: "Les feuilles sont tombées.", partM: "tombé", partF: "tombée", partMP: "tombés", partFP: "tombées" },
+            { infinitive: "retourner", emoji: "🔄", translation: "Aller de nouveau quelque part.", opposite: "rester", examples: "Il est retourné dans son pays.", partM: "retourné", partF: "retournée", partMP: "retournés", partFP: "retournées" },
+            { infinitive: "passer", emoji: "🚶‍♀️", translation: "Traverser un lieu (sans COD).", opposite: "rester", examples: "Le facteur est passé à midi.", partM: "passé", partF: "passée", partMP: "passés", partFP: "passées" }
+        ];
+
+        // 2. Compréhension auditive globale (Partie A - 8 questions)
+        const audioQuestionsPartA = [
+            {
+                q: "1. Qui sont les deux personnes qui parlent dans le dialogue ?",
+                options: ["Antoine et sa mère", "Antoine et Gwendoline", "Deux collègues de bureau"],
+                correct: 1,
+                feedback: "Antoine accueille Gwendoline à la maison (« Bonsoir ma chérie » / « Salut Antoine »)."
+            },
+            {
+                q: "2. Quel événement important a eu lieu aujourd'hui pour Gwendoline ?",
+                options: ["C'est son anniversaire", "C'est son premier jour de travail", "Elle a acheté un nouvel appartement"],
+                correct: 1,
+                feedback: "Antoine lui demande : « Alors, ta première journée de travail s'est bien passée ? »."
+            },
+            {
+                q: "3. Comment Gwendoline est-elle allée au travail ce matin ?",
+                options: ["En voiture", "En vélo", "En métro"],
+                correct: 2,
+                feedback: "Elle dit : « J'ai pris le métro finalement. Ça va, c'est assez direct »."
+            },
+            {
+                q: "4. Combien de temps a duré son trajet pour aller au bureau ?",
+                options: ["Une demi-heure (30 minutes)", "Une heure complète", "Dix minutes seulement"],
+                correct: 0,
+                feedback: "Gwendoline précise : « Je suis au bureau en une demi-heure »."
+            },
+            {
+                q: "5. Qu'est-ce que Gwendoline a fait à midi ?",
+                options: ["Elle a mangé seule à son bureau", "Elle a déjeuné avec ses nouveaux collègues", "Elle est rentrée chez elle"],
+                correct: 1,
+                feedback: "Elle explique : « On a déjeuné ensemble à midi »."
+            },
+            {
+                q: "6. Qu'est-ce qu'elle a fait au bureau du personnel ?",
+                options: ["Elle a signé son contrat", "Elle a passé un entretien d'embauche", "Elle a demandé des vacances"],
+                correct: 0,
+                feedback: "Elle dit : « Je suis allée au bureau du personnel et j'ai signé mon contrat »."
+            },
+            {
+                q: "7. Qu'est-ce qu'Antoine a préparé pour célébrer cette journée ?",
+                options: ["Une pizza et des bières", "Son plat préféré et une bouteille de champagne", "Un gâteau d'anniversaire"],
+                correct: 1,
+                feedback: "Antoine annonce : « J'ai préparé ton plat préféré et j'ai acheté une bouteille de champagne »."
+            },
+            {
+                q: "8. Quelle question Gwendoline pose-t-elle à Antoine à la fin ?",
+                options: ["« Tu as fait la vaisselle ? »", "« Où est le chat ? »", "« Quand est-ce qu'on se marie ? »"],
+                correct: 2,
+                feedback: "Elle conclut joyeusement : « Dis, quand est-ce qu'on se marie ? »."
+            }
+        ];
+
+        // 3. Écoute ciblée et accords (Partie B - 8 verbes)
+        const audioTargetedItems = [
+            {
+                id: 1,
+                context: "Gwendoline à Antoine : « Tu ____ (rentrer) tôt ce soir. »",
+                expected: "es rentré",
+                feedback: "Auxiliaire ÊTRE. Le sujet « Tu » représente Antoine (homme, masculin singulier) &rarr; « es rentré »."
+            },
+            {
+                id: 2,
+                context: "Antoine à Gwendoline : « Tu ____ (arriver) à l'heure ? »",
+                expected: "es arrivée",
+                feedback: "Auxiliaire ÊTRE. Le sujet « Tu » représente Gwendoline (femme, féminin singulier) &rarr; « es arrivée » (+e)."
+            },
+            {
+                id: 3,
+                context: "Gwendoline : « Je ____ (arriver) en avance ! »",
+                expected: "suis arrivée",
+                feedback: "Auxiliaire ÊTRE. Gwendoline parle d'elle-même (féminin singulier) &rarr; « suis arrivée » (+e)."
+            },
+            {
+                id: 4,
+                context: "Gwendoline : « Je ____ (aller) au bureau du personnel. »",
+                expected: "suis allée",
+                feedback: "Auxiliaire ÊTRE. Le verbe aller s'accorde avec Gwendoline (féminin) &rarr; « suis allée » (+e)."
+            },
+            {
+                id: 5,
+                context: "Gwendoline à Antoine : « Et toi, tu ____ (passer) une bonne journée ? »",
+                expected: "as passé",
+                feedback: "ATTENTION ! « une bonne journée » est le COD de passer ! On utilise donc l'auxiliaire AVOIR : « as passé » (pas d'accord !)."
+            },
+            {
+                id: 6,
+                context: "Gwendoline : « J'____ (prendre) le métro finalement. »",
+                expected: "ai pris",
+                feedback: "Auxiliaire AVOIR : « ai pris » (pas d'accord avec le sujet)."
+            },
+            {
+                id: 7,
+                context: "Gwendoline : « J'____ (signer) mon contrat. »",
+                expected: "ai signé",
+                feedback: "Auxiliaire AVOIR : « ai signé »."
+            },
+            {
+                id: 8,
+                context: "Antoine : « J'____ (préparer) ton plat préféré ! »",
+                expected: "ai préparé",
+                feedback: "Auxiliaire AVOIR : « ai préparé »."
+            }
+        ];
+
+        // 4. Questions de l'Atelier des Accords (10 questions avec passer inclus)
+        const accordQuestions = [
+            { text: "Le colis est ____.", options: ["arrivé", "arrivée", "arrivés", "arrivées"], correct: "arrivé", desc: "« Le colis » = Masculin singulier." },
+            { text: "Mes sœurs sont ____ à Paris.", options: ["parti", "partie", "partis", "parties"], correct: "parties", desc: "« Mes sœurs » = Féminin pluriel (+es)." },
+            { text: "Lucie et Marc sont ____ ensemble.", options: ["rentré", "rentrée", "rentrés", "rentrées"], correct: "rentrés", desc: "Groupe mixte = Masculin pluriel (+s)." },
+            { text: "Marie a ____ de bonnes vacances.", options: ["passé", "passée", "passés", "passées"], correct: "passé", desc: "PIÈGE ! « de bonnes vacances » est le COD. Auxiliaire AVOIR = pas d'accord !" },
+            { text: "La voisine est ____ par l'escalier.", options: ["monté", "montée", "montés", "montées"], correct: "montée", desc: "« La voisine » = Féminin singulier (+e)." },
+            { text: "Ils ont ____ leur enfance en Bretagne.", options: ["passé", "passée", "passés", "passées"], correct: "passé", desc: "PIÈGE ! « leur enfance » est COD. Auxiliaire AVOIR = forme neutre « passé »." },
+            { text: "Les deux touristes (fém.) sont ____ à l'hôtel.", options: ["resté", "restée", "restés", "restées"], correct: "restées", desc: "Sujet 100% féminin pluriel = « restées »." },
+            { text: "L'actrice est ____ hier soir.", options: ["mort", "morte", "morts", "mortes"], correct: "morte", desc: "« L'actrice » = Féminin singulier (+e)." },
+            { text: "Nos amis sont ____ nous voir.", options: ["venu", "venue", "venus", "venues"], correct: "venus", desc: "« Nos amis » = Masculin pluriel (+s)." },
+            { text: "Elle a ____ un très bon moment.", options: ["passé", "passée", "passés", "passées"], correct: "passé", desc: "PIÈGE ! « un très bon moment » est COD. Auxiliaire AVOIR = « passé »." }
+        ];
+
+        // 5. Défi de tri Être vs Avoir (24 verbes)
+        const challengeVerbs = [
+            { name: "ALLER", auxiliary: "ETRE" },
+            { name: "ARRIVER", auxiliary: "ETRE" },
+            { name: "DESCENDRE", auxiliary: "ETRE" },
+            { name: "ENTRER", auxiliary: "ETRE" },
+            { name: "MONTER", auxiliary: "ETRE" },
+            { name: "MOURIR", auxiliary: "ETRE" },
+            { name: "NAÎTRE", auxiliary: "ETRE" },
+            { name: "PARTIR", auxiliary: "ETRE" },
+            { name: "RESTER", auxiliary: "ETRE" },
+            { name: "RETOURNER", auxiliary: "ETRE" },
+            { name: "SORTIR", auxiliary: "ETRE" },
+            { name: "TOMBER", auxiliary: "ETRE" },
+            { name: "VENIR", auxiliary: "ETRE" },
+            { name: "PASSER (sans COD)", auxiliary: "ETRE" },
+            { name: "MANGER", auxiliary: "AVOIR" },
+            { name: "REGARDER", auxiliary: "AVOIR" },
+            { name: "CHOISIR", auxiliary: "AVOIR" },
+            { name: "FINIR", auxiliary: "AVOIR" },
+            { name: "ACHETER", auxiliary: "AVOIR" },
+            { name: "ÉCOUTER", auxiliary: "AVOIR" },
+            { name: "FAIRE", auxiliary: "AVOIR" },
+            { name: "PRENDRE", auxiliary: "AVOIR" },
+            { name: "DORMIR", auxiliary: "AVOIR" },
+            { name: "PASSER (avec COD)", auxiliary: "AVOIR" }
+        ];
+
+        // 6. Activités Négation
+        const negTransformData = [
+            { prompt: "1. J'ai mangé au restaurant.", answer: "Je n'ai pas mangé au restaurant.", hint: "ne + ai + pas" },
+            { prompt: "2. Il est parti à 8 heures.", answer: "Il n'est pas parti à 8 heures.", hint: "ne + est + pas" },
+            { prompt: "3. Nous avons regardé un film.", answer: "Nous n'avons pas regardé un film.", hint: "ne + avons + pas" },
+            { prompt: "4. Elle est arrivée en retard.", answer: "Elle n'est pas arrivée en retard.", hint: "ne + est + pas (accord -e)" },
+            { prompt: "5. Vous avez choisi le dessert.", answer: "Vous n'avez pas choisi le dessert.", hint: "ne + avez + pas" },
+            { prompt: "6. Elles sont sorties ce soir.", answer: "Elles ne sont pas sorties ce soir.", hint: "ne + sont + pas (accord -es)" },
+            { prompt: "7. Tu as passé de bonnes vacances.", answer: "Tu n'as pas passé de bonnes vacances.", hint: "ne + as + pas" }
+        ];
+
+        const negScrambleData = [
+            { words: ["Il", "n'", "a", "pas", "compris", "la", "leçon."], correct: "Il n' a pas compris la leçon." },
+            { words: ["Je", "ne", "suis", "pas", "allé", "au", "cinéma."], correct: "Je ne suis pas allé au cinéma." },
+            { words: ["Marie", "n'", "a", "pas", "fini", "ses", "devoirs."], correct: "Marie n' a pas fini ses devoirs." },
+            { words: ["Nous", "ne", "sommes", "pas", "rentrés", "tard."], correct: "Nous ne sommes pas rentrés tard." },
+            { words: ["Tu", "n'", "as", "pas", "trouvé", "la", "clé."], correct: "Tu n' a pas trouvé la clé." },
+            { words: ["Elles", "ne", "sont", "pas", "venues", "hier."], correct: "Elles ne sont pas venues hier." },
+            { words: ["Lucas", "n'", "a", "pas", "passé", "son", "examen."], correct: "Lucas n' a pas passé son examen." }
+        ];
+
+        const negQcmData = [
+            {
+                q: "1. Quelle est la phrase correcte ?",
+                options: ["Il n'a mangé pas.", "Il n'a pas mangé.", "Il a pas mangé."],
+                correct: 1,
+                feedback: "« pas » se place toujours juste après l'auxiliaire avoir : « n'a pas mangé »."
+            },
+            {
+                q: "2. Quelle est la phrase correcte ?",
+                options: ["Elle est pas venue.", "Elle n'est venue pas.", "Elle n'est pas venue."],
+                correct: 2,
+                feedback: "La négation complète est « n'est pas venue » avec l'accord féminin au participe."
+            },
+            {
+                q: "3. Quelle est la phrase correcte ?",
+                options: ["Nous n'avons pas fini.", "Nous avons fini pas.", "Nous ne pas avons fini."],
+                correct: 0,
+                feedback: "L'auxiliaire « avons » est entouré par « n'... pas »."
+            },
+            {
+                q: "4. Quelle est la phrase correcte ?",
+                options: ["Je ne suis pas allé.", "Je suis pas allé ne.", "Je n'ai pas allé."],
+                correct: 0,
+                feedback: "Aller utilise l'auxiliaire être : « Je ne suis pas allé »."
+            },
+            {
+                q: "5. Quelle est la phrase correcte ?",
+                options: ["Ils ont dormi pas.", "Ils n'ont pas dormi.", "Ils pas n'ont dormi."],
+                correct: 1,
+                feedback: "« n'ont pas dormi » est la seule structure syntaxique correcte."
+            },
+            {
+                q: "6. Quelle est la phrase correcte ?",
+                options: ["Tu n'es pas parti.", "Tu n'as pas parti.", "Tu es parti pas."],
+                correct: 0,
+                feedback: "Partir se conjugue avec être : « Tu n'es pas parti »."
+            },
+            {
+                q: "7. Quelle est la phrase correcte (verbe passer + COD) ?",
+                options: ["Elle a pas passé ses vacances.", "Elle n'a pas passé ses vacances.", "Elle n'est pas passée ses vacances."],
+                correct: 1,
+                feedback: "Avec le COD « ses vacances », passer prend l'auxiliaire avoir : « n'a pas passé »."
+            },
+            {
+                q: "8. Quelle est la phrase correcte ?",
+                options: ["Vous n'avez pas écouté.", "Vous avez pas écouté.", "Vous n'avez écouté pas."],
+                correct: 0,
+                feedback: "Forme négative standard A1 : « Vous n'avez pas écouté »."
+            }
+        ];
+
+        let state = {
+            audioPartA: {},
+            audioPartB: {},
+            accords: {},
+            riddleScores: [0, 0, 0],
+            challengeIndex: 0,
+            challengeShuffled: [],
+            negTransformScore: 0,
+            scrambleUserOrder: {},
+            negQcmAnswers: {}
+        };
+
+        window.onload = function() {
+            renderVerbsGrid();
+            showVerbDetail(0);
+            renderAudioPartA();
+            renderAudioPartB();
+            renderAccords();
+            setupChallenge();
+            renderNegTransform();
+            renderNegScramble();
+            renderNegQcm();
+            updateGlobalScore();
+        };
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border border-slate-200 hover:bg-teal-50 transition-all flex items-center gap-1.5";
+            });
+            const active = document.getElementById('btn-' + tabId);
+            if (active) {
+                active.className = "tab-btn px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-teal-700 text-white transition-all flex items-center gap-1.5";
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setAudioSpeed(speed) {
+            const audio = document.getElementById('audio-gwendoline');
+            if (audio) audio.playbackRate = speed;
+
+            ['spd-075', 'spd-100', 'spd-125'].forEach(id => {
+                const b = document.getElementById(id);
+                b.className = "px-2 py-0.5 rounded text-slate-600 hover:bg-teal-50";
+            });
+            if (speed === 0.75) document.getElementById('spd-075').className = "px-2 py-0.5 rounded bg-teal-700 text-white font-bold";
+            if (speed === 1.0) document.getElementById('spd-100').className = "px-2 py-0.5 rounded bg-teal-700 text-white font-bold";
+            if (speed === 1.25) document.getElementById('spd-125').className = "px-2 py-0.5 rounded bg-teal-700 text-white font-bold";
+        }
+
+        function toggleGwendolineTranscript() {
+            const box = document.getElementById('box-transcript-gwendoline');
+            const label = document.getElementById('txt-transcript-label');
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                label.innerText = "Masquer la Transcription";
+            } else {
+                box.classList.add('hidden');
+                label.innerText = "Consulter la Transcription";
+            }
+        }
+
+        function renderVerbsGrid() {
+            const container = document.getElementById('verbs-container');
+            container.innerHTML = "";
+            verbsData.forEach((verb, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-3 sm:p-4 rounded-2xl border border-slate-200 hover:border-teal-600 cursor-pointer transition shadow-xs hover:shadow flex flex-col items-center justify-center text-center group";
+                card.onclick = () => showVerbDetail(idx);
+                card.innerHTML = `
+                    <span class="text-3xl group-hover:scale-110 transition-transform">${verb.emoji}</span>
+                    <span class="font-bold text-slate-900 mt-1.5 block capitalize text-xs sm:text-sm">${verb.infinitive}</span>
+                    <span class="text-[10px] text-teal-700 font-semibold mt-0.5">Participe: ${verb.partM}</span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function showVerbDetail(idx) {
+            const verb = verbsData[idx];
+            document.getElementById('verb-detail-card').classList.remove('hidden');
+            document.getElementById('detail-emoji').innerText = verb.emoji;
+            document.getElementById('detail-infinitive').innerText = verb.infinitive;
+            document.getElementById('detail-translation').innerText = verb.translation;
+            document.getElementById('detail-opposite').innerText = verb.opposite;
+            document.getElementById('detail-example').innerText = verb.examples;
+
+            document.getElementById('part-m-s').innerText = verb.partM;
+            document.getElementById('part-f-s').innerText = verb.partF;
+            document.getElementById('part-m-p').innerText = verb.partMP;
+            document.getElementById('part-f-p').innerText = verb.partFP;
+        }
+
+        function renderAudioPartA() {
+            const container = document.getElementById('audio-qcm-container');
+            container.innerHTML = "";
+            audioQuestionsPartA.forEach((item, idx) => {
+                const box = document.createElement('div');
+                box.className = "bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2.5";
+                box.id = `qcm-box-partA-${idx}`;
+
+                let opts = "";
+                item.options.forEach((opt, oIdx) => {
+                    opts += `
+                        <label class="flex items-center gap-2.5 p-2 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-teal-50 text-xs sm:text-sm text-slate-700 transition">
+                            <input type="radio" name="audio-partA-${idx}" value="${oIdx}" class="w-4 h-4 accent-teal-700">
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                });
+
+                box.innerHTML = `
+                    <p class="font-bold text-xs sm:text-sm text-slate-900">${item.q}</p>
+                    <div class="space-y-1.5">${opts}</div>
+                    <p id="fb-partA-${idx}" class="hidden text-xs font-semibold p-2 rounded-lg mt-1"></p>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        function checkAudioPartA() {
+            let score = 0;
+            audioQuestionsPartA.forEach((item, idx) => {
+                const selected = document.querySelector(`input[name="audio-partA-${idx}"]:checked`);
+                const fb = document.getElementById(`fb-partA-${idx}`);
+                const box = document.getElementById(`qcm-box-partA-${idx}`);
+                fb.classList.remove('hidden');
+
+                if (selected && parseInt(selected.value) === item.correct) {
+                    score++;
+                    fb.className = "text-xs font-semibold p-2 rounded-lg mt-1 bg-emerald-50 text-emerald-800 border border-emerald-200";
+                    fb.innerHTML = `✓ Exact ! ${item.feedback}`;
+                    box.classList.remove('border-rose-300');
+                    box.classList.add('border-emerald-300');
+                } else {
+                    fb.className = "text-xs font-semibold p-2 rounded-lg mt-1 bg-rose-50 text-rose-800 border border-rose-200";
+                    fb.innerHTML = `✗ Réponse correcte : « ${item.options[item.correct]} ». ${item.feedback}`;
+                    box.classList.remove('border-emerald-300');
+                    box.classList.add('border-rose-300');
+                }
+            });
+            document.getElementById('score-audio-partA').innerText = `Score : ${score}/8`;
+            updateGlobalScore();
+        }
+
+        function resetAudioPartA() {
+            document.querySelectorAll('#audio-qcm-container input[type="radio"]').forEach(r => r.checked = false);
+            document.querySelectorAll('#audio-qcm-container p[id^="fb-partA-"]').forEach(fb => fb.classList.add('hidden'));
+            document.querySelectorAll('#audio-qcm-container div[id^="qcm-box-partA-"]').forEach(b => {
+                b.classList.remove('border-emerald-300', 'border-rose-300');
+            });
+            document.getElementById('score-audio-partA').innerText = "Score : 0/8";
+            updateGlobalScore();
+        }
+
+        function renderAudioPartB() {
+            const container = document.getElementById('audio-targeted-container');
+            container.innerHTML = "";
+            audioTargetedItems.forEach((item, idx) => {
+                const row = document.createElement('div');
+                row.className = "bg-slate-50 p-3.5 rounded-2xl border border-slate-200 text-xs sm:text-sm text-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3";
+                row.id = `targeted-row-${idx}`;
+
+                row.innerHTML = `
+                    <div class="flex-1 font-medium">
+                        <span class="font-bold text-teal-800 mr-1">${idx + 1}.</span>
+                        <span>${item.context.replace('____', `<input type="text" id="targeted-input-${idx}" class="px-2 py-1 mx-1 text-center font-bold bg-white border border-slate-300 rounded-lg text-teal-800 focus:outline-none focus:border-teal-600 w-32" placeholder="verbe conjugué">`)}</span>
+                        <p id="targeted-fb-${idx}" class="hidden text-xs mt-1.5 p-2 rounded-lg"></p>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function checkAudioPartB() {
+            let score = 0;
+            audioTargetedItems.forEach((item, idx) => {
+                const input = document.getElementById(`targeted-input-${idx}`);
+                const fb = document.getElementById(`targeted-fb-${idx}`);
+                const val = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+                fb.classList.remove('hidden');
+
+                if (val === item.expected.toLowerCase()) {
+                    score++;
+                    input.className = "px-2 py-1 mx-1 text-center font-bold bg-emerald-50 border-2 border-emerald-500 rounded-lg text-emerald-800 w-32";
+                    fb.className = "text-xs mt-1.5 p-2 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200";
+                    fb.innerHTML = `✓ Bravo ! ${item.feedback}`;
+                } else {
+                    input.className = "px-2 py-1 mx-1 text-center font-bold bg-rose-50 border-2 border-rose-500 rounded-lg text-rose-800 w-32";
+                    fb.className = "text-xs mt-1.5 p-2 rounded-lg bg-rose-50 text-rose-800 border border-rose-200";
+                    fb.innerHTML = `✗ Attendu : « <strong>${item.expected}</strong> ». ${item.feedback}`;
+                }
+            });
+            document.getElementById('score-audio-partB').innerText = `Score : ${score}/8`;
+            updateGlobalScore();
+        }
+
+        function renderAccords() {
+            const container = document.getElementById('accords-exercises-container');
+            container.innerHTML = "";
+            accordQuestions.forEach((q, idx) => {
+                const box = document.createElement('div');
+                box.className = "bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3";
+                box.id = `accord-box-${idx}`;
+
+                let btns = "";
+                q.options.forEach(opt => {
+                    btns += `
+                        <button onclick="selectAccordOption(${idx}, '${opt}')" id="btn-acc-${idx}-${opt}" class="flex-1 py-2 px-3 text-xs sm:text-sm font-bold bg-white border border-slate-200 rounded-xl hover:bg-teal-50 transition shadow-xs">
+                            ${opt}
+                        </button>
+                    `;
+                });
+
+                box.innerHTML = `
+                    <div class="flex justify-between items-center gap-2">
+                        <span class="font-bold text-xs sm:text-sm text-slate-800">${idx + 1}. ${q.text}</span>
+                        <span id="badge-acc-${idx}" class="hidden text-[11px] font-bold px-2 py-0.5 rounded-full"></span>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">${btns}</div>
+                    <p id="desc-acc-${idx}" class="hidden text-xs text-teal-800 italic mt-1">${q.desc}</p>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        function selectAccordOption(qIdx, opt) {
+            if (state.accords[qIdx] !== undefined) return;
+            const q = accordQuestions[qIdx];
+            state.accords[qIdx] = opt;
+
+            q.options.forEach(o => {
+                const btn = document.getElementById(`btn-acc-${qIdx}-${o}`);
+                btn.disabled = true;
+                if (o === q.correct) {
+                    btn.className = "flex-1 py-2 px-3 text-xs sm:text-sm font-bold bg-emerald-100 border-2 border-emerald-600 text-emerald-900 rounded-xl shadow-xs";
+                } else if (o === opt) {
+                    btn.className = "flex-1 py-2 px-3 text-xs sm:text-sm font-bold bg-rose-100 border-2 border-rose-600 text-rose-900 rounded-xl shadow-xs";
+                } else {
+                    btn.className = "flex-1 py-2 px-3 text-xs sm:text-sm font-bold bg-white opacity-40 border border-slate-200 rounded-xl";
+                }
+            });
+
+            const badge = document.getElementById(`badge-acc-${qIdx}`);
+            const desc = document.getElementById(`desc-acc-${qIdx}`);
+            badge.classList.remove('hidden');
+            desc.classList.remove('hidden');
+
+            if (opt === q.correct) {
+                badge.className = "text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800";
+                badge.innerText = "✓ Correct";
+            } else {
+                badge.className = "text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800";
+                badge.innerText = "✗ Incorrect";
+            }
+            updateAccordsScore();
+        }
+
+        function updateAccordsScore() {
+            let count = 0;
+            Object.keys(state.accords).forEach(k => {
+                if (state.accords[k] === accordQuestions[k].correct) count++;
+            });
+            document.getElementById('accords-score').innerText = `Score : ${count}/10`;
+            updateGlobalScore();
+        }
+
+        function resetAccords() {
+            state.accords = {};
+            document.getElementById('accords-score').innerText = "Score : 0/10";
+            renderAccords();
+            updateGlobalScore();
+        }
+
+        function switchRiddle(idx) {
+            document.querySelectorAll('.riddle-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById(`riddle-card-${idx}`).classList.remove('hidden');
+
+            document.querySelectorAll('.riddle-tab-btn').forEach(b => {
+                b.className = "riddle-tab-btn flex-1 py-2.5 text-center font-bold text-xs sm:text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-700";
+            });
+            document.getElementById(`btn-riddle-${idx}`).className = "riddle-tab-btn flex-1 py-2.5 text-center font-bold text-xs sm:text-sm border-b-2 border-teal-700 text-teal-800";
+        }
+
+        function checkRiddle(idx) {
+            const inputs = document.querySelectorAll(`#riddle-card-${idx} .riddle-input`);
+            let correctCount = 0;
+            inputs.forEach(inp => {
+                const val = inp.value.trim().toLowerCase().replace(/\s+/g, ' ');
+                const ans = inp.getAttribute('data-answer').trim().toLowerCase();
+                if (val === ans) {
+                    correctCount++;
+                    inp.className = "riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-emerald-500 bg-emerald-50 rounded-lg text-xs sm:text-sm font-bold text-emerald-800";
+                } else {
+                    inp.className = "riddle-input w-36 px-2 py-1 mx-1 text-center border-2 border-rose-500 bg-rose-50 rounded-lg text-xs sm:text-sm font-bold text-rose-800";
+                }
+            });
+
+            state.riddleScores[idx] = correctCount;
+            if (correctCount === inputs.length) {
+                document.getElementById(`riddle-reveal-${idx}`).classList.remove('hidden');
+            }
+            updateGlobalScore();
+        }
+
+        function setupChallenge() {
+            state.challengeIndex = 0;
+            state.challengeShuffled = [...challengeVerbs].sort(() => Math.random() - 0.5);
+            document.getElementById('list-avoir').innerHTML = "";
+            document.getElementById('list-etre').innerHTML = "";
+            document.getElementById('deck-container').classList.remove('hidden');
+            document.getElementById('active-card-box').classList.remove('hidden');
+            document.getElementById('game-finished-box').classList.add('hidden');
+            showNextChallengeVerb();
+        }
+
+        function showNextChallengeVerb() {
+            if (state.challengeIndex < state.challengeShuffled.length) {
+                const v = state.challengeShuffled[state.challengeIndex];
+                document.getElementById('active-verb-name').innerText = v.name;
+                document.getElementById('challenge-progress').innerText = `Verbe ${state.challengeIndex + 1} sur ${state.challengeShuffled.length}`;
+            } else {
+                document.getElementById('active-card-box').classList.add('hidden');
+                document.getElementById('game-finished-box').classList.remove('hidden');
+                updateGlobalScore();
+            }
+        }
+
+        function classifyActiveVerb(chosen) {
+            const v = state.challengeShuffled[state.challengeIndex];
+            const badge = document.createElement('span');
+            badge.className = "px-2.5 py-1 text-[11px] font-bold rounded-lg m-1 block shadow-xs transition";
+            badge.innerText = v.name;
+
+            if (chosen === v.auxiliary) {
+                if (v.auxiliary === "ETRE") {
+                    badge.className += " bg-teal-100 text-teal-800 border border-teal-300";
+                    document.getElementById('list-etre').appendChild(badge);
+                } else {
+                    badge.className += " bg-amber-100 text-amber-800 border border-amber-300";
+                    document.getElementById('list-avoir').appendChild(badge);
+                }
+                state.challengeIndex++;
+                showNextChallengeVerb();
+            } else {
+                const box = document.getElementById('active-card-box');
+                box.classList.add('bg-rose-50');
+                setTimeout(() => box.classList.remove('bg-rose-50'), 400);
+            }
+        }
+
+        function renderNegTransform() {
+            const container = document.getElementById('neg-trans-container');
+            container.innerHTML = "";
+            negTransformData.forEach((item, idx) => {
+                const box = document.createElement('div');
+                box.className = "bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-2 text-xs sm:text-sm";
+                box.id = `neg-trans-box-${idx}`;
+
+                box.innerHTML = `
+                    <div class="font-bold text-slate-800">${item.prompt}</div>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <input type="text" id="neg-trans-input-${idx}" class="flex-1 px-3 py-2 bg-white border border-slate-300 rounded-xl focus:outline-none focus:border-rose-600 font-medium" placeholder="Tapez la phrase négative...">
+                    </div>
+                    <p id="neg-trans-fb-${idx}" class="hidden text-xs p-2 rounded-lg mt-1"></p>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        function checkNegTransform() {
+            let score = 0;
+            negTransformData.forEach((item, idx) => {
+                const inp = document.getElementById(`neg-trans-input-${idx}`);
+                const fb = document.getElementById(`neg-trans-fb-${idx}`);
+                const val = inp.value.trim().replace(/\s+/g, ' ').replace(/[’]/g, "'");
+                const target = item.answer.replace(/[’]/g, "'");
+                fb.classList.remove('hidden');
+
+                // Normaliser ponctuation finale facultative
+                const cleanVal = val.replace(/[.!]$/, '').toLowerCase();
+                const cleanTarget = target.replace(/[.!]$/, '').toLowerCase();
+
+                if (cleanVal === cleanTarget) {
+                    score++;
+                    inp.className = "flex-1 px-3 py-2 bg-emerald-50 border-2 border-emerald-500 rounded-xl font-bold text-emerald-800";
+                    fb.className = "text-xs p-2 rounded-lg mt-1 bg-emerald-50 text-emerald-800 border border-emerald-200";
+                    fb.innerHTML = `✓ Exact ! « ${item.answer} »`;
+                } else {
+                    inp.className = "flex-1 px-3 py-2 bg-rose-50 border-2 border-rose-500 rounded-xl font-bold text-rose-800";
+                    fb.className = "text-xs p-2 rounded-lg mt-1 bg-rose-50 text-rose-800 border border-rose-200";
+                    fb.innerHTML = `✗ Attendu : « <strong>${item.answer}</strong> » (${item.hint})`;
+                }
+            });
+            state.negTransformScore = score;
+            document.getElementById('score-neg-trans').innerText = `Score : ${score}/7`;
+            updateGlobalScore();
+        }
+
+        function resetNegTransform() {
+            state.negTransformScore = 0;
+            document.getElementById('score-neg-trans').innerText = "Score : 0/7";
+            renderNegTransform();
+            updateGlobalScore();
+        }
+
+        // Activité 2 Méli-mélo
+        function renderNegScramble() {
+            const container = document.getElementById('neg-scramble-container');
+            container.innerHTML = "";
+            state.scrambleUserOrder = {};
+
+            negScrambleData.forEach((item, idx) => {
+                state.scrambleUserOrder[idx] = [];
+                const box = document.createElement('div');
+                box.className = "bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3";
+                box.id = `scramble-box-${idx}`;
+
+                // Mélanger les mots pour le pool
+                const shuffled = [...item.words].sort(() => Math.random() - 0.5);
+
+                box.innerHTML = `
+                    <span class="text-xs font-bold text-slate-500">Phrase ${idx + 1} :</span>
+                    <!-- Zone de réponse utilisateur -->
+                    <div id="scramble-target-${idx}" class="min-h-[44px] bg-white p-2 rounded-xl border-2 border-dashed border-teal-300 flex flex-wrap gap-1.5 items-center">
+                        <span class="text-xs text-slate-400 italic placeholder-txt">Cliquez sur les mots ci-dessous pour ordonner...</span>
+                    </div>
+                    <!-- Zone de mots cliquables -->
+                    <div id="scramble-pool-${idx}" class="flex flex-wrap gap-1.5 pt-1">
+                        ${shuffled.map((w, wIdx) => `
+                            <button onclick="addScrambleWord(${idx}, '${w}', this)" class="word-tile px-3 py-1.5 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm font-bold text-slate-800 hover:bg-teal-50 shadow-xs">
+                                ${w}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <p id="scramble-fb-${idx}" class="hidden text-xs p-2 rounded-lg"></p>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        function addScrambleWord(idx, word, btn) {
+            btn.classList.add('hidden');
+            state.scrambleUserOrder[idx].push({ word, btn });
+
+            const target = document.getElementById(`scramble-target-${idx}`);
+            const placeholder = target.querySelector('.placeholder-txt');
+            if (placeholder) placeholder.remove();
+
+            const wordTag = document.createElement('span');
+            wordTag.className = "inline-flex items-center gap-1 bg-teal-100 text-teal-900 border border-teal-300 px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer hover:bg-rose-100 hover:text-rose-900 transition";
+            wordTag.innerText = word;
+            wordTag.title = "Cliquer pour retirer";
+            wordTag.onclick = () => removeScrambleWord(idx, word, wordTag, btn);
+
+            target.appendChild(wordTag);
+        }
+
+        function removeScrambleWord(idx, word, tag, origBtn) {
+            tag.remove();
+            origBtn.classList.remove('hidden');
+            const pos = state.scrambleUserOrder[idx].findIndex(item => item.btn === origBtn);
+            if (pos > -1) state.scrambleUserOrder[idx].splice(pos, 1);
+
+            const target = document.getElementById(`scramble-target-${idx}`);
+            if (state.scrambleUserOrder[idx].length === 0) {
+                target.innerHTML = `<span class="text-xs text-slate-400 italic placeholder-txt">Cliquez sur les mots ci-dessous pour ordonner...</span>`;
+            }
+        }
+
+        function checkNegScramble() {
+            let score = 0;
+            negScrambleData.forEach((item, idx) => {
+                const fb = document.getElementById(`scramble-fb-${idx}`);
+                fb.classList.remove('hidden');
+                const userSentence = state.scrambleUserOrder[idx].map(i => i.word).join(' ');
+
+                if (userSentence === item.correct) {
+                    score++;
+                    fb.className = "text-xs p-2 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold";
+                    fb.innerHTML = `✓ Parfait : « ${item.correct} »`;
+                } else {
+                    fb.className = "text-xs p-2 rounded-lg bg-rose-50 text-rose-800 border border-rose-200 font-bold";
+                    fb.innerHTML = `✗ Ordre attendu : « ${item.correct} »`;
+                }
+            });
+            document.getElementById('score-neg-scramble').innerText = `Score : ${score}/7`;
+            updateGlobalScore();
+        }
+
+        function resetNegScramble() {
+            renderNegScramble();
+            document.getElementById('score-neg-scramble').innerText = "Score : 0/7";
+            updateGlobalScore();
+        }
+
+        // Activité 3 QCM Négation
+        function renderNegQcm() {
+            const container = document.getElementById('neg-qcm-container');
+            container.innerHTML = "";
+            negQcmData.forEach((item, idx) => {
+                const box = document.createElement('div');
+                box.className = "bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2.5";
+                box.id = `neg-qcm-box-${idx}`;
+
+                let opts = "";
+                item.options.forEach((opt, oIdx) => {
+                    opts += `
+                        <label class="flex items-center gap-2.5 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 text-xs sm:text-sm text-slate-700 transition">
+                            <input type="radio" name="neg-qcm-${idx}" value="${oIdx}" class="w-4 h-4 accent-indigo-700">
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                });
+
+                box.innerHTML = `
+                    <p class="font-bold text-xs sm:text-sm text-slate-900">${item.q}</p>
+                    <div class="space-y-1.5">${opts}</div>
+                    <p id="neg-qcm-fb-${idx}" class="hidden text-xs font-semibold p-2 rounded-lg mt-1"></p>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        function checkNegQCM() {
+            let score = 0;
+            negQcmData.forEach((item, idx) => {
+                const sel = document.querySelector(`input[name="neg-qcm-${idx}"]:checked`);
+                const fb = document.getElementById(`neg-qcm-fb-${idx}`);
+                fb.classList.remove('hidden');
+
+                if (sel && parseInt(sel.value) === item.correct) {
+                    score++;
+                    fb.className = "text-xs font-semibold p-2 rounded-lg mt-1 bg-emerald-50 text-emerald-800 border border-emerald-200";
+                    fb.innerHTML = `✓ Exact ! ${item.feedback}`;
+                } else {
+                    fb.className = "text-xs font-semibold p-2 rounded-lg mt-1 bg-rose-50 text-rose-800 border border-rose-200";
+                    fb.innerHTML = `✗ Bonne réponse : « ${item.options[item.correct]} ». ${item.feedback}`;
+                }
+            });
+            document.getElementById('score-neg-qcm').innerText = `Score : ${score}/8`;
+            updateGlobalScore();
+        }
+
+        function resetNegQCM() {
+            document.querySelectorAll('#neg-qcm-container input[type="radio"]').forEach(r => r.checked = false);
+            document.querySelectorAll('#neg-qcm-container p[id^="neg-qcm-fb-"]').forEach(fb => fb.classList.add('hidden'));
+            document.getElementById('score-neg-qcm').innerText = "Score : 0/8";
+            updateGlobalScore();
+        }
+
+        function updateGlobalScore() {
+            let total = 0;
+
+            // Audio Part A (8)
+            const scPartA = parseInt((document.getElementById('score-audio-partA')?.innerText.match(/\d+/) || [0])[0]);
+            // Audio Part B (8)
+            const scPartB = parseInt((document.getElementById('score-audio-partB')?.innerText.match(/\d+/) || [0])[0]);
+            // Accords (10)
+            const scAcc = parseInt((document.getElementById('accords-score')?.innerText.match(/\d+/) || [0])[0]);
+            // Négation Trans (7)
+            const scNegTrans = parseInt((document.getElementById('score-neg-trans')?.innerText.match(/\d+/) || [0])[0]);
+            // Négation Scramble (7)
+            const scNegScramble = parseInt((document.getElementById('score-neg-scramble')?.innerText.match(/\d+/) || [0])[0]);
+            // Négation QCM (8)
+            const scNegQcm = parseInt((document.getElementById('score-neg-qcm')?.innerText.match(/\d+/) || [0])[0]);
+
+            total = scPartA + scPartB + scAcc + scNegTrans + scNegScramble + scNegQcm;
+
+            // Devinettes bonus (max 26) ou total sur 48 base + devinettes
+            // Score global standard sur les activités vérifiables : 8 + 8 + 10 + 7 + 7 + 8 = 48 pts (ou 64 pts avec les devinettes)
+            const riddleTotal = state.riddleScores.reduce((a, b) => a + b, 0);
+            total += Math.min(16, riddleTotal); // Normalisé sur 64
+
+            const display = document.getElementById('globalScoreDisplay');
+            if (display) display.innerText = total;
+        }
+    </script>
+</body>
+</html>
