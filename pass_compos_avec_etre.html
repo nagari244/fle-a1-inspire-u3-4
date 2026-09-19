@@ -414,7 +414,7 @@
                             <i class="fa-solid fa-check"></i>
                             <span>Vérifier la Partie B</span>
                         </button>
-                        <button onclick="toggleGwendolineTranscript()" id="btn-transcript-gwen" class="py-2.5 px-5 bg-teal-50 border border-teal-200 text-teal-800 hover:bg-teal-100 font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2">
+                        <button onclick="toggleGwendolineTranscript()" id="btn-transcript-gwen" class="hidden py-2.5 px-5 bg-teal-50 border border-teal-200 text-teal-800 hover:bg-teal-100 font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2">
                             <i class="fa-solid fa-file-lines"></i>
                             <span id="txt-transcript-label">Consulter la Transcription</span>
                         </button>
@@ -1015,6 +1015,24 @@
             scrambleUserOrder: {},
             negQcmAnswers: {}
         };
+        let partADone = false;
+        let partBDone = false;
+
+        function checkUnlockTranscript() {
+            const btn = document.getElementById('btn-transcript-gwen');
+            const hint = document.getElementById('transcript-locked-hint');
+            const box = document.getElementById('box-transcript-gwendoline');
+            if (partADone && partBDone) {
+                if (btn) btn.classList.remove('hidden');
+                if (hint) hint.classList.add('hidden');
+            } else {
+                if (btn) btn.classList.add('hidden');
+                if (hint) hint.classList.remove('hidden');
+                if (box) box.classList.add('hidden');
+                const label = document.getElementById('txt-transcript-label');
+                if (label) label.innerText = "Consulter la Transcription";
+            }
+        }
 
         window.onload = function() {
             renderVerbsGrid();
@@ -1148,6 +1166,8 @@
                 }
             });
             document.getElementById('score-audio-partA').innerText = `Score : ${score}/8`;
+            partADone = true;
+            checkUnlockTranscript();
             updateGlobalScore();
         }
 
@@ -1158,6 +1178,8 @@
                 b.classList.remove('border-emerald-300', 'border-rose-300');
             });
             document.getElementById('score-audio-partA').innerText = "Score : 0/8";
+            partADone = false;
+            checkUnlockTranscript();
             updateGlobalScore();
         }
 
@@ -1200,6 +1222,8 @@
                 }
             });
             document.getElementById('score-audio-partB').innerText = `Score : ${score}/8`;
+            partBDone = true,
+            checkUnlockTranscript();
             updateGlobalScore();
         }
 
