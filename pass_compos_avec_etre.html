@@ -725,23 +725,25 @@
 
                 <!-- ACTIVITÉ 3 : QCM QUELLE EST LA PHRASE CORRECTE ? (8 QUESTIONS) -->
                 <div class="space-y-4 pt-6 border-t border-slate-200">
-                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3 flex-wrap gap-2">
                         <div>
-                            <span class="text-xs font-bold text-indigo-700 uppercase">Activité 3</span>
-                            <h3 class="text-base sm:text-lg font-black text-slate-900">QCM : Quelle est la phrase correcte ? (8 questions)</h3>
+                            <span class="text-xs font-bold text-emerald-600 uppercase tracking-wide">ACTIVITÉ 5C • QCM DÉTECTION</span>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900">3. Quelle est la phrase correcte ? (8 questions)</h3>
+                            <p class="text-xs text-slate-500">Repérez la bonne syntaxe de la négation au passé composé.</p>
                         </div>
-                        <span id="score-neg-qcm" class="text-xs font-bold text-indigo-800 bg-indigo-50 border border-indigo-200 px-2.5 py-1 rounded-full">Score : 0/8</span>
+                        <div class="flex items-center gap-2.5">
+                            <span id="score-neg-qcm" class="text-xs sm:text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-300 px-3 py-1 rounded-lg">Score : 0/8</span>
+                            <button onclick="checkNegQCM()" class="py-2 px-5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow transition flex items-center gap-1.5">
+                                <span>Vérifier</span>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="space-y-3.5" id="neg-qcm-container">
-                        <!-- 8 questions injectées par JS -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="neg-qcm-container">
+                        <!-- 8 questions injectées par JS avec 2 options a et b -->
                     </div>
 
-                    <div class="pt-2 flex justify-between items-center flex-wrap gap-3">
-                        <button onclick="checkNegQCM()" class="py-2.5 px-6 bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs sm:text-sm rounded-xl shadow transition flex items-center gap-2">
-                            <i class="fa-solid fa-check"></i>
-                            <span>Vérifier l'Activité 3</span>
-                        </button>
+                    <div class="pt-2 flex justify-end">
                         <button onclick="resetNegQCM()" class="py-2 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
                             Réinitialiser
                         </button>
@@ -955,52 +957,52 @@
 
         const negQcmData = [
             {
-                q: "1. Quelle est la phrase correcte ?",
-                options: ["Il n'a mangé pas.", "Il n'a pas mangé.", "Il a pas mangé."],
+                q: "1. Choisissez la phrase correcte :",
+                options: ["a) Il n'a mangé pas.", "b) Il n'a pas mangé."],
                 correct: 1,
-                feedback: "« pas » se place toujours juste après l'auxiliaire avoir : « n'a pas mangé »."
+                feedback: "« pas » se place juste après l'auxiliaire « avoir » : « n'a pas mangé »."
             },
             {
-                q: "2. Quelle est la phrase correcte ?",
-                options: ["Elle est pas venue.", "Elle n'est venue pas.", "Elle n'est pas venue."],
-                correct: 2,
-                feedback: "La négation complète est « n'est pas venue » avec l'accord féminin au participe."
-            },
-            {
-                q: "3. Quelle est la phrase correcte ?",
-                options: ["Nous n'avons pas fini.", "Nous avons fini pas.", "Nous ne pas avons fini."],
+                q: "2. Choisissez la phrase correcte :",
+                options: ["a) Je ne suis pas parti.", "b) Je ne suis parti pas."],
                 correct: 0,
+                feedback: "« pas » se place juste après l'auxiliaire « être » : « ne suis pas parti »."
+            },
+            {
+                q: "3. Choisissez la phrase correcte :",
+                options: ["a) Nous n'avons regardé pas la télévision.", "b) Nous n'avons pas regardé la télévision."],
+                correct: 1,
                 feedback: "L'auxiliaire « avons » est entouré par « n'... pas »."
             },
             {
-                q: "4. Quelle est la phrase correcte ?",
-                options: ["Je ne suis pas allé.", "Je suis pas allé ne.", "Je n'ai pas allé."],
+                q: "4. Choisissez la phrase correcte :",
+                options: ["a) Elle n'est pas sortie ce soir.", "b) Elle pas est sortie ce soir."],
                 correct: 0,
-                feedback: "Aller utilise l'auxiliaire être : « Je ne suis pas allé »."
+                feedback: "La formule est : Sujet + n' + auxiliaire + pas + participe passé accordé."
             },
             {
-                q: "5. Quelle est la phrase correcte ?",
-                options: ["Ils ont dormi pas.", "Ils n'ont pas dormi.", "Ils pas n'ont dormi."],
+                q: "5. Choisissez la phrase correcte :",
+                options: ["a) Vous n'avez fini pas le travail.", "b) Vous n'avez pas fini le travail."],
                 correct: 1,
-                feedback: "« n'ont pas dormi » est la seule structure syntaxique correcte."
+                feedback: "« pas » encadre l'auxiliaire « avez », avant le participe passé."
             },
             {
-                q: "6. Quelle est la phrase correcte ?",
-                options: ["Tu n'es pas parti.", "Tu n'as pas parti.", "Tu es parti pas."],
+                q: "6. Choisissez la phrase correcte :",
+                options: ["a) Ils n'ont pas compris la règle.", "b) Ils n'ont compris pas la règle."],
                 correct: 0,
-                feedback: "Partir se conjugue avec être : « Tu n'es pas parti »."
+                feedback: "L'auxiliaire « ont » est encadré par « n'... pas »."
             },
             {
-                q: "7. Quelle est la phrase correcte (verbe passer + COD) ?",
-                options: ["Elle a pas passé ses vacances.", "Elle n'a pas passé ses vacances.", "Elle n'est pas passée ses vacances."],
+                q: "7. Choisissez la phrase correcte :",
+                options: ["a) Tu n'as pas pris ton manteau.", "b) Tu n'as pris pas ton manteau."],
+                correct: 0,
+                feedback: "La négation encadre l'auxiliaire « as » : « n'as pas pris »."
+            },
+            {
+                q: "8. Choisissez la phrase correcte :",
+                options: ["a) Marc n'est monté pas dans le train.", "b) Marc n'est pas monté dans le train."],
                 correct: 1,
-                feedback: "Avec le COD « ses vacances », passer prend l'auxiliaire avoir : « n'a pas passé »."
-            },
-            {
-                q: "8. Quelle est la phrase correcte ?",
-                options: ["Vous n'avez pas écouté.", "Vous avez pas écouté.", "Vous n'avez écouté pas."],
-                correct: 0,
-                feedback: "Forme négative standard A1 : « Vous n'avez pas écouté »."
+                feedback: "Avec l'auxiliaire « être », « pas » se place avant le participe passé : « n'est pas monté »."
             }
         ];
 
