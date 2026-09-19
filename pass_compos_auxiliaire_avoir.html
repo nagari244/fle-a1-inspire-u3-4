@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Passé Composé avec l'auxiliaire Avoir - FLE A1</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts : Inter & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            oif: {
+              blue: '#0085CA',
+              gold: '#FFB81C',
+              green: '#00A859',
+              red: '#DA291C',
+              purple: '#702082',
+              dark: '#1e293b',
+              light: '#f8fafc',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .tab-btn.active {
+      background-color: #ffffff;
+      color: #0085CA;
+      border-bottom: 3px solid #0085CA;
+      font-weight: 700;
+    }
+    .correct-feedback {
+      background-color: #ecfdf5 !important;
+      border-color: #10b981 !important;
+      color: #065f46 !important;
+    }
+    .incorrect-feedback {
+      background-color: #fef2f2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b !important;
+    }
+    .audio-player-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    }
+    .progress-fill {
+      transition: width 0.4s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+
+  <header class="bg-gradient-to-r from-oif-blue via-oif-purple to-oif-blue text-white shadow-lg sticky top-0 z-50">
+    <!-- Ruban aux couleurs de la Francophonie -->
+    <div class="h-2 w-full grid grid-cols-5">
+      <div class="bg-oif-blue"></div>
+      <div class="bg-oif-gold"></div>
+      <div class="bg-oif-green"></div>
+      <div class="bg-oif-red"></div>
+      <div class="bg-oif-purple"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 py-3 sm:py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-2xl shadow-inner border border-white/30">
+          📘
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="bg-oif-gold text-slate-900 text-[11px] font-black uppercase px-2.5 py-0.5 rounded-full tracking-wider">FLE Niveau A1</span>
+            <span class="text-xs text-blue-100 font-medium hidden sm:inline">&bull; 1ère année d'apprentissage</span>
+          </div>
+          <h1 class="text-xl sm:text-2xl font-display font-extrabold tracking-tight">Le passé composé avec l'auxiliaire avoir</h1>
+        </div>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 flex items-center gap-4 text-sm w-full md:w-auto justify-between">
+        <div>
+          <p class="text-[11px] text-blue-100 uppercase font-semibold tracking-wider">Score Global</p>
+          <div class="flex items-baseline gap-1">
+            <span id="global-score" class="text-2xl font-black text-oif-gold">0</span>
+            <span class="text-xs text-blue-200">/ <span id="global-max">84</span> pts</span>
+          </div>
+        </div>
+        <div class="w-28 sm:w-36 bg-black/30 h-3 rounded-full overflow-hidden border border-white/20 p-0.5">
+          <div id="global-progress" class="bg-gradient-to-r from-oif-gold to-oif-green h-full rounded-full progress-fill" style="width: 0%"></div>
+        </div>
+        <button onclick="resetAllScores()" title="Réinitialiser tous les exercices" class="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation des 3 onglets conservés -->
+    <nav class="bg-white border-b border-slate-200 shadow-sm overflow-x-auto">
+      <div class="max-w-7xl mx-auto px-2 flex whitespace-nowrap min-w-max">
+        <button onclick="navigateTab('tab-avoir')" id="nav-tab-avoir" class="tab-btn active px-4 py-3 text-sm font-semibold flex items-center gap-2 border-b-2 border-transparent transition">
+          <span class="text-oif-blue"><i class="fa-solid fa-book-open"></i></span>
+          1. Auxiliaire Avoir (1er & 2e gr.)
+          <span id="badge-tab-avoir" class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-bold ml-1">0/30</span>
+        </button>
+        <button onclick="navigateTab('tab-participes')" id="nav-tab-participes" class="tab-btn px-4 py-3 text-sm font-semibold text-slate-600 hover:text-oif-blue flex items-center gap-2 border-b-2 border-transparent transition">
+          <span class="text-oif-gold"><i class="fa-solid fa-star"></i></span>
+          2. Participes Passés Utiles
+          <span id="badge-tab-participes" class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold ml-1">0/44</span>
+        </button>
+        <button onclick="navigateTab('tab-reinvestir')" id="nav-tab-reinvestir" class="tab-btn px-4 py-3 text-sm font-semibold text-slate-600 hover:text-oif-blue flex items-center gap-2 border-b-2 border-transparent transition">
+          <span class="text-oif-green"><i class="fa-solid fa-comments"></i></span>
+          3. Expression & Compréhension DELF A1
+          <span id="badge-tab-reinvestir" class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold ml-1">0/10</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+
+    <!-- ========================================================================= -->
+    <!-- ONGLET 1 : AUXILIAIRE AVOIR (1er et 2e groupe) + DOCUMENT PASSECOMPOSEA1   -->
+    <!-- ========================================================================= -->
+    <section id="tab-avoir" class="tab-content space-y-8">
+      
+      <!-- Présentation pédagogique -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 text-oif-blue flex items-center justify-center text-lg font-bold">1</div>
+          <div>
+            <h2 class="text-2xl font-display font-bold text-slate-900">Le Passé Composé avec l'Auxiliaire AVOIR</h2>
+            <p class="text-sm text-slate-500">Comprendre la formule et conjuguer les verbes réguliers du 1er et 2e groupe</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <!-- Formule -->
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-5">
+            <h3 class="text-sm font-bold text-oif-blue uppercase tracking-wider mb-2 flex items-center gap-2">
+              <i class="fa-solid fa-calculator"></i> La Formule Magique
+            </h3>
+            <div class="bg-white p-4 rounded-xl border border-blue-100 text-center font-display shadow-xs">
+              <span class="text-slate-700 font-bold">SUJET</span>
+              <span class="text-oif-blue font-bold mx-1">+</span>
+              <span class="text-oif-red font-bold">AVOIR</span>
+              <span class="text-xs text-slate-400 block">(au présent)</span>
+              <span class="text-oif-blue font-bold mx-1">+</span>
+              <span class="text-oif-green font-bold">PARTICIPE PASSÉ</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+              💡 <strong>Règle d'or A1 :</strong> Avec l'auxiliaire <strong class="text-oif-red">avoir</strong>, le participe passé ne s'accorde pas avec le sujet ! Il reste stable.
+            </p>
+          </div>
+
+          <!-- 1er groupe (-ER) -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-bold text-slate-800">1er Groupe : verbes en <span class="text-oif-blue">-ER</span></h3>
+              <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-full">-é</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">On enlève <strong>-er</strong> et on ajoute <strong class="text-oif-blue text-sm">-é</strong>.</p>
+            <ul class="text-xs space-y-2 bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <li class="flex justify-between"><span>Manger &rarr;</span> <strong class="text-slate-800">mangé</strong> <span class="text-slate-400 font-mono">J'ai mangé</span></li>
+              <li class="flex justify-between"><span>Parler &rarr;</span> <strong class="text-slate-800">parlé</strong> <span class="text-slate-400 font-mono">Tu as parlé</span></li>
+              <li class="flex justify-between"><span>Regarder &rarr;</span> <strong class="text-slate-800">regardé</strong> <span class="text-slate-400 font-mono">Il a regardé</span></li>
+              <li class="flex justify-between"><span>Travailler &rarr;</span> <strong class="text-slate-800">travaillé</strong> <span class="text-slate-400 font-mono">Nous avons travaillé</span></li>
+            </ul>
+          </div>
+
+          <!-- 2e groupe (-IR) -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-bold text-slate-800">2e Groupe : verbes en <span class="text-oif-green">-IR</span></h3>
+              <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">-i</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">On enlève <strong>-ir</strong> et on ajoute <strong class="text-oif-green text-sm">-i</strong>.</p>
+            <ul class="text-xs space-y-2 bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <li class="flex justify-between"><span>Finir &rarr;</span> <strong class="text-slate-800">fini</strong> <span class="text-slate-400 font-mono">Vous avez fini</span></li>
+              <li class="flex justify-between"><span>Choisir &rarr;</span> <strong class="text-slate-800">choisi</strong> <span class="text-slate-400 font-mono">Ils ont choisi</span></li>
+              <li class="flex justify-between"><span>Réussir &rarr;</span> <strong class="text-slate-800">réussi</strong> <span class="text-slate-400 font-mono">J'ai réussi</span></li>
+              <li class="flex justify-between"><span>Grandir &rarr;</span> <strong class="text-slate-800">grandi</strong> <span class="text-slate-400 font-mono">Elle a grandi</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Rappel Auxiliaire Avoir Présent -->
+        <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
+          <span class="font-bold text-amber-900 flex items-center gap-1.5"><i class="fa-solid fa-key text-oif-gold"></i> Rappel présent d'AVOIR :</span>
+          <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-100 font-mono">J'<strong>ai</strong></span>
+          <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-100 font-mono">Tu <strong>as</strong></span>
+          <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-100 font-mono">Il/Elle <strong>a</strong></span>
+          <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-100 font-mono">Nous <strong>avons</strong></span>
+          <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-100 font-mono">Vous <strong>avez</strong></span>
+          <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-100 font-mono">Ils/Elles <strong>ont</strong></span>
+        </div>
+      </div>
+
+      <!-- Activité 1A : QCM -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-bold text-oif-blue uppercase tracking-wider">Activité 1A &bull; QCM Systématisation</span>
+            <h3 class="text-xl font-bold text-slate-900">Choisissez la forme correcte au passé composé (10 verbes)</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="score-qcm-avoir" class="text-sm font-bold bg-blue-50 text-oif-blue px-3 py-1.5 rounded-xl border border-blue-200">Score : 0/10</span>
+            <button onclick="checkQcmAvoir()" class="bg-oif-blue hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow-sm transition">
+              Vérifier
+            </button>
+          </div>
+        </div>
+
+        <div id="qcm-avoir-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Injecté dynamiquement par JavaScript -->
+        </div>
+        <div id="feedback-qcm-avoir" class="mt-4 p-4 rounded-xl hidden text-sm font-medium"></div>
+      </div>
+
+      <!-- Activité 1B : Production écrite ciblée -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-bold text-oif-green uppercase tracking-wider">Activité 1B &bull; Production écrite ciblée</span>
+            <h3 class="text-xl font-bold text-slate-900">Tapez le verbe complet (auxiliaire + participe passé)</h3>
+            <p class="text-xs text-slate-500">Exemple pour <em>(regarder)</em> avec <em>Tu</em> &rarr; tapez : <code class="text-oif-blue">as regardé</code></p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="score-typing-avoir" class="text-sm font-bold bg-emerald-50 text-oif-green px-3 py-1.5 rounded-xl border border-emerald-200">Score : 0/10</span>
+            <button onclick="checkTypingAvoir()" class="bg-oif-green hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow-sm transition">
+              Vérifier
+            </button>
+          </div>
+        </div>
+
+        <div id="typing-avoir-container" class="space-y-3">
+          <!-- Injecté dynamiquement par JavaScript -->
+        </div>
+        <div id="feedback-typing-avoir" class="mt-4 p-4 rounded-xl hidden text-sm font-medium"></div>
+      </div>
+
+      <!-- Intégration Document passecomposea1 avec lecteur pres_pc.mp3 -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border-2 border-oif-blue/30 relative overflow-hidden">
+        <div class="absolute -top-3 right-6 bg-oif-blue text-white text-[11px] font-extrabold uppercase px-3 py-1 rounded-full shadow">
+          Document Officiel Intégré : passecomposea1
+        </div>
+
+        <header class="text-center mb-6 mt-2">
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 mb-2">Discrimination Auditive (Présent vs Passé Composé)</h2>
+          <p class="text-slate-600 text-sm max-w-2xl mx-auto mb-5">
+            Écoutez attentivement l'audio <strong>pres_pc.mp3</strong> ci-dessous. Pour chaque phrase entendue, cochez si vous entendez le verbe au <strong>Présent</strong> ou au <strong>Passé Composé</strong>.
+          </p>
+
+          <!-- Lecteur Audio pres_pc.mp3 -->
+          <div class="audio-player-card max-w-xl mx-auto p-4 rounded-2xl border border-sky-200 shadow-sm mb-4">
+            <div class="flex items-center justify-between gap-3 mb-2">
+              <span class="text-xs font-bold text-sky-900 flex items-center gap-2">
+                <i class="fa-solid fa-volume-high text-oif-blue"></i> Fichier audio : <code class="bg-white px-2 py-0.5 rounded text-sky-800 border border-sky-100">pres_pc.mp3</code>
+              </span>
+              <a href="https://drive.google.com/file/d/1f0GLMscP4lcrOdz657fFMEZM59FaawnO/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-xs text-oif-blue hover:underline font-semibold flex items-center gap-1">
+                Lien de secours Drive <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+            <audio id="audio-pres-pc" controls class="w-full h-10 rounded-lg">
+              <source src="pres_pc.mp3" type="audio/mp3">
+              Votre navigateur ne prend pas en charge la lecture audio directe.
+            </audio>
+          </div>
+        </header>
+
+        <!-- Tableau de discrimination auditive -->
+        <div class="overflow-x-auto border border-slate-200 rounded-2xl mb-6">
+          <table class="w-full border-collapse text-sm sm:text-base text-left">
+            <thead>
+              <tr class="bg-slate-100 text-slate-800 border-b border-slate-200 text-xs sm:text-sm uppercase tracking-wider">
+                <th class="p-3 w-12 text-center font-bold">#</th>
+                <th class="p-3 font-bold text-blue-900">Forme Présent</th>
+                <th class="p-3 text-center font-bold text-blue-900 w-20">✓ Présent</th>
+                <th class="p-3 font-bold text-red-900">Forme Passé Composé</th>
+                <th class="p-3 text-center font-bold text-red-900 w-24">✓ Passé C.</th>
+              </tr>
+            </thead>
+            <tbody id="grid-discrimination" class="divide-y divide-slate-100 text-slate-700">
+              <!-- Rempli par JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="text-center mb-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="checkDiscriminationAnswers()" class="bg-oif-blue hover:bg-blue-600 text-white font-bold px-8 py-3 rounded-2xl shadow transition text-base flex items-center gap-2">
+            <i class="fa-solid fa-circle-check"></i> Vérifier la discrimination
+          </button>
+          <div id="score-discrimination" class="text-lg font-bold px-4 py-2 rounded-xl bg-blue-50 text-oif-blue border border-blue-200 hidden"></div>
+        </div>
+
+        <!-- Section lecture à voix haute & Vocaroo -->
+        <hr class="my-8 border-slate-200">
+        
+        <section class="mt-8 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+          <header class="text-center mb-6">
+            <span class="text-xs font-bold text-oif-purple uppercase tracking-wider">Entraînement phonétique & oral</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Lecture à voix haute</h3>
+            <p class="text-sm text-slate-600">Lisez ces phrases à voix haute en distinguant bien le présent du passé composé :</p>
+          </header>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="p-4 bg-white border-l-4 border-oif-blue rounded-xl shadow-xs">
+              <span class="text-xs font-bold text-oif-blue uppercase">Phrase 1</span>
+              <p class="text-base text-slate-800 font-medium mt-1">« Je fais les devoirs tous les jours, mais hier <strong>j'ai fait</strong> les devoirs avec mon ami. »</p>
+            </div>
+            <div class="p-4 bg-white border-l-4 border-oif-green rounded-xl shadow-xs">
+              <span class="text-xs font-bold text-oif-green uppercase">Phrase 2</span>
+              <p class="text-base text-slate-800 font-medium mt-1">« Maintenant je mange de la salade, ce midi <strong>j'ai mangé</strong> au restaurant. »</p>
+            </div>
+            <div class="p-4 bg-white border-l-4 border-oif-gold rounded-xl shadow-xs">
+              <span class="text-xs font-bold text-amber-700 uppercase">Phrase 3</span>
+              <p class="text-base text-slate-800 font-medium mt-1">« Aujourd'hui je finis à 17h, la semaine dernière <strong>j'ai fini</strong> plus tard. »</p>
+            </div>
+            <div class="p-4 bg-white border-l-4 border-oif-red rounded-xl shadow-xs">
+              <span class="text-xs font-bold text-oif-red uppercase">Phrase 4</span>
+              <p class="text-base text-slate-800 font-medium mt-1">« En général je choisis du vin mais hier <strong>j'ai choisi</strong> une bière. »</p>
+            </div>
+          </div>
+
+          <!-- Invitation Vocaroo -->
+          <div class="text-center bg-white p-6 rounded-2xl border border-purple-200 shadow-xs max-w-lg mx-auto">
+            <div class="w-12 h-12 rounded-full bg-purple-100 text-oif-purple flex items-center justify-center text-xl mx-auto mb-2">
+              <i class="fa-solid fa-microphone-lines"></i>
+            </div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">Enregistrez votre voix !</h4>
+            <p class="text-xs text-slate-500 mb-4">Cliquez pour ouvrir Vocaroo, enregistrez votre lecture d'une phrase puis partagez le lien avec votre professeur.</p>
+            <a href="https://vocaroo.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold bg-oif-purple hover:bg-purple-700 text-white shadow-sm transition text-sm">
+              <span>S'enregistrer sur vocaroo.com</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- ONGLET 2 : LES 20 PARTICIPES PASSÉS UTILES (AVEC AVOIR)                  -->
+    <!-- ========================================================================= -->
+    <section id="tab-participes" class="tab-content hidden space-y-8">
+      
+      <!-- Présentation & Référence des 20 verbes -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-lg font-bold">2</div>
+          <div>
+            <h2 class="text-2xl font-display font-bold text-slate-900">Les 20 Participes Passés Indispensables (Auxiliaire AVOIR)</h2>
+            <p class="text-sm text-slate-500">Ces verbes très fréquents changent de forme au passé composé mais s'emploient tous avec <strong>AVOIR</strong>.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2.5 text-xs">
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">avoir &rarr;</span><strong class="text-slate-900 text-sm">eu</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">être &rarr;</span><strong class="text-slate-900 text-sm">été</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">faire &rarr;</span><strong class="text-slate-900 text-sm">fait</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">pouvoir &rarr;</span><strong class="text-slate-900 text-sm">pu</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">vouloir &rarr;</span><strong class="text-slate-900 text-sm">voulu</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">devoir &rarr;</span><strong class="text-slate-900 text-sm">dû</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">savoir &rarr;</span><strong class="text-slate-900 text-sm">su</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">voir &rarr;</span><strong class="text-slate-900 text-sm">vu</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">lire &rarr;</span><strong class="text-slate-900 text-sm">lu</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">écrire &rarr;</span><strong class="text-slate-900 text-sm">écrit</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">prendre &rarr;</span><strong class="text-slate-900 text-sm">pris</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">mettre &rarr;</span><strong class="text-slate-900 text-sm">mis</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">comprendre &rarr;</span><strong class="text-slate-900 text-sm">compris</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">apprendre &rarr;</span><strong class="text-slate-900 text-sm">appris</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">boire &rarr;</span><strong class="text-slate-900 text-sm">bu</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">croire &rarr;</span><strong class="text-slate-900 text-sm">cru</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">attendre &rarr;</span><strong class="text-slate-900 text-sm">attendu</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">entendre &rarr;</span><strong class="text-slate-900 text-sm">entendu</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">perdre &rarr;</span><strong class="text-slate-900 text-sm">perdu</strong></div>
+          <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200"><span class="text-slate-500 block">dire &rarr;</span><strong class="text-slate-900 text-sm">dit</strong></div>
+        </div>
+      </div>
+
+      <!-- Activité 2A : Appariement Interactif -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Activité 2A &bull; Appariement Interactif</span>
+            <h3 class="text-xl font-bold text-slate-900">Associez l'Infinitif (A) et son Participe Passé (B)</h3>
+            <p class="text-xs text-slate-500">Cliquez sur une carte de la Colonne A puis sa correspondance dans la Colonne B.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="score-matching" class="text-sm font-bold bg-amber-50 text-amber-800 px-3 py-1.5 rounded-xl border border-amber-200">Paires : 0/20</span>
+            <button onclick="resetMatchingGame()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-xl text-xs transition">
+              Réinitialiser
+            </button>
+          </div>
+        </div>
+
+        <!-- Paires trouvées avec succès -->
+        <div class="mb-6 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">
+            <i class="fa-solid fa-circle-check text-oif-green"></i> Paires trouvées avec succès :
+          </span>
+          <div id="matched-pairs-display" class="flex flex-wrap gap-2 min-h-[44px] items-center">
+            <span class="text-xs text-slate-400 italic">Aucune paire validée pour le moment. Cliquez sur un verbe à gauche puis son participe à droite !</span>
+          </div>
+        </div>
+
+        <!-- Colonnes A et B -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
+            <h4 class="font-bold text-oif-blue text-sm mb-3 flex items-center justify-between">
+              <span>Colonne A : Infinitifs</span>
+              <span class="text-[11px] font-normal text-blue-600">Sélectionnez d'abord ici</span>
+            </h4>
+            <div id="col-infinitifs" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+          </div>
+
+          <div class="bg-amber-50/50 p-4 rounded-2xl border border-amber-100">
+            <h4 class="font-bold text-amber-800 text-sm mb-3 flex items-center justify-between">
+              <span>Colonne B : Participes Passés</span>
+              <span class="text-[11px] font-normal text-amber-700">Puis associez ici</span>
+            </h4>
+            <div id="col-participes" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activité 2B : Phrases à trous (12 questions) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-bold text-oif-blue uppercase tracking-wider">Activité 2B &bull; Phrases à trous</span>
+            <h3 class="text-xl font-bold text-slate-900">Complétez avec le bon participe passé (12 phrases)</h3>
+            <p class="text-xs text-slate-500">Tapez le participe passé du verbe entre parenthèses.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="score-gapfill" class="text-sm font-bold bg-blue-50 text-oif-blue px-3 py-1.5 rounded-xl border border-blue-200">Score : 0/12</span>
+            <button onclick="checkGapFill()" class="bg-oif-blue hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow-sm transition">
+              Vérifier
+            </button>
+          </div>
+        </div>
+
+        <div id="gapfill-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        <div id="feedback-gapfill" class="mt-4 p-4 rounded-xl hidden text-sm font-medium"></div>
+      </div>
+
+      <!-- Activité 2C : Défi Détection Rapide (12 questions) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-bold text-oif-purple uppercase tracking-wider">Activité 2C &bull; Défi Détection Rapide</span>
+            <h3 class="text-xl font-bold text-slate-900">Quel est le participe passé correct ? (12 défis)</h3>
+            <p class="text-xs text-slate-500">Repérez la bonne forme parmi les pièges fréquents.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="score-intrus" class="text-sm font-bold bg-purple-50 text-oif-purple px-3 py-1.5 rounded-xl border border-purple-200">Score : 0/12</span>
+            <button onclick="checkIntrus()" class="bg-oif-purple hover:bg-purple-700 text-white font-bold px-4 py-2 rounded-xl text-sm shadow-sm transition">
+              Vérifier
+            </button>
+          </div>
+        </div>
+
+        <div id="intrus-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        <div id="feedback-intrus" class="mt-4 p-4 rounded-xl hidden text-sm font-medium"></div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- ONGLET 3 : EXPRESSIONS TEMPORELLES, PRODUCTION ET COMPRÉHENSION DELF A1  -->
+    <!-- ========================================================================= -->
+    <section id="tab-reinvestir" class="tab-content hidden space-y-8">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-oif-green flex items-center justify-center text-lg font-bold">3</div>
+          <div>
+            <h2 class="text-2xl font-display font-bold text-slate-900">Réinvestissement : Expression Orale, Écrite & Compréhension DELF A1</h2>
+            <p class="text-sm text-slate-500">Mobilisez les marqueurs temporels du passé et le lexique d'actions quotidiennes</p>
+          </div>
+        </div>
+
+        <!-- Boîte à outils : Expressions temporelles -->
+        <div class="mb-8 bg-gradient-to-r from-emerald-50 via-teal-50 to-sky-50 p-6 rounded-2xl border border-emerald-200">
+          <h3 class="text-sm font-bold text-emerald-900 uppercase tracking-wider mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-clock-rotate-left text-oif-green"></i> Les Expressions Temporelles du Passé (à mémoriser)
+          </h3>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-3 py-1.5 rounded-xl bg-red-100 text-red-900 font-semibold border border-red-200">Tout à l'heure</span>
+            <span class="px-3 py-1.5 rounded-xl bg-amber-100 text-amber-900 font-semibold border border-amber-200">Il y a 10 minutes</span>
+            <span class="px-3 py-1.5 rounded-xl bg-lime-100 text-lime-900 font-semibold border border-lime-200">Ce matin / cet après-midi / ce soir</span>
+            <span class="px-3 py-1.5 rounded-xl bg-emerald-100 text-emerald-900 font-semibold border border-emerald-200">Hier / hier matin / hier soir</span>
+            <span class="px-3 py-1.5 rounded-xl bg-teal-100 text-teal-900 font-semibold border border-teal-200">Avant-hier</span>
+            <span class="px-3 py-1.5 rounded-xl bg-cyan-100 text-cyan-900 font-semibold border border-cyan-200">Lundi / mardi / etc. dernier</span>
+            <span class="px-3 py-1.5 rounded-xl bg-sky-100 text-sky-900 font-semibold border border-sky-200">Le week-end dernier</span>
+            <span class="px-3 py-1.5 rounded-xl bg-indigo-100 text-indigo-900 font-semibold border border-indigo-200">La semaine dernière</span>
+            <span class="px-3 py-1.5 rounded-xl bg-purple-100 text-purple-900 font-semibold border border-purple-200">Le mois dernier</span>
+            <span class="px-3 py-1.5 rounded-xl bg-pink-100 text-pink-900 font-semibold border border-pink-200">L'année dernière</span>
+          </div>
+        </div>
+
+        <!-- 5 Fiches de Production Orale (Sans lancer de dés) -->
+        <div class="mb-10">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span>🗣️</span> 1. Fiches de Production Orale (5 Missions A1 simples)
+            </h3>
+            <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-semibold">Travail individuel ou en binôme</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Fiche 1 -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-oif-blue transition flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-[11px] font-bold bg-blue-100 text-oif-blue px-2.5 py-0.5 rounded-full">Fiche 1 &bull; Raconter la veille</span>
+                  <span class="text-xs">📅</span>
+                </div>
+                <h4 class="font-bold text-slate-800 text-base mb-2">« Qu'est-ce que tu as fait hier ? »</h4>
+                <p class="text-xs text-slate-600 mb-3">Racontez 3 choses que vous avez faites hier en utilisant les verbes : <em>manger au restaurant, travailler à l'ordinateur, regarder sa série préférée</em>.</p>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl text-[11px] text-slate-500 border border-slate-100">
+                <strong>Amorce :</strong> « Hier matin, j'ai mangé... puis l'après-midi j'ai travaillé... »
+              </div>
+            </div>
+
+            <!-- Fiche 2 -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-oif-green transition flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-[11px] font-bold bg-emerald-100 text-oif-green px-2.5 py-0.5 rounded-full">Fiche 2 &bull; Le week-end dernier</span>
+                  <span class="text-xs">🏖️</span>
+                </div>
+                <h4 class="font-bold text-slate-800 text-base mb-2">« Mon super week-end »</h4>
+                <p class="text-xs text-slate-600 mb-3">Utilisez l'expression <em>le week-end dernier</em> avec au moins un verbe en -ER et un verbe en -IR (ex. <em>choisir un vêtement, danser avec des amis</em>).</p>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl text-[11px] text-slate-500 border border-slate-100">
+                <strong>Amorce :</strong> « Le week-end dernier, j'ai dansé et nous avons choisi... »
+              </div>
+            </div>
+
+            <!-- Fiche 3 -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-oif-gold transition flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-[11px] font-bold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full">Fiche 3 &bull; Études & Projets</span>
+                  <span class="text-xs">📚</span>
+                </div>
+                <h4 class="font-bold text-slate-800 text-base mb-2">« Vos accomplissements »</h4>
+                <p class="text-xs text-slate-600 mb-3">Parlez d'une épreuve ou d'un cours passé : <em>finir les devoirs, réussir un examen, étudier le français</em>.</p>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl text-[11px] text-slate-500 border border-slate-100">
+                <strong>Amorce :</strong> « La semaine dernière, j'ai étudié le français et j'ai réussi... »
+              </div>
+            </div>
+
+            <!-- Fiche 4 -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-oif-red transition flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-[11px] font-bold bg-rose-100 text-rose-800 px-2.5 py-0.5 rounded-full">Fiche 4 &bull; Le voyage</span>
+                  <span class="text-xs">✈️</span>
+                </div>
+                <h4 class="font-bold text-slate-800 text-base mb-2">« Mon voyage de l'année dernière »</h4>
+                <p class="text-xs text-slate-600 mb-3">Racontez un souvenir simple : <em>visiter un musée, acheter un cadeau, écouter de la musique</em>.</p>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl text-[11px] text-slate-500 border border-slate-100">
+                <strong>Amorce :</strong> « L'année dernière, j'ai visité une ville et j'ai acheté... »
+              </div>
+            </div>
+
+            <!-- Fiche 5 -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-oif-purple transition flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-[11px] font-bold bg-purple-100 text-oif-purple px-2.5 py-0.5 rounded-full">Fiche 5 &bull; Jeu de rôle / Enquête</span>
+                  <span class="text-xs">🕵️</span>
+                </div>
+                <h4 class="font-bold text-slate-800 text-base mb-2">« L'Alibi de l'étudiant »</h4>
+                <p class="text-xs text-slate-600 mb-3">Votre binôme pose des questions simples : « Qu'est-ce que tu as fait il y a 10 minutes ? Et hier soir ? » Répondez avec assurance !</p>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl text-[11px] text-slate-500 border border-slate-100">
+                <strong>Amorce :</strong> « Hier soir, j'ai regardé un film et j'ai mangé avec ma famille... »
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Productions Écrites Guidées -->
+        <div class="mb-10">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span>✍️</span> 2. Productions Écrites Guidées (Niveau A1)
+            </h3>
+            <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-semibold">40 à 60 mots recommandés</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+              <h4 class="font-bold text-slate-800 text-sm mb-1">Sujet A : Carte postale ou courriel de vacances</h4>
+              <p class="text-xs text-slate-600 mb-3">Écrivez à un ami pour raconter votre week-end passé. Utilisez au moins 3 expressions de temps et 4 verbes avec l'auxiliaire avoir.</p>
+              <textarea id="written-text-1" oninput="updateWordCount(1)" rows="5" placeholder="Bonjour Marc, le week-end dernier j'ai visité..." class="w-full p-3 rounded-xl border border-slate-300 text-sm focus:border-oif-blue focus:outline-none"></textarea>
+              <div class="flex justify-between items-center text-xs text-slate-500 mt-2">
+                <span id="word-count-1">0 mot(s)</span>
+                <span id="saved-msg-1" class="text-emerald-700 font-semibold hidden">Texte sauvegardé !</span>
+                <button onclick="saveWrittenDraft(1)" class="text-oif-blue hover:underline font-semibold">Sauvegarder mon texte</button>
+              </div>
+            </div>
+
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+              <h4 class="font-bold text-slate-800 text-sm mb-1">Sujet B : Message pour expliquer votre journée</h4>
+              <p class="text-xs text-slate-600 mb-3">Vous n'avez pas pu venir à la fête hier soir. Expliquez à vos camarades ce que vous avez fait (cours, devoirs, travail).</p>
+              <textarea id="written-text-2" oninput="updateWordCount(2)" rows="5" placeholder="Salut tout le monde ! Hier toute la journée, j'ai travaillé..." class="w-full p-3 rounded-xl border border-slate-300 text-sm focus:border-oif-blue focus:outline-none"></textarea>
+              <div class="flex justify-between items-center text-xs text-slate-500 mt-2">
+                <span id="word-count-2">0 mot(s)</span>
+                <span id="saved-msg-2" class="text-emerald-700 font-semibold hidden">Texte sauvegardé !</span>
+                <button onclick="saveWrittenDraft(2)" class="text-oif-blue hover:underline font-semibold">Sauvegarder mon texte</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Compréhension de l'Oral Type DELF A1 -->
+        <div class="bg-gradient-to-br from-blue-50/50 to-indigo-50/50 p-6 rounded-2xl border border-blue-200">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div>
+              <span class="text-xs font-bold text-oif-blue uppercase tracking-wider">3. Compréhension de l'Oral &bull; Type DELF A1</span>
+              <h3 class="text-xl font-bold text-slate-900">« Le week-end de Lucas et Léa »</h3>
+              <p class="text-xs text-slate-500">Écoutez l'enregistrement ci-dessous, puis répondez aux 10 questions sans regarder le texte.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <span id="score-delf" class="text-sm font-bold bg-white text-oif-blue px-3 py-1.5 rounded-xl border border-blue-200">Score DELF : 0/10</span>
+              <button onclick="checkDelfAnswers()" class="bg-oif-blue hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow transition">
+                Vérifier
+              </button>
+            </div>
+          </div>
+
+          <!-- Lecteur Audio direct lea_luca.mp3 -->
+          <div class="audio-player-card max-w-xl mx-auto p-4 rounded-2xl border border-sky-200 shadow-sm mb-6">
+            <div class="flex items-center justify-between gap-3 mb-2">
+              <span class="text-xs font-bold text-sky-900 flex items-center gap-2">
+                <i class="fa-solid fa-headphones text-oif-blue"></i> Document audio : <code class="bg-white px-2 py-0.5 rounded text-sky-800 border border-sky-100">lea_luca.mp3</code>
+              </span>
+            </div>
+            <audio id="audio-lea-luca" controls class="w-full h-10 rounded-lg">
+              <source src="lea_luca.mp3" type="audio/mp3">
+              Votre navigateur ne prend pas en charge la lecture audio directe.
+            </audio>
+          </div>
+
+          <!-- 10 Questions Type DELF A1 (formulations directes sans questions inversées) -->
+          <div id="delf-questions-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"></div>
+          <div id="feedback-delf" class="mt-4 p-4 rounded-xl hidden text-sm font-medium"></div>
+
+          <!-- Bouton et transcription qui s'affiche UNIQUEMENT après vérification -->
+          <div class="mt-6 text-center">
+            <button id="btn-toggle-transcription" onclick="toggleTranscription()" class="hidden inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow transition">
+              <i class="fa-solid fa-file-lines"></i>
+              <span id="btn-transcription-text">Consulter la transcription</span>
+            </button>
+          </div>
+
+          <div id="transcription-wrapper" class="hidden mt-4 bg-white p-5 rounded-xl border border-slate-200 text-sm text-slate-700 space-y-2.5 transition-all">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
+              <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">📜 Transcription officielle du dialogue :</span>
+              <span class="text-[11px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-semibold">Vérifiée</span>
+            </div>
+            <p><strong>Léa :</strong> Salut Lucas ! Alors, tu as passé un bon week-end ?</p>
+            <p><strong>Lucas :</strong> Oui, très bon, mais très chargé ! Samedi matin, j'ai fini mes devoirs de français et j'ai rangé mon appartement.</p>
+            <p><strong>Léa :</strong> Et l'après-midi ? Tu as fait du sport ?</p>
+            <p><strong>Lucas :</strong> Non, j'ai choisi un cadeau pour l'anniversaire de ma sœur et j'ai mangé une glace en ville. Et toi, qu'est-ce que tu as fait ?</p>
+            <p><strong>Léa :</strong> Moi, samedi soir, j'ai regardé un super film avec ma cousine et nous avons préparé une pizza maison. Dimanche, nous avons marché dans le parc.</p>
+            <p><strong>Lucas :</strong> Génial ! Moi, dimanche soir, j'ai écouté de la musique et j'ai dormi tôt car j'ai été très fatigué !</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-8 px-4 mt-12 border-t-4 border-oif-gold">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs">
+      <div class="text-center md:text-left">
+        <p class="text-white font-bold text-sm">Dispositif Pédagogique FLE A1 &bull; Le passé composé avec l'auxiliaire avoir</p>
+        <p class="mt-1">Inspiré de l'Organisation Internationale de la Francophonie (OIF).</p>
+        <p class="text-slate-500 mt-2 font-mono">Fichiers audio intégrés : pres_pc.mp3 &bull; lea_luca.mp3 &bull; Vocaroo.com</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="bg-slate-800 text-white px-3 py-1.5 rounded-lg border border-slate-700">🇲🇽 🇫🇷 🇨🇦 Francophonie Vivante</span>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="bg-oif-blue hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg transition font-semibold">
+          Haut de page <i class="fa-solid fa-arrow-up ml-1"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ========================================================================= */
+    /* 1. GESTION DES SCORES ET NAVIGATION D'ONGLETS                             */
+    /* ========================================================================= */
+    
+    const activityScores = {
+      qcmAvoir: 0,
+      typingAvoir: 0,
+      discrimination: 0,
+      matching: 0,
+      gapfill: 0,
+      intrus: 0,
+      delf: 0
+    };
+
+    const maxScores = {
+      qcmAvoir: 10,
+      typingAvoir: 10,
+      discrimination: 10,
+      matching: 20,
+      gapfill: 12,
+      intrus: 12,
+      delf: 10
+    };
+
+    function updateAllScoresDisplay() {
+      // Onglet 1 : Avoir
+      const scoreTabAvoir = activityScores.qcmAvoir + activityScores.typingAvoir + activityScores.discrimination;
+      document.getElementById('badge-tab-avoir').innerText = `${scoreTabAvoir}/30`;
+
+      // Onglet 2 : Participes
+      const scoreTabPart = activityScores.matching + activityScores.gapfill + activityScores.intrus;
+      document.getElementById('badge-tab-participes').innerText = `${scoreTabPart}/44`;
+
+      // Onglet 3 : Réinvestir & DELF
+      const scoreTabReinvestir = activityScores.delf;
+      document.getElementById('badge-tab-reinvestir').innerText = `${scoreTabReinvestir}/10`;
+
+      // Score Global (30 + 44 + 10 = 84)
+      let currentTotal = 0;
+      let maxTotal = 0;
+      for (const k in activityScores) {
+        currentTotal += activityScores[k];
+        maxTotal += maxScores[k];
+      }
+
+      document.getElementById('global-score').innerText = currentTotal;
+      document.getElementById('global-max').innerText = maxTotal;
+
+      const pct = Math.round((currentTotal / maxTotal) * 100);
+      document.getElementById('global-progress').style.width = `${pct}%`;
+    }
+
+    function navigateTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.classList.add('text-slate-600');
+      });
+
+      const activeBtn = document.getElementById('nav-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('text-slate-600');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetAllScores() {
+      for (const k in activityScores) activityScores[k] = 0;
+      updateAllScoresDisplay();
+      initAllActivities();
+    }
+
+    /* ========================================================================= */
+    /* 2. DONNÉES ET FONCTIONS DE L'ONGLET 1 (AVOIR)                             */
+    /* ========================================================================= */
+    
+    const dataQcmAvoir = [
+      { q: "1. Hier soir, nous (manger) une pizza.", options: ["avons mangé", "avez mangé", "ont mangé"], correct: 0 },
+      { q: "2. Tu (parler) avec le professeur ce matin.", options: ["ai parlé", "as parlé", "a parlé"], correct: 1 },
+      { q: "3. J' (finir) mes devoirs à 18 heures.", options: ["ai fini", "as fini", "a fini"], correct: 0 },
+      { q: "4. Elles (choisir) une très jolie robe.", options: ["a choisi", "avons choisi", "ont choisi"], correct: 2 },
+      { q: "5. Vous (travailler) toute la journée ?", options: ["avez travaillé", "avons travaillé", "ont travaillé"], correct: 0 },
+      { q: "6. Il (regarder) un documentaire à la télé.", options: ["as regardé", "a regardé", "ai regardé"], correct: 1 },
+      { q: "7. Mon frère (réussir) son examen de français.", options: ["a réussi", "est réussi", "ont réussi"], correct: 0 },
+      { q: "8. Nous (danser) toute la nuit à la fête.", options: ["ont dansé", "avons dansé", "avez dansé"], correct: 1 },
+      { q: "9. Les enfants (grandir) très vite cette année.", options: ["a grandi", "ont grandi", "avons grandi"], correct: 1 },
+      { q: "10. J' (aimer) cette chanson québécoise.", options: ["ai aimé", "as aimé", "a aimé"], correct: 0 }
+    ];
+
+    function renderQcmAvoir() {
+      const container = document.getElementById('qcm-avoir-container');
+      container.innerHTML = '';
+      dataQcmAvoir.forEach((item, idx) => {
+        let optHtml = item.options.map((opt, oIdx) => `
+          <label class="flex items-center gap-2 p-2 bg-slate-50 hover:bg-blue-50/50 rounded-xl cursor-pointer text-xs border border-slate-200 transition">
+            <input type="radio" name="qcm-av-${idx}" value="${oIdx}" class="accent-oif-blue">
+            <span>${opt}</span>
+          </label>
+        `).join('');
+
+        container.innerHTML += `
+          <div class="p-3.5 bg-white border border-slate-200 rounded-2xl shadow-xs" id="box-qcm-av-${idx}">
+            <p class="font-bold text-xs sm:text-sm text-slate-800 mb-2">${item.q}</p>
+            <div class="space-y-1.5">${optHtml}</div>
+            <div id="fb-qcm-av-${idx}" class="text-[11px] font-semibold mt-2 hidden"></div>
+          </div>
+        `;
+      });
+    }
+
+    function checkQcmAvoir() {
+      let score = 0;
+      dataQcmAvoir.forEach((item, idx) => {
+        const box = document.getElementById(`box-qcm-av-${idx}`);
+        const fb = document.getElementById(`fb-qcm-av-${idx}`);
+        const checked = document.querySelector(`input[name="qcm-av-${idx}"]:checked`);
+        
+        fb.classList.remove('hidden');
+        if (checked && parseInt(checked.value) === item.correct) {
+          score++;
+          box.classList.add('correct-feedback');
+          box.classList.remove('incorrect-feedback');
+          fb.innerHTML = `✅ Exact : <strong>${item.options[item.correct]}</strong>`;
+          fb.className = 'text-[11px] font-semibold mt-2 text-emerald-700';
+        } else {
+          box.classList.add('incorrect-feedback');
+          box.classList.remove('correct-feedback');
+          fb.innerHTML = `❌ La bonne réponse est : <strong>${item.options[item.correct]}</strong>`;
+          fb.className = 'text-[11px] font-semibold mt-2 text-rose-700';
+        }
+      });
+
+      activityScores.qcmAvoir = score;
+      document.getElementById('score-qcm-avoir').innerText = `Score : ${score}/10`;
+      updateAllScoresDisplay();
+
+      const globalFb = document.getElementById('feedback-qcm-avoir');
+      globalFb.classList.remove('hidden');
+      if (score >= 8) {
+        globalFb.className = 'mt-4 p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200';
+        globalFb.innerText = `Bravo ! ${score}/10 : Vous maîtrisez parfaitement l'auxiliaire avoir et les participes réguliers.`;
+      } else {
+        globalFb.className = 'mt-4 p-3 rounded-xl bg-amber-50 text-amber-800 border border-amber-200';
+        globalFb.innerText = `Score : ${score}/10. Révisez le présent d'avoir (J'ai, Tu as, Il a, Nous avons, Vous avez, Ils ont) et réessayez !`;
+      }
+    }
+
+    const dataTypingAvoir = [
+      { prompt: "1. Marc (écouter) la radio ce matin : Marc", answer: "a écouté" },
+      { prompt: "2. Nous (choisir) le menu du jour : Nous", answer: "avons choisi" },
+      { prompt: "3. J' (adorer) le concert de musique francophone : J'", answer: "ai adoré" },
+      { prompt: "4. Vous (finir) votre travail à l'heure : Vous", answer: "avez fini" },
+      { prompt: "5. Tu (chercher) tes clés partout : Tu", answer: "as cherché" },
+      { prompt: "6. Les étudiants (réussir) le test de niveau A1 : Ils", answer: "ont réussi" },
+      { prompt: "7. Elle (dîner) avec ses collègues : Elle", answer: "a dîné" },
+      { prompt: "8. Tu (remplir) ce formulaire d'inscription : Tu", answer: "as rempli" },
+      { prompt: "9. Nous (parler) espagnol et français : Nous", answer: "avons parlé" },
+      { prompt: "10. J' (étudier) la leçon hier : J'", answer: "ai étudié" }
+    ];
+
+    function renderTypingAvoir() {
+      const container = document.getElementById('typing-avoir-container');
+      container.innerHTML = '';
+      dataTypingAvoir.forEach((item, idx) => {
+        container.innerHTML += `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-xl gap-2 text-xs sm:text-sm" id="box-typ-av-${idx}">
+            <label for="typ-input-${idx}" class="font-medium text-slate-800">${item.prompt}</label>
+            <div class="flex items-center gap-2">
+              <input type="text" id="typ-input-${idx}" placeholder="auxiliaire + participe" class="p-2 border border-slate-300 rounded-lg text-xs font-semibold focus:border-oif-green focus:outline-none w-48">
+              <span id="badge-typ-av-${idx}" class="hidden text-xs font-bold px-2 py-1 rounded-lg"></span>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function checkTypingAvoir() {
+      let score = 0;
+      dataTypingAvoir.forEach((item, idx) => {
+        const input = document.getElementById(`typ-input-${idx}`);
+        const badge = document.getElementById(`badge-typ-av-${idx}`);
+        const box = document.getElementById(`box-typ-av-${idx}`);
+
+        const val = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+        const expected = item.answer.trim().toLowerCase();
+
+        badge.classList.remove('hidden');
+        if (val === expected) {
+          score++;
+          box.classList.add('correct-feedback');
+          box.classList.remove('incorrect-feedback');
+          badge.className = 'text-xs font-bold px-2 py-1 rounded-lg bg-emerald-100 text-emerald-800';
+          badge.innerText = '✓ Correct';
+        } else {
+          box.classList.add('incorrect-feedback');
+          box.classList.remove('correct-feedback');
+          badge.className = 'text-xs font-bold px-2 py-1 rounded-lg bg-rose-100 text-rose-800';
+          badge.innerText = `✗ Réponse : "${item.answer}"`;
+        }
+      });
+
+      activityScores.typingAvoir = score;
+      document.getElementById('score-typing-avoir').innerText = `Score : ${score}/10`;
+      updateAllScoresDisplay();
+
+      const fb = document.getElementById('feedback-typing-avoir');
+      fb.classList.remove('hidden');
+      fb.className = score >= 8 ? 'mt-4 p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200' : 'mt-4 p-3 rounded-xl bg-amber-50 text-amber-800 border border-amber-200';
+      fb.innerText = `Résultat : ${score}/10 verbes correctement tapés.`;
+    }
+
+    const dataDiscrimination = [
+      { present: "Je fais les devoirs", passe: "J'ai fait les devoirs", answer: "present" },
+      { present: "Je mange de la salade", passe: "J'ai mangé de la salade", answer: "passe" },
+      { present: "Je regarde un bon film", passe: "J'ai regardé un bon film", answer: "passe" },
+      { present: "Je travaille toute la journée", passe: "J'ai travaillé toute la journée", answer: "present" },
+      { present: "Je choisis le plat du jour", passe: "J'ai choisi le plat du jour", answer: "passe" },
+      { present: "Je réussis toujours", passe: "J'ai toujours réussi", answer: "present" },
+      { present: "Je finis maintenant", passe: "J'ai fini maintenant", answer: "present" },
+      { present: "Je trouve la solution", passe: "J'ai trouvé la solution", answer: "passe" },
+      { present: "Je danse mal", passe: "J'ai mal dansé", answer: "present" },
+      { present: "J'adore cette histoire", passe: "J'ai adoré cette histoire", answer: "passe" }
+    ];
+
+    function renderDiscrimination() {
+      const grid = document.getElementById('grid-discrimination');
+      grid.innerHTML = '';
+      dataDiscrimination.forEach((item, i) => {
+        grid.innerHTML += `
+          <tr id="row-discrim-${i}" class="border-b border-slate-100 transition hover:bg-slate-50/50">
+            <td class="p-3 font-semibold text-center text-slate-400 text-xs">${i + 1}</td>
+            <td class="p-3 font-medium text-slate-800">${item.present}</td>
+            <td class="p-3 text-center">
+              <input type="radio" name="discrim-${i}" value="present" class="w-4 h-4 accent-oif-blue cursor-pointer">
+            </td>
+            <td class="p-3 font-medium text-slate-800">${item.passe}</td>
+            <td class="p-3 text-center">
+              <input type="radio" name="discrim-${i}" value="passe" class="w-4 h-4 accent-oif-red cursor-pointer">
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function checkDiscriminationAnswers() {
+      let score = 0;
+      dataDiscrimination.forEach((item, i) => {
+        const row = document.getElementById(`row-discrim-${i}`);
+        const selected = document.querySelector(`input[name="discrim-${i}"]:checked`);
+        row.classList.remove('bg-emerald-50', 'bg-rose-50');
+
+        if (selected && selected.value === item.answer) {
+          score++;
+          row.classList.add('bg-emerald-50');
+        } else {
+          row.classList.add('bg-rose-50');
+        }
+      });
+
+      activityScores.discrimination = score;
+      const el = document.getElementById('score-discrimination');
+      el.textContent = `Score Discrimination : ${score}/10`;
+      el.classList.remove('hidden');
+      updateAllScoresDisplay();
+    }
+
+    /* ========================================================================= */
+    /* 3. DONNÉES ET FONCTIONS DE L'ONGLET 2 (LES 20 PARTICIPES PASSÉS)          */
+    /* ========================================================================= */
+    
+    const usefulVerbs = [
+      { inf: "avoir", part: "eu" },
+      { inf: "être", part: "été" },
+      { inf: "faire", part: "fait" },
+      { inf: "pouvoir", part: "pu" },
+      { inf: "vouloir", part: "voulu" },
+      { inf: "devoir", part: "dû" },
+      { inf: "savoir", part: "su" },
+      { inf: "voir", part: "vu" },
+      { inf: "lire", part: "lu" },
+      { inf: "écrire", part: "écrit" },
+      { inf: "prendre", part: "pris" },
+      { inf: "mettre", part: "mis" },
+      { inf: "comprendre", part: "compris" },
+      { inf: "apprendre", part: "appris" },
+      { inf: "boire", part: "bu" },
+      { inf: "croire", part: "cru" },
+      { inf: "attendre", part: "attendu" },
+      { inf: "entendre", part: "entendu" },
+      { inf: "perdre", part: "perdu" },
+      { inf: "dire", part: "dit" }
+    ];
+
+    let selectedInf = null;
+    let matchedPairs = [];
+
+    function renderMatchingActivity() {
+      matchedPairs = [];
+      document.getElementById('matched-pairs-display').innerHTML = '<span class="text-xs text-slate-400 italic">Cliquez sur un infinitif (gauche) puis son participe (droite) pour former une paire.</span>';
+      
+      const colA = document.getElementById('col-infinitifs');
+      const colB = document.getElementById('col-participes');
+      colA.innerHTML = '';
+      colB.innerHTML = '';
+
+      const shuffledInf = [...usefulVerbs].sort(() => Math.random() - 0.5);
+      const shuffledPart = [...usefulVerbs].sort(() => Math.random() - 0.5);
+
+      shuffledInf.forEach(item => {
+        colA.innerHTML += `
+          <button onclick="handleInfClick('${item.inf}', this)" id="btn-inf-${item.inf}" class="p-2.5 bg-white border border-slate-200 hover:border-oif-blue rounded-xl text-xs font-bold text-slate-800 text-left transition shadow-xs">
+            ${item.inf}
+          </button>
+        `;
+      });
+
+      shuffledPart.forEach(item => {
+        colB.innerHTML += `
+          <button onclick="handlePartClick('${item.part}', this)" id="btn-part-${item.part}" class="p-2.5 bg-white border border-slate-200 hover:border-amber-400 rounded-xl text-xs font-bold text-slate-800 text-left transition shadow-xs">
+            ${item.part}
+          </button>
+        `;
+      });
+      selectedInf = null;
+    }
+
+    function handleInfClick(inf, el) {
+      if (matchedPairs.find(p => p.inf === inf)) return;
+      document.querySelectorAll('#col-infinitifs button').forEach(b => b.classList.remove('bg-blue-100', 'border-oif-blue', 'ring-2', 'ring-blue-300'));
+      el.classList.add('bg-blue-100', 'border-oif-blue', 'ring-2', 'ring-blue-300');
+      selectedInf = inf;
+    }
+
+    function handlePartClick(part, el) {
+      if (!selectedInf) return;
+      if (matchedPairs.find(p => p.part === part)) return;
+
+      const expected = usefulVerbs.find(v => v.inf === selectedInf).part;
+
+      if (part === expected) {
+        matchedPairs.push({ inf: selectedInf, part: part });
+
+        const infBtn = document.getElementById(`btn-inf-${selectedInf}`);
+        const partBtn = document.getElementById(`btn-part-${part}`);
+        
+        infBtn.classList.remove('bg-blue-100', 'border-oif-blue', 'ring-2', 'ring-blue-300');
+        infBtn.classList.add('bg-emerald-100', 'text-emerald-900', 'border-emerald-300', 'cursor-not-allowed', 'opacity-60');
+        infBtn.disabled = true;
+
+        partBtn.classList.add('bg-emerald-100', 'text-emerald-900', 'border-emerald-300', 'cursor-not-allowed', 'opacity-60');
+        partBtn.disabled = true;
+
+        const display = document.getElementById('matched-pairs-display');
+        if (matchedPairs.length === 1) display.innerHTML = '';
+        display.innerHTML += `
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300 shadow-xs">
+            <span>${selectedInf}</span> &rarr; <span class="text-emerald-700 uppercase">${part}</span>
+          </span>
+        `;
+
+        activityScores.matching = matchedPairs.length;
+        document.getElementById('score-matching').innerText = `Paires : ${matchedPairs.length}/20`;
+        updateAllScoresDisplay();
+        selectedInf = null;
+      } else {
+        el.classList.add('bg-rose-100', 'border-rose-400');
+        setTimeout(() => el.classList.remove('bg-rose-100', 'border-rose-400'), 600);
+      }
+    }
+
+    function resetMatchingGame() {
+      activityScores.matching = 0;
+      document.getElementById('score-matching').innerText = "Paires : 0/20";
+      renderMatchingActivity();
+      updateAllScoresDisplay();
+    }
+
+    const dataGapFill = [
+      { text: "1. Hier matin, j'ai (boire) un grand café :", inf: "boire", expected: "bu" },
+      { text: "2. Tu as (faire) tous les exercices de français ?", inf: "faire", expected: "fait" },
+      { text: "3. Nous avons (prendre) le train pour Paris :", inf: "prendre", expected: "pris" },
+      { text: "4. Elle a (vouloir) visiter le musée du Louvre :", inf: "vouloir", expected: "voulu" },
+      { text: "5. Ils ont (lire) un roman très intéressant :", inf: "lire", expected: "lu" },
+      { text: "6. J'ai (écrire) un courriel à mon professeur :", inf: "écrire", expected: "écrit" },
+      { text: "7. Vous avez (pouvoir) réserver les billets ?", inf: "pouvoir", expected: "pu" },
+      { text: "8. Il a (devoir) travailler tard hier soir :", inf: "devoir", expected: "dû" },
+      { text: "9. Marie a (voir) ses amies au café :", inf: "voir", expected: "vu" },
+      { text: "10. Nous avons (comprendre) toute la leçon :", inf: "comprendre", expected: "compris" },
+      { text: "11. Il a (perdre) son passeport à la gare :", inf: "perdre", expected: "perdu" },
+      { text: "12. Les élèves ont (apprendre) les verbes irréguliers :", inf: "apprendre", expected: "appris" }
+    ];
+
+    function renderGapFill() {
+      const container = document.getElementById('gapfill-container');
+      container.innerHTML = '';
+      dataGapFill.forEach((item, idx) => {
+        container.innerHTML += `
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm flex flex-col justify-between gap-2" id="box-gap-${idx}">
+            <span class="font-medium text-slate-800">${item.text}</span>
+            <div class="flex items-center gap-2">
+              <input type="text" id="gap-input-${idx}" placeholder="Participe passé..." class="p-1.5 border border-slate-300 rounded-lg text-xs font-bold w-36 focus:border-oif-blue focus:outline-none">
+              <span id="badge-gap-${idx}" class="hidden text-xs font-semibold px-2 py-0.5 rounded-lg"></span>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function checkGapFill() {
+      let score = 0;
+      dataGapFill.forEach((item, idx) => {
+        const input = document.getElementById(`gap-input-${idx}`);
+        const badge = document.getElementById(`badge-gap-${idx}`);
+        const box = document.getElementById(`box-gap-${idx}`);
+
+        const val = input.value.trim().toLowerCase();
+        badge.classList.remove('hidden');
+
+        if (val === item.expected.toLowerCase()) {
+          score++;
+          box.classList.add('correct-feedback');
+          box.classList.remove('incorrect-feedback');
+          badge.className = 'text-xs font-bold px-2 py-0.5 rounded-lg bg-emerald-100 text-emerald-800';
+          badge.innerText = '✓ Correct';
+        } else {
+          box.classList.add('incorrect-feedback');
+          box.classList.remove('correct-feedback');
+          badge.className = 'text-xs font-bold px-2 py-0.5 rounded-lg bg-rose-100 text-rose-800';
+          badge.innerText = `✗ Forme : ${item.expected}`;
+        }
+      });
+
+      activityScores.gapfill = score;
+      document.getElementById('score-gapfill').innerText = `Score : ${score}/12`;
+      updateAllScoresDisplay();
+
+      const fb = document.getElementById('feedback-gapfill');
+      fb.classList.remove('hidden');
+      fb.className = score >= 9 ? 'mt-4 p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200' : 'mt-4 p-3 rounded-xl bg-amber-50 text-amber-800 border border-amber-200';
+      fb.innerText = `Score final : ${score}/12 participes passés correctement orthographiés.`;
+    }
+
+    const dataIntrus = [
+      { q: "1. Participe passé de SAVOIR :", opts: ["savi", "su", "savoiré"], correct: 1 },
+      { q: "2. Participe passé de METTRE :", opts: ["mis", "mettu", "metté"], correct: 0 },
+      { q: "3. Participe passé de CROIRE :", opts: ["croyé", "croisi", "cru"], correct: 2 },
+      { q: "4. Participe passé de DIRE :", opts: ["dit", "disu", "disi"], correct: 0 },
+      { q: "5. Participe passé d'ATTENDRE :", opts: ["attendu", "attendi", "attis"], correct: 0 },
+      { q: "6. Participe passé d'ENTENDRE :", opts: ["ententi", "entendu", "entendre"], correct: 1 },
+      { q: "7. Participe passé d'AVOIR :", opts: ["avut", "eu", "avi"], correct: 1 },
+      { q: "8. Participe passé d'ÊTRE :", opts: ["été", "éti", "essu"], correct: 0 },
+      { q: "9. Participe passé de POUVOIR :", opts: ["pouvou", "pu", "poui"], correct: 1 },
+      { q: "10. Participe passé de PRENDRE :", opts: ["prendu", "pris", "pru"], correct: 1 },
+      { q: "11. Participe passé de VOULOIR :", opts: ["voulu", "vouli", "voulais"], correct: 0 },
+      { q: "12. Participe passé d'ÉCRIRE :", opts: ["écrivé", "écru", "écrit"], correct: 2 }
+    ];
+
+    function renderIntrus() {
+      const container = document.getElementById('intrus-container');
+      container.innerHTML = '';
+      dataIntrus.forEach((item, idx) => {
+        let optHtml = item.opts.map((opt, oIdx) => `
+          <label class="flex items-center gap-1.5 p-1.5 bg-slate-50 hover:bg-purple-50/50 rounded-lg cursor-pointer text-xs border border-slate-200">
+            <input type="radio" name="intrus-${idx}" value="${oIdx}" class="accent-oif-purple">
+            <span class="font-semibold">${opt}</span>
+          </label>
+        `).join('');
+
+        container.innerHTML += `
+          <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-xs" id="box-intrus-${idx}">
+            <p class="font-bold text-xs text-slate-800 mb-2">${item.q}</p>
+            <div class="space-y-1">${optHtml}</div>
+            <div id="fb-intrus-${idx}" class="text-[10px] font-semibold mt-1.5 hidden"></div>
+          </div>
+        `;
+      });
+    }
+
+    function checkIntrus() {
+      let score = 0;
+      dataIntrus.forEach((item, idx) => {
+        const box = document.getElementById(`box-intrus-${idx}`);
+        const fb = document.getElementById(`fb-intrus-${idx}`);
+        const checked = document.querySelector(`input[name="intrus-${idx}"]:checked`);
+        fb.classList.remove('hidden');
+
+        if (checked && parseInt(checked.value) === item.correct) {
+          score++;
+          box.classList.add('correct-feedback');
+          box.classList.remove('incorrect-feedback');
+          fb.className = 'text-[10px] font-bold mt-1 text-emerald-700';
+          fb.innerText = `✓ Bravo : ${item.opts[item.correct]}`;
+        } else {
+          box.classList.add('incorrect-feedback');
+          box.classList.remove('correct-feedback');
+          fb.className = 'text-[10px] font-bold mt-1 text-rose-700';
+          fb.innerText = `✗ Réponse : ${item.opts[item.correct]}`;
+        }
+      });
+
+      activityScores.intrus = score;
+      document.getElementById('score-intrus').innerText = `Score : ${score}/12`;
+      updateAllScoresDisplay();
+
+      const fb = document.getElementById('feedback-intrus');
+      fb.classList.remove('hidden');
+      fb.className = score >= 9 ? 'mt-4 p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200' : 'mt-4 p-3 rounded-xl bg-amber-50 text-amber-800 border border-amber-200';
+      fb.innerText = `Résultat : ${score}/12 réponses correctes.`;
+    }
+
+    /* ========================================================================= */
+    /* 4. DONNÉES ET FONCTIONS DE L'ONGLET 3 (EXPRESSION & DELF A1)             */
+    /* ========================================================================= */
+    
+    function updateWordCount(id) {
+      const text = document.getElementById(`written-text-${id}`).value.trim();
+      const words = text ? text.split(/\s+/).length : 0;
+      document.getElementById(`word-count-${id}`).innerText = `${words} mot(s)`;
+    }
+
+    function saveWrittenDraft(id) {
+      const text = document.getElementById(`written-text-${id}`).value.trim();
+      const msg = document.getElementById(`saved-msg-${id}`);
+      if (text.length < 5) return;
+      msg.classList.remove('hidden');
+      setTimeout(() => msg.classList.add('hidden'), 2500);
+    }
+
+    // Questions formulées de manière simple (A1 direct), SANS INVERSION DU SUJET
+    const dataDelf = [
+      { q: "1. Comment est le week-end de Lucas ?", opts: ["Ennuyeux", "Très bon mais très chargé", "Horrible"], correct: 1 },
+      { q: "2. Qu'est-ce que Lucas a fait samedi matin ?", opts: ["Il a fini ses devoirs de français et rangé son appartement", "Il a regardé la télé", "Il est allé au travail"], correct: 0 },
+      { q: "3. Est-ce que Lucas a fait du sport samedi après-midi ?", opts: ["Oui, il a fait du football", "Non, il a choisi un cadeau et mangé une glace", "Non, il a dormi toute la journée"], correct: 1 },
+      { q: "4. Pour qui est-ce que Lucas a choisi un cadeau ?", opts: ["Pour Léa", "Pour sa mère", "Pour l'anniversaire de sa sœur"], correct: 2 },
+      { q: "5. Avec qui est-ce que Léa a passé la soirée de samedi ?", opts: ["Avec Lucas", "Avec sa cousine", "Toute seule chez elle"], correct: 1 },
+      { q: "6. Qu'est-ce que Léa et sa cousine ont fait samedi soir ?", opts: ["Elles ont regardé un film et préparé une pizza", "Elles sont sorties en boîte", "Elles ont étudié"], correct: 0 },
+      { q: "7. Qu'est-ce que Léa et sa cousine ont fait dimanche ?", opts: ["Elles ont voyagé en train", "Elles ont marché dans le parc", "Elles ont travaillé à l'ordinateur"], correct: 1 },
+      { q: "8. Qu'est-ce que Lucas a fait dimanche soir ?", opts: ["Il a écouté de la musique et dormi tôt", "Il a fait une grande fête", "Il est allé au restaurant"], correct: 0 },
+      { q: "9. Pourquoi est-ce que Lucas a dormi tôt dimanche soir ?", opts: ["Parce qu'il a été malade", "Parce qu'il a été très fatigué", "Parce qu'il a oublié son livre"], correct: 1 },
+      { q: "10. Quel auxiliaire Lucas et Léa ont utilisé pour « finir » et « préparer » ?", opts: ["L'auxiliaire Être", "L'auxiliaire Avoir", "Le verbe Aller"], correct: 1 }
+    ];
+
+    function renderDelfQuestions() {
+      const container = document.getElementById('delf-questions-container');
+      container.innerHTML = '';
+      dataDelf.forEach((item, idx) => {
+        let optHtml = item.opts.map((opt, oIdx) => `
+          <label class="flex items-center gap-1.5 p-1.5 bg-slate-50 hover:bg-blue-50/50 rounded-lg cursor-pointer text-xs border border-slate-200">
+            <input type="radio" name="delf-q-${idx}" value="${oIdx}" class="accent-oif-blue">
+            <span>${opt}</span>
+          </label>
+        `).join('');
+
+        container.innerHTML += `
+          <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-xs" id="box-delf-${idx}">
+            <p class="font-bold text-xs text-slate-800 mb-1.5">${item.q}</p>
+            <div class="space-y-1">${optHtml}</div>
+            <div id="fb-delf-${idx}" class="text-[10px] font-semibold mt-1 hidden"></div>
+          </div>
+        `;
+      });
+    }
+
+    function checkDelfAnswers() {
+      let score = 0;
+      dataDelf.forEach((item, idx) => {
+        const box = document.getElementById(`box-delf-${idx}`);
+        const fb = document.getElementById(`fb-delf-${idx}`);
+        const checked = document.querySelector(`input[name="delf-q-${idx}"]:checked`);
+        fb.classList.remove('hidden');
+
+        if (checked && parseInt(checked.value) === item.correct) {
+          score++;
+          box.classList.add('correct-feedback');
+          box.classList.remove('incorrect-feedback');
+          fb.className = 'text-[10px] font-bold mt-1 text-emerald-700';
+          fb.innerText = `✓ Correct : ${item.opts[item.correct]}`;
+        } else {
+          box.classList.add('incorrect-feedback');
+          box.classList.remove('correct-feedback');
+          fb.className = 'text-[10px] font-bold mt-1 text-rose-700';
+          fb.innerText = `✗ Réponse : ${item.opts[item.correct]}`;
+        }
+      });
+
+      activityScores.delf = score;
+      document.getElementById('score-delf').innerText = `Score DELF : ${score}/10`;
+      updateAllScoresDisplay();
+
+      const fb = document.getElementById('feedback-delf');
+      fb.classList.remove('hidden');
+      fb.className = score >= 7 ? 'mt-4 p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200' : 'mt-4 p-3 rounded-xl bg-amber-50 text-amber-800 border border-amber-200';
+      fb.innerText = `Votre score DELF A1 : ${score}/10 points. Vous pouvez maintenant consulter la transcription complète ci-dessous.`;
+
+      // Habiliter le bouton "Consulter la transcription" seulement après la vérification
+      document.getElementById('btn-toggle-transcription').classList.remove('hidden');
+    }
+
+    function toggleTranscription() {
+      const wrapper = document.getElementById('transcription-wrapper');
+      const textBtn = document.getElementById('btn-transcription-text');
+      if (wrapper.classList.contains('hidden')) {
+        wrapper.classList.remove('hidden');
+        textBtn.innerText = 'Masquer la transcription';
+      } else {
+        wrapper.classList.add('hidden');
+        textBtn.innerText = 'Consulter la transcription';
+      }
+    }
+
+    /* ========================================================================= */
+    /* 5. INITIALISATION GLOBALE                                                 */
+    /* ========================================================================= */
+    
+    function initAllActivities() {
+      renderQcmAvoir();
+      renderTypingAvoir();
+      renderDiscrimination();
+
+      renderMatchingActivity();
+      renderGapFill();
+      renderIntrus();
+
+      renderDelfQuestions();
+
+      updateAllScoresDisplay();
+    }
+
+    window.onload = function() {
+      initAllActivities();
+    };
+  </script>
+</body>
+</html>
