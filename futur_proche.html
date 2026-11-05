@@ -248,6 +248,54 @@
                     </div>
                 </div>
 
+                <!-- Quand ? Les expressions du futur proche -->
+                <div class="mb-8 space-y-5" id="quand">
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 h-12 rounded-xl bg-[#A61E5C] text-white flex items-center justify-center font-black text-xl shadow-sm shrink-0">?</span>
+                        <div>
+                            <h3 class="text-2xl font-black text-slate-900 leading-tight">Quand ?</h3>
+                            <p class="text-base font-bold text-[#A61E5C]">Les expressions du futur proche</p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-600">Touchez une expression pour l'écouter 🔊.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Aujourd'hui, bientôt</p>
+                            <div id="quand-col1" class="grid grid-cols-2 sm:grid-cols-1 gap-2"></div>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Les jours suivants</p>
+                            <div id="quand-col2" class="grid grid-cols-2 sm:grid-cols-1 gap-2"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-2 border-[#A61E5C]/30 rounded-2xl p-4">
+                        <p class="font-bold text-[#A61E5C] mb-2">Exemples</p>
+                        <ul class="space-y-2 text-slate-800 font-semibold">
+                            <li><button type="button" onclick="speak(&quot;Je vais téléphoner tout à l'heure.&quot;)" class="text-left">🔊 Je <span class="text-amber-600">vais</span> téléphoner <span class="underline decoration-[#A61E5C] decoration-2">tout à l'heure</span>.</button></li>
+                            <li><button type="button" onclick="speak('Nous allons étudier demain.')" class="text-left">🔊 Nous <span class="text-amber-600">allons</span> étudier <span class="underline decoration-[#A61E5C] decoration-2">demain</span>.</button></li>
+                            <li><button type="button" onclick="speak('Je vais prendre ce pull lundi prochain.')" class="text-left">🔊 Je <span class="text-amber-600">vais</span> prendre ce pull <span class="underline decoration-[#A61E5C] decoration-2">lundi prochain</span>.</button></li>
+                        </ul>
+                        <p class="text-sm text-slate-500 mt-3">💡 L'expression de temps va au début ou à la fin de la phrase : <em>Demain, je vais travailler.</em> / <em>Je vais travailler demain.</em></p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <h4 class="font-bold text-lg">Quand ? Choisissez la bonne expression</h4>
+                            <span id="quand-score" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 6</span>
+                        </div>
+                        <div id="quand-qcm" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                        <button type="button" onclick="buildQuand()" class="text-sm font-semibold text-[#A61E5C] underline">↺ Recommencer</button>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-sm space-y-1">
+                        <p class="font-bold text-amber-900">🗣️ À deux : posez les questions à votre voisin(e)</p>
+                        <p>Qu'est-ce que tu vas faire <strong>tout à l'heure</strong> ? • Qu'est-ce que tu vas faire <strong>demain</strong> ? • Qu'est-ce que tu vas faire <strong>samedi prochain</strong> ?</p>
+                        <p class="text-amber-900">Modèle : « Demain, je vais aller au marché. Je vais acheter des fruits. »</p>
+                    </div>
+                </div>
+
                 <!-- Compréhension Écrite -->
                 <div class="mb-8">
                     <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -687,6 +735,64 @@
             }
             showScore('score-onglet4', score, 10);
         }
+
+        /* -----------------------------------------------------------
+           QUAND ? LES EXPRESSIONS DU FUTUR PROCHE
+        ----------------------------------------------------------- */
+        const QUAND_1 = [['💬', "tout à l'heure"], ['⏳', 'plus tard'], ['🕙', 'dans 10 minutes'], ['🕐', 'dans une heure'], ['🌅', 'demain'], ['☀️', 'après-demain']];
+        const QUAND_2 = [['📅', 'le week-end prochain'], ['📅', 'lundi prochain'], ['📅', 'mardi prochain'], ['📅', 'mercredi prochain'], ['📅', 'jeudi prochain'], ['📅', 'vendredi prochain']];
+        function quandChip([e, w]) {
+            const safe = w.replace(/'/g, "\\'");
+            return `<button type="button" onclick="speak('${safe}')" class="w-full flex items-center gap-3 bg-[#FFF8F0] border border-amber-200 rounded-xl px-3 py-2.5 text-left hover:bg-amber-50 min-h-[48px]">
+                <span class="w-9 h-9 rounded-full bg-[#A61E5C] flex items-center justify-center text-lg shrink-0">${e}</span>
+                <span class="font-bold text-slate-900 text-sm sm:text-base leading-tight">${w}</span></button>`;
+        }
+        document.getElementById('quand-col1').innerHTML = QUAND_1.map(quandChip).join('');
+        document.getElementById('quand-col2').innerHTML = QUAND_2.map(quandChip).join('');
+
+        const QUAND_Q = [
+            { q: 'Il est 10 h. Le film va commencer à 10 h 10. Il va commencer…', o: ['après-demain.', 'dans 10 minutes.', 'le week-end prochain.'], a: 1 },
+            { q: "Aujourd'hui, c'est lundi. Mardi, c'est…", o: ['demain.', 'après-demain.', 'plus tard.'], a: 0 },
+            { q: "Aujourd'hui, c'est lundi. Mercredi, c'est…", o: ['demain.', 'dans une heure.', 'après-demain.'], a: 2 },
+            { q: 'Il est 15 h. Je vais faire les courses à 16 h. Je vais faire les courses…', o: ['dans une heure.', 'dans 10 minutes.', 'mercredi prochain.'], a: 0 },
+            { q: "Pas maintenant, mais aujourd'hui : je vais téléphoner à ma mère…", o: ['vendredi prochain.', 'après-demain.', "tout à l'heure."], a: 2 },
+            { q: 'Nous allons voyager la semaine…', o: ['prochain.', 'prochaine.', 'prochains.'], a: 1 }
+        ];
+        function buildQuand() {
+            const box = document.getElementById('quand-qcm');
+            const sc = document.getElementById('quand-score');
+            let score = 0;
+            sc.textContent = `0 / ${QUAND_Q.length}`;
+            box.innerHTML = '';
+            QUAND_Q.forEach((it, i) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-slate-200 rounded-xl p-4 space-y-2';
+                card.innerHTML = `<p class="font-semibold">${i + 1}. ${it.q}</p><div class="grid gap-2"></div><p class="text-sm hidden"></p>`;
+                const opts = card.querySelector('div');
+                const fb = card.querySelector('p:last-child');
+                const btns = it.o.map((o, k) => {
+                    const b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'text-left px-3 py-2.5 rounded-lg border-2 border-slate-200 bg-slate-50 hover:bg-slate-100 font-semibold text-sm min-h-[44px]';
+                    b.innerHTML = `<span class="text-slate-400 mr-1">${'abc'[k]})</span> ${o}`;
+                    b.onclick = () => {
+                        btns.forEach(x => x.disabled = true);
+                        const ok = k === it.a;
+                        if (ok) score++;
+                        const mark = (el, good) => { el.classList.remove('border-slate-200', 'bg-slate-50'); el.classList.add(good ? 'border-green-500' : 'border-red-500', good ? 'bg-green-100' : 'bg-red-100'); };
+                        mark(b, ok);
+                        if (!ok) mark(btns[it.a], true);
+                        fb.textContent = ok ? '✅ Bravo !' : `❌ Réponse : ${'abc'[it.a]}) ${it.o[it.a]}`;
+                        fb.className = 'text-sm font-semibold ' + (ok ? 'text-green-700' : 'text-red-700');
+                        sc.textContent = `${score} / ${QUAND_Q.length}`;
+                    };
+                    opts.appendChild(b);
+                    return b;
+                });
+                box.appendChild(card);
+            });
+        }
+        buildQuand();
 
     </script>
 </body>

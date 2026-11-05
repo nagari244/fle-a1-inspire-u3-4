@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Les prépositions de lieu - FLE A1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: {
+                oifBlue: '#009EE0', oifPurple: '#7D247E', oifGreen: '#009640', oifYellow: '#FFD100', oifRed: '#E2001A'
+            } } }
+        }
+    </script>
+    <style>
+        html { -webkit-text-size-adjust: 100%; }
+        body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+        .tabs { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .opt { min-height: 44px; }
+        .opt[disabled] { cursor: default; }
+        button { touch-action: manipulation; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        #lightbox-scroll { -webkit-overflow-scrolling: touch; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased">
+
+<div class="max-w-md mx-auto min-h-screen bg-white shadow-2xl flex flex-col md:max-w-4xl">
+
+    <header class="bg-slate-800 text-white p-5 shadow-md">
+        <a href="index.html" class="inline-block text-xs font-semibold opacity-90 hover:opacity-100 mb-3">← Retour aux activités</a>
+        <span class="block w-max bg-white/20 text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Situer dans l'espace • A1</span>
+        <h1 class="text-2xl font-extrabold mt-2">Où est… ? Où sont… ?</h1>
+        <p class="text-sm opacity-90 mt-1">Les prépositions de lieu : sur, sous, devant, derrière, entre, à côté de, à droite de, à gauche de.</p>
+
+        <nav class="tabs flex flex-wrap mt-5 gap-1 bg-black/25 p-1 rounded-lg text-sm" role="tablist">
+            <button onclick="switchTab('video')" id="tab-video" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">1. La vidéo</button>
+            <button onclick="switchTab('regle')" id="tab-regle" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">2. Les prépositions</button>
+            <button onclick="switchTab('boutique1')" id="tab-boutique1" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">3. Boutique 1</button>
+            <button onclick="switchTab('binomes')" id="tab-binomes" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">4. En binômes</button>
+        </nav>
+    </header>
+
+    <main class="flex-1 p-4 md:p-6">
+
+        <!-- ============ ONGLET 1 : VIDÉO ============ -->
+        <section id="content-video" class="tab-content space-y-5">
+            <div class="bg-blue-50 border-l-4 border-oifBlue p-3 rounded-r-lg text-sm text-slate-700">
+                <strong>Consigne :</strong> regardez la vidéo. Il y a une souris dans la cuisine… Où est la souris ? Répondez aux questions. Touchez <strong>▶ Revoir</strong> pour regarder le passage encore une fois.
+            </div>
+
+            <div class="md:sticky md:top-2 z-10 bg-white rounded-xl">
+                <video id="video" class="w-full rounded-xl shadow bg-black aspect-video" controls playsinline preload="metadata" poster="medias/prepositions_poster.jpg">
+                    <source src="medias/prepositions_espace_virtuel.mp4" type="video/mp4">
+                    Votre navigateur ne peut pas lire cette vidéo.
+                </video>
+                <p class="text-[11px] text-slate-400 mt-1">Vidéo : Grammaclips « Prépositions 1 – Situer dans l'espace », © Éditions Maison des Langues 2016 (espacevirtuel.emdl.fr).</p>
+            </div>
+
+            <div class="flex items-center justify-between gap-2">
+                <h2 class="text-lg font-extrabold text-slate-900">Où est la souris ? 🐭</h2>
+                <span id="score-video" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 11</span>
+            </div>
+            <div id="ex-video" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+            <div class="text-center space-y-3">
+                <button onclick="buildVideo()" class="text-sm font-semibold text-oifBlue underline">↺ Recommencer</button><br>
+                <button onclick="switchTab('regle')" class="bg-slate-800 text-white font-bold py-3 px-6 rounded-xl shadow">Continuer : les prépositions →</button>
+            </div>
+        </section>
+
+        <!-- ============ ONGLET 2 : RÈGLE ============ -->
+        <section id="content-regle" class="tab-content space-y-5 hidden">
+            <div class="bg-blue-50 border-l-4 border-oifBlue p-3 rounded-r-lg text-sm text-slate-700">
+                Où est la balle 🔴 ? Regardez la boîte et touchez 🔊 pour écouter.
+            </div>
+            <div id="prep-cards" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-2">
+                    <p class="font-bold text-slate-900">⚠️ à côté <strong>de</strong>, à droite <strong>de</strong>, à gauche <strong>de</strong></p>
+                    <ul class="space-y-1 font-mono text-[13px]">
+                        <li>de + <strong>le</strong> = <span class="bg-yellow-100 px-1 rounded font-bold">du</span> → à côté du fromage</li>
+                        <li>de + <strong>la</strong> = de la → à côté de la caisse</li>
+                        <li>de + <strong>l'</strong> = de l' → à droite de l'anorak</li>
+                        <li>de + <strong>les</strong> = <span class="bg-yellow-100 px-1 rounded font-bold">des</span> → à gauche des jeans</li>
+                    </ul>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-2">
+                    <p class="font-bold text-slate-900">❓ Poser la question</p>
+                    <p><strong>Où est</strong> la caisse ? → <strong>Elle est</strong> derrière Paul.<br>
+                       <strong>Où est</strong> le miroir ? → <strong>Il est</strong> à côté de la cabine.<br>
+                       <strong>Où sont</strong> les jeans ? → <strong>Ils sont</strong> à gauche.<br>
+                       <strong>Où sont</strong> les robes ? → <strong>Elles sont</strong> à droite.</p>
+                    <p class="text-slate-500">Au sol ? On dit <strong>par terre</strong> : La souris est par terre.</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <button onclick="switchTab('boutique1')" class="bg-slate-800 text-white font-bold py-3 px-6 rounded-xl shadow">Continuer : la boutique 1 →</button>
+            </div>
+        </section>
+
+        <!-- ============ ONGLET 3 : BOUTIQUE 1 ============ -->
+        <section id="content-boutique1" class="tab-content space-y-5 hidden">
+            <div class="bg-blue-50 border-l-4 border-oifBlue p-3 rounded-r-lg text-sm text-slate-700">
+                <strong>Consigne :</strong> observez la boutique. Répondez aux 10 questions. Ensuite, <strong>dites la réponse complète à voix haute</strong>.
+            </div>
+            <figure class="space-y-1">
+                <button type="button" onclick="openLightbox('medias/boutique1.jpg')" class="block w-full relative">
+                    <img src="medias/boutique1.jpg" alt="Boutique 1 : une boutique de vêtements avec des clients et deux caisses" class="w-full rounded-xl shadow border border-slate-200" loading="lazy">
+                    <span class="absolute bottom-2 right-2 bg-slate-900/80 text-white text-xs font-bold px-2.5 py-1.5 rounded-lg">🔍 Agrandir</span>
+                </button>
+                <figcaption class="text-[11px] text-slate-400">Image générée avec Gemini.</figcaption>
+            </figure>
+
+            <div class="flex items-center justify-between gap-2">
+                <h2 class="text-lg font-extrabold text-slate-900">10 questions</h2>
+                <span id="score-b1" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 10</span>
+            </div>
+            <div id="ex-b1" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm space-y-1">
+                <p class="font-bold">🗣️ À vous ! Posez 3 questions à votre voisin(e) :</p>
+                <p>Où sont les chapeaux ? • Où sont les chaussures ? • Où est Jeanne ? • Où sont les manteaux ? • Où est Julie ?</p>
+            </div>
+            <div class="text-center space-y-3">
+                <button onclick="buildB1()" class="text-sm font-semibold text-oifBlue underline">↺ Recommencer</button><br>
+                <button onclick="switchTab('binomes')" class="bg-slate-800 text-white font-bold py-3 px-6 rounded-xl shadow">Continuer : en binômes →</button>
+            </div>
+        </section>
+
+        <!-- ============ ONGLET 4 : BINÔMES ============ -->
+        <section id="content-binomes" class="tab-content space-y-5 hidden">
+            <div class="bg-purple-50 border-l-4 border-oifPurple p-3 rounded-r-lg text-sm text-slate-700">
+                <strong>Travail à deux :</strong> choisissez une boutique. Faites les étapes 1, 2 et 3, puis changez de boutique.
+            </div>
+
+            <div class="grid grid-cols-2 gap-2" role="tablist">
+                <button id="pick-2" onclick="pickShop(2)" class="py-3 rounded-xl font-bold border-2">Boutique 2</button>
+                <button id="pick-3" onclick="pickShop(3)" class="py-3 rounded-xl font-bold border-2">Boutique 3</button>
+            </div>
+
+            <figure class="space-y-1">
+                <button type="button" id="shop-btn" class="block w-full relative">
+                    <img id="shop-img" src="medias/boutique2.jpg" alt="" class="w-full rounded-xl shadow border border-slate-200" loading="lazy">
+                    <span class="absolute bottom-2 right-2 bg-slate-900/80 text-white text-xs font-bold px-2.5 py-1.5 rounded-lg">🔍 Agrandir</span>
+                </button>
+                <figcaption class="text-[11px] text-slate-400">Image générée avec Gemini.</figcaption>
+            </figure>
+
+            <!-- Étape 1 -->
+            <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">Étape 1 • Qui est-ce ? 🕵️</h2>
+                <p class="text-sm"><strong>A</strong> choisit une personne en secret. <strong>B</strong> pose des questions (5 maximum). <strong>A</strong> répond seulement « Oui » ou « Non ».</p>
+                <div class="space-y-2 text-sm">
+                    <p class="bg-purple-50 rounded-lg px-3 py-2 w-max max-w-full"><strong class="text-oifPurple">B :</strong> C'est un homme ?</p>
+                    <p class="bg-blue-50 rounded-lg px-3 py-2 w-max max-w-full ml-auto"><strong class="text-oifBlue">A :</strong> Non.</p>
+                    <p class="bg-purple-50 rounded-lg px-3 py-2 w-max max-w-full"><strong class="text-oifPurple">B :</strong> Elle est à côté de la caisse ?</p>
+                    <p class="bg-blue-50 rounded-lg px-3 py-2 w-max max-w-full ml-auto"><strong class="text-oifBlue">A :</strong> Oui.</p>
+                    <p class="bg-purple-50 rounded-lg px-3 py-2 w-max max-w-full"><strong class="text-oifPurple">B :</strong> Elle est derrière la caisse ?</p>
+                    <p class="bg-blue-50 rounded-lg px-3 py-2 w-max max-w-full ml-auto"><strong class="text-oifBlue">A :</strong> Oui !</p>
+                    <p class="bg-purple-50 rounded-lg px-3 py-2 w-max max-w-full"><strong class="text-oifPurple">B :</strong> C'est <span id="qui-exemple">Sarah</span> !</p>
+                </div>
+            </div>
+
+            <!-- Étape 2 -->
+            <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">Étape 2 • Questions et réponses</h2>
+                <p class="text-sm"><strong>A</strong> pose la question. <strong>B</strong> regarde l'image et répond avec une phrase complète. Touchez la carte pour voir une réponse possible. Changez de rôle après 4 questions.</p>
+                <div id="cards-shop" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+            </div>
+
+            <!-- Étape 3 -->
+            <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">Étape 3 • Micro-dialogue dans la boutique 🛍️</h2>
+                <p class="text-sm">Un(e) client(e) cherche un article. Le vendeur ou la vendeuse explique où il est. Jouez la scène, puis changez les mots en couleur.</p>
+                <div id="dialogue-shop" class="space-y-2 text-sm"></div>
+                <div class="text-sm">
+                    <p class="font-bold mb-1">Autres articles :</p>
+                    <div id="chips-shop" class="flex flex-wrap gap-1.5"></div>
+                </div>
+            </div>
+
+            <!-- Étape 4 -->
+            <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">Étape 4 • Boutique 2 ou boutique 3 ? 🔍</h2>
+                <p class="text-sm">Regardez les deux boutiques. Trouvez <strong>3 différences</strong> et dites-les à votre voisin(e).</p>
+                <p class="text-sm bg-slate-50 rounded-lg p-3">Modèle : « Dans la boutique 2, la caisse est <strong>à droite</strong>. Dans la boutique 3, elle est <strong>à gauche</strong>. »</p>
+                <details class="text-sm bg-slate-50 rounded-lg p-3">
+                    <summary class="font-semibold text-oifPurple">▸ Voir d'autres différences</summary>
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li>Boutique 2 : le rideau de la cabine est bleu. Boutique 3 : il est vert.</li>
+                        <li>Boutique 2 : les chaussures sont à droite. Boutique 3 : elles sont à gauche.</li>
+                        <li>Boutique 2 : les lunettes de soleil sont à côté des chaussures. Boutique 3 : elles sont à côté de la cabine.</li>
+                        <li>Boutique 2 : les robes sont à gauche. Boutique 3 : elles sont à droite.</li>
+                    </ul>
+                </details>
+            </div>
+
+            <div class="text-center">
+                <a href="dialogues_achats.html" class="inline-block bg-oifBlue text-white font-bold py-3 px-6 rounded-xl shadow">Continuer : les dialogues d'achats →</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 p-6 text-center text-xs space-y-1">
+        <p class="font-semibold text-slate-300">Conception pédagogique : Nadia Aguilar Neri</p>
+        <p class="opacity-75">Méthode Inspire 1 • Activités complémentaires FLE A1</p>
+    </footer>
+</div>
+
+<!-- Visionneuse plein écran -->
+<div id="lightbox" class="hidden fixed inset-0 bg-black/95 z-50 flex flex-col">
+    <div class="flex items-center justify-between p-2 gap-2 text-white">
+        <div class="flex gap-2">
+            <button onclick="zoom(-1)" class="w-11 h-11 rounded-full bg-white/15 text-xl font-bold" aria-label="Réduire">−</button>
+            <button onclick="zoom(1)" class="w-11 h-11 rounded-full bg-white/15 text-xl font-bold" aria-label="Agrandir">+</button>
+        </div>
+        <button onclick="closeLightbox()" class="h-11 px-4 rounded-full bg-white/15 font-bold">✕ Fermer</button>
+    </div>
+    <div id="lightbox-scroll" class="flex-1 overflow-auto">
+        <img id="lightbox-img" src="" alt="Image agrandie" class="max-w-none block mx-auto">
+    </div>
+</div>
+
+<div id="toast" class="hidden fixed bottom-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-sm px-4 py-2 rounded-lg shadow-lg z-50 max-w-[90vw] text-center"></div>
+
+<script>
+    /* ---------- Outils communs ---------- */
+    const LETTERS = 'abcdefgh';
+    let frVoice = null;
+    function pickVoice() {
+        if (!('speechSynthesis' in window)) return;
+        const v = speechSynthesis.getVoices();
+        frVoice = v.find(x => x.lang === 'fr-FR') || v.find(x => x.lang && x.lang.startsWith('fr')) || null;
+    }
+    if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+    function toast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg; t.classList.remove('hidden');
+        clearTimeout(t._h); t._h = setTimeout(() => t.classList.add('hidden'), 3500);
+    }
+    function speak(text) {
+        if (!('speechSynthesis' in window)) { toast("La synthèse vocale n'est pas disponible sur cet appareil."); return; }
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'fr-FR'; u.rate = 0.85;
+        if (frVoice) u.voice = frVoice;
+        speechSynthesis.speak(u);
+    }
+
+    function buildQCM(containerId, items, scoreId, extra) {
+        const box = document.getElementById(containerId);
+        box.innerHTML = '';
+        let score = 0;
+        const scoreEl = document.getElementById(scoreId);
+        const refresh = () => scoreEl.textContent = `${score} / ${items.length}`;
+        items.forEach((it, i) => {
+            const card = document.createElement('div');
+            card.className = 'bg-white border border-slate-200 rounded-xl p-3 space-y-2';
+            card.innerHTML = `<div class="flex items-start gap-2">
+                    <span class="text-xs font-bold text-slate-400 w-5 pt-1">${i + 1}.</span>
+                    <p class="flex-1 text-base font-semibold">${it.q}</p>
+                    <span class="slot"></span>
+                </div>
+                <div class="opts grid gap-2"></div>
+                <p class="fb text-sm hidden"></p>`;
+            if (extra) { const x = extra(it); if (x) card.querySelector('.slot').appendChild(x); }
+            const optsBox = card.querySelector('.opts');
+            const fb = card.querySelector('.fb');
+            const btns = it.opts.map((o, k) => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'opt text-left px-3 py-2 rounded-lg border-2 border-slate-200 bg-slate-50 hover:bg-slate-100 text-sm font-semibold';
+                b.innerHTML = `<span class="text-slate-400 mr-1">${LETTERS[k]})</span> ${o}`;
+                b.onclick = () => {
+                    btns.forEach(x => x.disabled = true);
+                    const ok = k === it.a;
+                    if (ok) score++;
+                    const set = (el, good) => { el.classList.remove('border-slate-200', 'bg-slate-50'); el.classList.add(good ? 'border-emerald-500' : 'border-red-400', good ? 'bg-emerald-50' : 'bg-red-50'); };
+                    set(b, ok);
+                    if (!ok) set(btns[it.a], true);
+                    const phrase = it.say || it.opts[it.a];
+                    fb.innerHTML = (ok ? '✅ <strong>Bravo !</strong>' : `❌ <strong>Réponse : ${LETTERS[it.a]})</strong>`) +
+                        `<br>🗣️ Dites : « <em>${phrase}</em> »`;
+                    fb.className = 'fb text-sm ' + (ok ? 'text-emerald-700' : 'text-red-700');
+                    refresh();
+                };
+                optsBox.appendChild(b);
+                return b;
+            });
+            box.appendChild(card);
+        });
+        refresh();
+    }
+
+    /* ---------- Onglets ---------- */
+    const TABS = ['video', 'regle', 'boutique1', 'binomes'];
+    function switchTab(id) {
+        TABS.forEach(t => {
+            document.getElementById('content-' + t).classList.toggle('hidden', t !== id);
+            const b = document.getElementById('tab-' + t);
+            b.className = 'tab-btn flex-auto py-2.5 px-3 rounded-md font-semibold whitespace-nowrap transition ' +
+                (t === id ? 'bg-white text-slate-900 shadow' : 'hover:bg-white/10');
+            b.setAttribute('aria-selected', t === id);
+        });
+        const v = document.getElementById('video');
+        if (id !== 'video' && !v.paused) v.pause();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ---------- Onglet 1 : vidéo ---------- */
+    const video = document.getElementById('video');
+    let segEnd = null, segStart = 0;
+    video.addEventListener('timeupdate', () => {
+        if (segEnd !== null && video.currentTime >= segEnd) { video.pause(); segEnd = null; }
+    });
+    // Si l'étudiant déplace lui-même la vidéo, on annule l'arrêt automatique
+    video.addEventListener('seeking', () => {
+        if (segEnd !== null && Math.abs(video.currentTime - segStart) > 1.5) segEnd = null;
+    });
+    function playSegment(start, end) {
+        segEnd = end; segStart = start;
+        video.currentTime = start;
+        const p = video.play();
+        if (p && p.catch) p.catch(() => toast('Touchez ▶ sur la vidéo pour la lancer.'));
+        video.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+    const VIDEO_Q = [
+        { t: [24, 36], q: 'Au début, où est la souris ?', opts: ['Elle est dans le salon.', 'Elle est dans la cuisine.', 'Elle est dans la chambre.'], a: 1 },
+        { t: [35, 45], q: 'Ensuite, elle est…', opts: ['dans la casserole.', 'sous la casserole.', 'sur la casserole.'], a: 0 },
+        { t: [44, 59], q: 'Le monsieur cherche la souris. Elle est…', opts: ['devant le frigo.', 'sur le frigo.', 'derrière le frigo.'], a: 2 },
+        { t: [59, 69], q: 'Après, la souris est…', opts: ['devant le frigo.', 'dans le frigo.', 'derrière le frigo.'], a: 0 },
+        { t: [69, 79], q: 'Maintenant, elle est…', opts: ['sous la table.', 'sur la table.', 'à côté de la table.'], a: 1 },
+        { t: [79, 94], q: 'Attention ! On ne dit pas « sur le sol ». On dit : elle est…', opts: ['dans la terre.', 'sous le sol.', 'par terre.'], a: 2 },
+        { t: [94, 105], q: 'Et maintenant ?', opts: ['Elle est sous la table.', 'Elle est sur la table.', 'Elle est derrière la table.'], a: 0 },
+        { t: [104, 119], q: 'La souris est entre…', opts: ['le frigo et la table.', 'les casseroles et le fromage.', 'le monsieur et le frigo.'], a: 1, say: 'La souris est entre les casseroles et le fromage.' },
+        { t: [119, 129], q: 'Elle est…', opts: ['à côté du fromage.', 'dans le fromage.', 'derrière le fromage.'], a: 0 },
+        { t: [129, 142], q: 'Le monsieur regarde sous la table. La souris est…', opts: ['à gauche du fromage.', 'sur le fromage.', 'à droite du fromage.'], a: 2 },
+        { t: [141, 152], q: 'À la fin, la souris est…', opts: ['à droite du fromage.', 'à gauche du fromage.', 'sous le fromage.'], a: 1 }
+    ];
+    function buildVideo() {
+        buildQCM('ex-video', VIDEO_Q.map(x => ({ ...x, say: x.say || 'La souris est ' + x.opts[x.a].replace(/^Elle est /, '').replace(/\.$/, '') + '.' })), 'score-video', it => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'shrink-0 text-xs font-bold bg-slate-800 text-white rounded-lg px-2.5 py-2 whitespace-nowrap';
+            b.textContent = `▶ Revoir ${fmt(it.t[0])}`;
+            b.onclick = () => playSegment(it.t[0], it.t[1]);
+            return b;
+        });
+    }
+
+    /* ---------- Onglet 2 : prépositions illustrées ---------- */
+    const BOX = '<rect x="38" y="30" width="34" height="30" rx="2" fill="#FDE68A" stroke="#92400E" stroke-width="2"/>';
+    const BALL = (cx, cy, r = 8, op = 1) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#E2001A" stroke="#7f1d1d" stroke-width="1.5" opacity="${op}"/>`;
+    const FLOOR = '<line x1="4" y1="60" x2="106" y2="60" stroke="#94a3b8" stroke-width="2"/>';
+    const PREPS = [
+        ['sur', 'La balle est sur la boîte.', FLOOR + BOX + BALL(55, 21)],
+        ['sous', 'La balle est sous la boîte.', '<line x1="4" y1="66" x2="106" y2="66" stroke="#94a3b8" stroke-width="2"/><rect x="38" y="14" width="34" height="26" rx="2" fill="#FDE68A" stroke="#92400E" stroke-width="2"/><line x1="40" y1="40" x2="40" y2="66" stroke="#92400E" stroke-width="2"/><line x1="70" y1="40" x2="70" y2="66" stroke="#92400E" stroke-width="2"/>' + BALL(55, 57)],
+        ['devant', 'La balle est devant la boîte.', FLOOR + BOX + BALL(55, 56, 10)],
+        ['derrière', 'La balle est derrière la boîte.', FLOOR + BALL(64, 30, 7) + BOX],
+        ['dans', 'La balle est dans la boîte.', FLOOR + '<rect x="38" y="30" width="34" height="30" rx="2" fill="#FEF3C7" stroke="#92400E" stroke-width="2" stroke-dasharray="0"/>' + BALL(55, 47) + '<line x1="34" y1="30" x2="76" y2="30" stroke="#92400E" stroke-width="2"/>'],
+        ['entre… et…', 'La balle est entre la boîte jaune et la boîte bleue.', FLOOR + '<rect x="8" y="32" width="28" height="28" rx="2" fill="#FDE68A" stroke="#92400E" stroke-width="2"/><rect x="74" y="32" width="28" height="28" rx="2" fill="#BFDBFE" stroke="#1e3a8a" stroke-width="2"/>' + BALL(55, 52)],
+        ['à côté de', 'La balle est à côté de la boîte.', FLOOR + '<rect x="24" y="30" width="34" height="30" rx="2" fill="#FDE68A" stroke="#92400E" stroke-width="2"/>' + BALL(70, 52)],
+        ['à droite de', 'La balle est à droite de la boîte.', FLOOR + '<rect x="18" y="30" width="34" height="30" rx="2" fill="#FDE68A" stroke="#92400E" stroke-width="2"/>' + BALL(86, 52) + '<path d="M60 18 h22 m-6 -5 l6 5 l-6 5" stroke="#0f172a" stroke-width="2" fill="none"/>'],
+        ['à gauche de', 'La balle est à gauche de la boîte.', FLOOR + '<rect x="58" y="30" width="34" height="30" rx="2" fill="#FDE68A" stroke="#92400E" stroke-width="2"/>' + BALL(24, 52) + '<path d="M50 18 h-22 m6 -5 l-6 5 l6 5" stroke="#0f172a" stroke-width="2" fill="none"/>'],
+        ['par terre', 'La balle est par terre.', '<rect x="4" y="60" width="102" height="8" fill="#e2e8f0"/>' + FLOOR + BALL(55, 52)]
+    ];
+    function buildPreps() {
+        const box = document.getElementById('prep-cards');
+        PREPS.forEach(([w, phrase, svg]) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'bg-white border border-slate-200 rounded-xl p-2 text-center hover:border-slate-400 shadow-sm';
+            b.setAttribute('aria-label', phrase);
+            b.innerHTML = `<svg viewBox="0 0 110 70" class="w-full h-auto" aria-hidden="true">${svg}</svg>
+                <p class="font-extrabold text-slate-900 text-base">${w}</p>
+                <p class="text-[11px] text-slate-500 leading-tight">🔊 ${phrase}</p>`;
+            b.onclick = () => speak(phrase);
+            box.appendChild(b);
+        });
+    }
+
+    /* ---------- Onglet 3 : boutique 1 ---------- */
+    const B1 = [
+        { q: 'Où sont les jeans ?', opts: ['À droite, à côté des robes.', 'À gauche, sur les étagères.', 'Sous la table.'], a: 1, say: 'Ils sont à gauche, sur les étagères.' },
+        { q: "Où est la caisse d'Alice ?", opts: ['Devant la porte.', 'Derrière les chaussures.', "À côté de la cabine d'essayage."], a: 2, say: "Elle est à côté de la cabine d'essayage." },
+        { q: "Qui est devant la caisse d'Alice ?", opts: ['Paul.', 'Marc.', 'Pierre.'], a: 0, say: "Paul est devant la caisse d'Alice." },
+        { q: 'Où est Sophie ?', opts: ['Derrière la table.', 'Devant la caisse de Léa.', 'À côté de Jeanne.'], a: 1, say: 'Elle est devant la caisse de Léa.' },
+        { q: 'Où sont les bonnets ?', opts: ['Sur la table, avec les pulls.', 'Sous la table.', "Derrière la caisse d'Alice."], a: 0, say: 'Ils sont sur la table, avec les pulls.' },
+        { q: 'Où est Léo ?', opts: ['Entre Julie et Marc.', 'Derrière la porte.', 'À côté de Pierre.'], a: 2, say: 'Il est à côté de Pierre.' },
+        { q: 'Où sont les lunettes de soleil ?', opts: ["Sur la caisse d'Alice.", 'À gauche, sur les étagères.', 'Entre la caisse de Léa et les chaussures.'], a: 2, say: 'Elles sont entre la caisse de Léa et les chaussures.' },
+        { q: 'Où sont les robes ?', opts: ['À droite, à côté de Jeanne.', 'À gauche, à côté des jeans.', 'Sur la table.'], a: 0, say: 'Elles sont à droite, à côté de Jeanne.' },
+        { q: 'Où est Marie ?', opts: ['Devant la caisse de Léa.', 'Derrière la table des pulls.', 'Sous les manteaux.'], a: 1, say: 'Elle est derrière la table des pulls.' },
+        { q: "Où est la cabine d'essayage ?", opts: ['À droite, à côté de la porte.', 'Devant la caisse de Léa.', 'Derrière Marc, à côté des jeans.'], a: 2, say: 'Elle est derrière Marc, à côté des jeans.' }
+    ];
+    function buildB1() {
+        buildQCM('ex-b1', B1, 'score-b1', it => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'shrink-0 w-10 h-10 rounded-full bg-slate-100 border border-slate-200';
+            b.setAttribute('aria-label', 'Écouter la question');
+            b.textContent = '🔊';
+            b.onclick = () => speak(it.q);
+            return b;
+        });
+    }
+
+    /* ---------- Onglet 4 : binômes ---------- */
+    const SHOPS = {
+        2: {
+            img: 'medias/boutique2.jpg', alt: 'Boutique 2 : boutique de vêtements avec une cabine au rideau bleu et deux caisses à droite', qui: 'Sarah',
+            cards: [
+                ['Où est Lucas ?', "Il est devant les manteaux, à gauche de la cabine d'essayage."],
+                ['Où est Gabriel ?', 'Il est devant le miroir, à droite de la cabine.'],
+                ['Où sont les bonnets ?', 'Ils sont sur la table.'],
+                ['Où est Hugo ?', 'Il est à côté de la table, devant Théo.'],
+                ['Où est Clara ?', 'Elle est devant la caisse de Sarah.'],
+                ['Où sont les lunettes de soleil ?', 'Elles sont entre Arthur et Camille.'],
+                ['Où sont les casquettes ?', 'Elles sont sur les étagères, à côté de la caisse.'],
+                ['Où est Chloé ?', 'Elle est à gauche, devant les robes.']
+            ],
+            dialogue: [['les casquettes', 'Elles sont', 'à côté de la caisse, sur les étagères'], ['les bottes', 'Elles sont', 'à droite, sur les étagères, à côté des baskets']],
+            chips: ['les bonnets → sur la table', 'les manteaux → à gauche, devant la fenêtre', 'les jeans → derrière Nathan', 'les lunettes de soleil → à côté des chaussures', 'le miroir → à droite de la cabine']
+        },
+        3: {
+            img: 'medias/boutique3.jpg', alt: 'Boutique 3 : boutique de vêtements avec une cabine au rideau vert et la caisse à gauche', qui: 'Marie',
+            cards: [
+                ['Où est Marie ?', 'Elle est derrière la caisse.'],
+                ['Où sont les chapeaux ?', 'Ils sont à gauche, sur les étagères, derrière Alice.'],
+                ['Où est Sarah ?', 'Elle est devant la caisse, à côté de Paul.'],
+                ['Où sont les boîtes de chaussures ?', 'Elles sont sous les chaussures, à côté de Léa.'],
+                ['Où est Léo ?', 'Il est entre Marc et Sophie.'],
+                ["Où est la cabine d'essayage ?", 'Elle est entre les lunettes de soleil et les jeans.'],
+                ['Où est Jeanne ?', 'Elle est à droite, devant les robes.'],
+                ['Où est Thomas ?', 'Il est à gauche, devant les chaussures, à côté de Léa.']
+            ],
+            dialogue: [['les casquettes', 'Elles sont', 'à gauche, sur les étagères, à côté des chapeaux'], ['les jeans', 'Ils sont', 'derrière Pierre, sur les étagères']],
+            chips: ['les tee-shirts → sur la table, à droite', 'les robes → à droite, devant la fenêtre', 'les lunettes de soleil → à côté de la cabine', 'les bottes → à gauche, sous les baskets', 'le miroir → à gauche, à côté de Thomas']
+        }
+    };
+    function pickShop(n) {
+        const s = SHOPS[n];
+        [2, 3].forEach(k => {
+            document.getElementById('pick-' + k).className = 'py-3 rounded-xl font-bold border-2 ' +
+                (k === n ? 'border-oifPurple bg-purple-50 text-oifPurple' : 'border-slate-200 bg-white text-slate-600');
+        });
+        const img = document.getElementById('shop-img');
+        img.src = s.img; img.alt = s.alt;
+        document.getElementById('shop-btn').onclick = () => openLightbox(s.img);
+        document.getElementById('qui-exemple').textContent = s.qui;
+
+        const cards = document.getElementById('cards-shop');
+        cards.innerHTML = '';
+        s.cards.forEach(([q, r], i) => {
+            const d = document.createElement('details');
+            d.className = 'bg-slate-50 border border-slate-200 rounded-lg p-3';
+            d.innerHTML = `<summary class="font-semibold text-sm"><span class="text-slate-400 mr-1">${i + 1}.</span> ${q} <span class="text-oifPurple text-xs ml-1">▸ réponse</span></summary>
+                <p class="mt-2 text-sm text-emerald-700">💬 ${r}</p>`;
+            cards.appendChild(d);
+        });
+
+        const [d1, d2] = s.dialogue;
+        const vend = 'bg-blue-50 rounded-lg px-3 py-2', cli = 'bg-purple-50 rounded-lg px-3 py-2';
+        const hl = t => `<span class="underline decoration-2 decoration-oifYellow font-semibold">${t}</span>`;
+        document.getElementById('dialogue-shop').innerHTML = `
+            <p class="${cli}"><strong class="text-oifPurple">Client(e) :</strong> Pardon, madame. Où sont ${hl(d1[0])}, s'il vous plaît ?</p>
+            <p class="${vend}"><strong class="text-oifBlue">Vendeuse :</strong> ${d1[1]} ${hl(d1[2])}.</p>
+            <p class="${cli}"><strong class="text-oifPurple">Client(e) :</strong> Merci ! Et ${hl(d2[0])} ?</p>
+            <p class="${vend}"><strong class="text-oifBlue">Vendeuse :</strong> ${d2[1]} ${hl(d2[2])}.</p>
+            <p class="${cli}"><strong class="text-oifPurple">Client(e) :</strong> Merci beaucoup, madame !</p>
+            <p class="${vend}"><strong class="text-oifBlue">Vendeuse :</strong> Je vous en prie.</p>`;
+        const chips = document.getElementById('chips-shop');
+        chips.innerHTML = s.chips.map(c => `<span class="bg-white border border-slate-300 rounded-full px-2.5 py-1 text-xs">${c}</span>`).join('');
+    }
+
+    /* ---------- Visionneuse ---------- */
+    const ZOOMS = [100, 170, 250];
+    let z = 1;
+    function applyZoom() {
+        const img = document.getElementById('lightbox-img');
+        img.style.width = ZOOMS[z] + '%';
+    }
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        z = window.innerWidth < 768 ? 1 : 0;
+        applyZoom();
+        document.getElementById('lightbox').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+    function zoom(d) { z = Math.max(0, Math.min(ZOOMS.length - 1, z + d)); applyZoom(); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    /* ---------- Initialisation ---------- */
+    buildVideo();
+    buildPreps();
+    buildB1();
+    pickShop(2);
+    switchTab('video');
+</script>
+</body>
+</html>

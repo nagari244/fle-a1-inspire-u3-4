@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Leçon 18 - Fiches d'aide à la Production Orale</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        oifBlue: '#009EE0',
+                        oifPurple: '#7D247E',
+                        oifGreen: '#009640',
+                        oifYellow: '#FFD100',
+                        oifRed: '#E2001A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { -webkit-text-size-adjust: 100%; }
+        .tabs { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .emoji { font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; line-height: 1; }
+        .opt { min-height: 44px; }
+        .opt[disabled] { cursor: default; }
+        button { touch-action: manipulation; }
+        select, input { font-size: 16px !important; } /* évite le zoom automatique sur iPhone */
+        .var { font-weight: 700; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased">
+
+    <div class="max-w-md mx-auto min-h-screen bg-white shadow-2xl flex flex-col md:max-w-4xl">
+
+        <!-- En-tête -->
+        <header class="bg-oifBlue text-white p-5 shadow-md">
+            <a href="index.html" class="inline-block text-xs font-semibold opacity-90 hover:opacity-100 mb-3">← Retour aux activités</a>
+            <span class="block w-max bg-white/25 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Activité de Production Orale • A1</span>
+            <h1 class="text-2xl font-extrabold mt-2">Fiches d'achat : Créer son dialogue</h1>
+            <p class="text-sm opacity-95 mt-1">Futur proche, démonstratifs et localisation (à gauche, derrière…) pour acheter dans une boutique ou au marché.</p>
+
+            <!-- Onglets d'activité -->
+            <div class="tabs flex flex-wrap mt-5 gap-1 bg-black/20 p-1 rounded-lg text-sm" role="tablist">
+                <button onclick="switchTab('revision')" id="tab-revision" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">1. Révision</button>
+                <button onclick="switchTab('repertoire')" id="tab-repertoire" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">2. La Boîte à Outils</button>
+                <button onclick="switchTab('scenarios')" id="tab-scenarios" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">3. Scénarios Modèles</button>
+                <button onclick="switchTab('marche')" id="tab-marche" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">4. Au marché</button>
+                <button onclick="switchTab('simulateur')" id="tab-simulateur" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">5. Simulateur</button>
+            </div>
+        </header>
+
+        <!-- Contenu Principal -->
+        <main class="flex-1 p-4 md:p-6 space-y-6">
+
+            <!-- ONGLET 1 : RÉVISION DU FUTUR PROCHE -->
+            <div id="content-revision" class="tab-content space-y-5">
+                <div class="bg-blue-50 border-l-4 border-oifBlue p-3 rounded-r-lg text-sm text-slate-700">
+                    <strong>Avant le dialogue :</strong> on révise le futur proche. Au magasin, on dit souvent : « Je <strong>vais prendre</strong> ce pull. »
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="border-t-4 border-oifBlue bg-blue-50/40 p-4 rounded-b-xl shadow-sm space-y-3 text-sm">
+                        <h3 class="font-bold text-oifBlue uppercase text-sm">Le futur proche</h3>
+                        <p class="bg-white rounded-lg p-2.5 border border-blue-100 text-center font-semibold">Sujet + <span class="text-oifBlue">aller</span> (présent) + verbe à l'infinitif</p>
+                        <ul class="bg-white rounded-lg p-3 border border-blue-100 space-y-1.5" id="fp-table"></ul>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-white p-3 rounded-lg border border-slate-200">
+                            <p class="font-bold text-oifRed mb-1">La négation : ne … pas autour de « aller »</p>
+                            <p>Je <strong class="text-oifRed">ne</strong> vais <strong class="text-oifRed">pas</strong> prendre ce pull.<br>Nous <strong class="text-oifRed">n'</strong>allons <strong class="text-oifRed">pas</strong> payer en espèces.</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-slate-200">
+                            <p class="font-bold text-oifPurple mb-1">Avec le, la, les : avant l'infinitif</p>
+                            <p>Ce pull ? Je vais <strong class="text-oifPurple">le</strong> prendre.<br>Cette robe* ? Je vais <strong class="text-oifPurple">la</strong> prendre.<br>Ces bottes* ? Je vais <strong class="text-oifPurple">les</strong> prendre.</p>
+                        </div>
+                        <div class="bg-amber-50 p-3 rounded-lg border border-amber-200">
+                            <p class="font-bold mb-1">🎁 Deux formules polies à apprendre</p>
+                            <p><strong>Je voudrais</strong> … = je veux, mais poli.<br>
+                            <span class="text-slate-600">→ Je voudrais un pull, s'il vous plaît.</span><br>
+                            <strong>Vous voulez</strong> … ? = la question du vendeur.<br>
+                            <span class="text-slate-600">→ Vous voulez l'essayer ?</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between gap-2">
+                        <h3 class="text-base font-extrabold text-slate-900">Vérifiez avant de parler</h3>
+                        <span id="score-fp" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 7</span>
+                    </div>
+                    <div id="ex-fp" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <button onclick="buildFP()" class="text-sm font-semibold text-oifBlue underline">↺ Recommencer</button>
+                        <a href="futur_proche.html" class="text-sm font-semibold text-oifBlue underline">Révision complète : activité 4 « Aller et futur proche »</a>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button onclick="switchTab('repertoire')" class="bg-oifBlue text-white font-bold py-3 px-6 rounded-xl shadow">Continuer : la boîte à outils →</button>
+                </div>
+            </div>
+
+            <!-- ONGLET 2 : LA BOÎTE À OUTILS -->
+            <div id="content-repertoire" class="tab-content space-y-6 hidden">
+
+                <div class="bg-blue-50 border-l-4 border-oifBlue p-3 rounded-r-lg text-sm text-slate-700">
+                    <strong>Consigne :</strong> Pour construire votre dialogue, choisissez un vêtement, ajoutez sa position (gauche, droite, derrière...) et posez vos questions. Touchez une phrase pour l'écouter 🔊.
+                </div>
+
+                <!-- Grille Vendeur vs Client -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <!-- Colonne Client -->
+                    <div class="border-t-4 border-oifPurple bg-purple-50/40 p-4 rounded-b-xl shadow-sm space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-oifPurple"></span>
+                            <h3 class="font-bold text-oifPurple text-sm uppercase">Le Client / La Cliente</h3>
+                        </div>
+
+                        <div class="space-y-3 text-sm says">
+                            <div class="bg-white p-3 rounded-lg border border-purple-100">
+                                <p class="font-bold text-slate-500 mb-1.5">Saluer et demander :</p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                    <li>Bonjour ! <strong>Je voudrais</strong> un pull, s'il vous plaît.</li>
+                                    <li><strong>Je voudrais</strong> essayer ce pantalon.</li>
+                                    <li>Je voudrais la taille M. / Je fais du 38.</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-3 rounded-lg border border-purple-100">
+                                <p class="font-bold text-oifPurple mb-1.5">📍 Désigner et Localiser :</p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700 font-mono text-[13px]">
+                                    <li>Ce pull <span class="bg-purple-100 px-1 rounded font-bold text-oifPurple">à gauche</span></li>
+                                    <li>Cette robe <span class="bg-purple-100 px-1 rounded font-bold text-oifPurple">à droite</span></li>
+                                    <li>Cet anorak <span class="bg-purple-100 px-1 rounded font-bold text-oifPurple">devant</span> la vitrine</li>
+                                    <li>Ces bottes <span class="bg-purple-100 px-1 rounded font-bold text-oifPurple">derrière</span> la vitrine</li>
+                                    <li>Ce blouson <span class="bg-purple-100 px-1 rounded font-bold text-oifPurple">sur</span> la table</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-3 rounded-lg border border-purple-100">
+                                <p class="font-bold text-slate-500 mb-1">Demander le prix :</p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                    <li>Il / Elle coûte combien ?</li>
+                                    <li>Ils / Elles coûtent combien ?</li>
+                                    <li>Quel est le prix de <span class="italic">ce pull à gauche</span> ?</li>
+                                    <li>C'est combien ?</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-3 rounded-lg border border-purple-100">
+                                <p class="font-bold text-slate-500 mb-1">Décider d'acheter (futur proche) :</p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                    <li><strong>Je vais prendre</strong> ce pull.</li>
+                                    <li>Je vais le prendre. <span class="text-[11px] text-slate-400 font-mono italic">(vêtement masculin)</span></li>
+                                    <li>Je vais la prendre. <span class="text-[11px] text-slate-400 font-mono italic">(vêtement féminin)</span></li>
+                                    <li>Je vais les prendre. <span class="text-[11px] text-slate-400 font-mono italic">(vêtements au pluriel)</span></li>
+                                    <li>Non merci, je ne vais pas le prendre.</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-3 rounded-lg border border-purple-100">
+                                <p class="font-bold text-slate-500 mb-1">Payer :</p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                    <li>Je paie par carte / en espèces.</li>
+                                    <li>Je vais payer par carte / en espèces.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colonne Vendeur -->
+                    <div class="border-t-4 border-oifBlue bg-blue-50/40 p-4 rounded-b-xl shadow-sm space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-oifBlue"></span>
+                            <h3 class="font-bold text-oifBlue text-sm uppercase">Le Vendeur / La Vendeuse</h3>
+                        </div>
+
+                        <div class="space-y-3 text-sm says">
+                            <div class="bg-white p-3 rounded-lg border border-blue-100">
+                                <p class="font-bold text-slate-500 mb-1">Accueillir et proposer :</p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                    <li>Bonjour ! Je peux vous aider ?</li>
+                                    <li>Quelle est votre taille ? / Quelle est votre pointure ?</li>
+                                    <li><strong>Vous voulez</strong> l'essayer ? / les essayer ?</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-3 rounded-lg border border-blue-100">
+                                <p class="font-bold text-slate-500 mb-1">Situer les articles :</p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700 font-mono text-[13px]">
+                                    <li>Ils sont <span class="bg-blue-100 px-1 rounded font-bold text-oifBlue">à côté des</span> chemises.</li>
+                                    <li>Le modèle est <span class="bg-blue-100 px-1 rounded font-bold text-oifBlue">devant</span> vous.</li>
+                                    <li>C'est <span class="bg-blue-100 px-1 rounded font-bold text-oifBlue">derrière</span> les caisses.</li>
+                                    <li>La cabine est <span class="bg-blue-100 px-1 rounded font-bold text-oifBlue">à côté de</span> la caisse.</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-3 rounded-lg border border-blue-100">
+                                <p class="font-bold text-slate-500 mb-1">Donner un prix :</p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                    <li>Il / Elle est à 39 euros.</li>
+                                    <li>Ils / Elles sont à 45 euros.</li>
+                                    <li>Le total est de 25 euros. / Ça fait 25 euros.</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-3 rounded-lg border border-blue-100">
+                                <p class="font-bold text-slate-500 mb-1">Encaisser & Remettre :</p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                    <li>Vous allez payer comment ?</li>
+                                    <li>Voici votre ticket / votre monnaie.</li>
+                                    <li>Merci beaucoup, bonne journée !</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ONGLET 3 : LES SCÉNARIOS MODÈLES -->
+            <div id="content-scenarios" class="tab-content space-y-6 hidden">
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm">
+                    <p class="font-bold text-slate-700 mb-1">💡 Comment travailler ces scénarios ?</p>
+                    <p class="text-slate-600">Chaque binôme choisit un scénario. Écoutez-le 🔊, jouez-le, puis variez les éléments soulignés en ajoutant des indications précises de localisation.</p>
+                </div>
+
+                <div id="scenarios-box" class="space-y-6"></div>
+            </div>
+
+            <!-- ONGLET 4 : AU MARCHÉ -->
+            <div id="content-marche" class="tab-content space-y-6 hidden">
+                <div class="bg-blue-50 border-l-4 border-oifBlue p-3 rounded-r-lg text-sm text-slate-700">
+                    <strong>Au marché</strong>, on achète des fruits, des légumes, des produits laitiers et des produits d'épicerie. Les noms avec un <strong class="text-oifRed">*</strong> sont féminins. Touchez un produit pour l'écouter 🔊.
+                </div>
+
+                <!-- Partitifs -->
+                <div class="space-y-3">
+                    <h3 class="text-base font-extrabold text-slate-900">1. Les partitifs : du, de la, de l', des</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                        <div class="bg-white border-t-4 border-oifBlue rounded-b-xl shadow-sm p-3"><p class="text-2xl font-black text-oifBlue">du</p><p class="font-semibold text-slate-500 text-xs mb-1">masculin</p><p>du fromage<br>du pain<br>du raisin</p></div>
+                        <div class="bg-white border-t-4 border-oifPurple rounded-b-xl shadow-sm p-3"><p class="text-2xl font-black text-oifPurple">de la</p><p class="font-semibold text-slate-500 text-xs mb-1">féminin</p><p>de la salade*<br>de la viande*<br>de la confiture*</p></div>
+                        <div class="bg-white border-t-4 border-oifGreen rounded-b-xl shadow-sm p-3"><p class="text-2xl font-black text-oifGreen">de l'</p><p class="font-semibold text-slate-500 text-xs mb-1">+ voyelle</p><p>de l'huile*<br>de l'eau*<br>de l'ananas</p></div>
+                        <div class="bg-white border-t-4 border-oifRed rounded-b-xl shadow-sm p-3"><p class="text-2xl font-black text-oifRed">des</p><p class="font-semibold text-slate-500 text-xs mb-1">pluriel</p><p>des tomates*<br>des œufs<br>des pommes*</p></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">💡 <strong>Avec une quantité → de</strong> : un kilo <strong>de</strong> tomates, une bouteille <strong>de</strong> lait, une boîte <strong>d'</strong>œufs.</div>
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">💡 <strong>Négation → de</strong> : Je ne vais pas acheter <strong>de</strong> lait. Je ne vais pas prendre <strong>d'</strong>œufs.</div>
+                    </div>
+                </div>
+
+                <!-- Lexique -->
+                <div class="space-y-3">
+                    <h3 class="text-base font-extrabold text-slate-900">2. Le lexique du marché</h3>
+                    <div id="lexique-marche" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                </div>
+
+                <!-- Prix -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="border-t-4 border-oifPurple bg-purple-50/40 p-4 rounded-b-xl shadow-sm text-sm space-y-1">
+                        <h3 class="font-bold text-oifPurple text-sm uppercase mb-1">Le client demande</h3>
+                        <p>Bonjour ! Je voudrais des tomates, s'il vous plaît.</p>
+                        <p>C'est combien, les tomates ?</p>
+                        <p>Ces fraises, c'est combien ?</p>
+                        <p>Combien coûte ce fromage ?</p>
+                        <p>C'est tout, merci.</p>
+                    </div>
+                    <div class="border-t-4 border-oifBlue bg-blue-50/40 p-4 rounded-b-xl shadow-sm text-sm space-y-1">
+                        <h3 class="font-bold text-oifBlue text-sm uppercase mb-1">Le marchand répond</h3>
+                        <p>Bonjour ! Vous désirez ? <span class="text-slate-500">(= Vous voulez quoi ?)</span></p>
+                        <p>C'est 3 euros le kilo.</p>
+                        <p>Elles sont à 4 euros le kilo.</p>
+                        <p>Et avec ça ? <span class="text-slate-500">(= Vous voulez autre chose ?)</span></p>
+                        <p>Ça fait 8 euros.</p>
+                    </div>
+                </div>
+
+                <!-- Exercice partitifs -->
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between gap-2">
+                        <h3 class="text-base font-extrabold text-slate-900">3. Choisissez : du, de la, de l' ou des ?</h3>
+                        <span id="score-part" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 10</span>
+                    </div>
+                    <div id="ex-part" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                    <button onclick="buildPart()" class="text-sm font-semibold text-oifBlue underline">↺ Recommencer</button>
+                </div>
+
+                <!-- Dialogue marché -->
+                <div class="space-y-3">
+                    <h3 class="text-base font-extrabold text-slate-900">4. Un dialogue au marché</h3>
+                    <div id="scenario-marche"></div>
+                </div>
+
+                <!-- Liste de courses -->
+                <div class="bg-white border-2 border-dashed border-oifPurple/40 rounded-xl p-4 space-y-3">
+                    <h3 class="text-base font-extrabold text-slate-900">5. À vous ! Jouez la scène en binôme 🧺</h3>
+                    <p class="text-sm">Un(e) marchand(e) et un(e) client(e). Le client tire une liste de courses et achète les 3 produits. Puis changez de rôle.</p>
+                    <button onclick="tirerListe()" class="bg-oifPurple text-white font-bold py-2.5 px-5 rounded-xl">🎲 Ma liste de courses</button>
+                    <ul id="liste-courses" class="text-base font-semibold space-y-1"></ul>
+                </div>
+            </div>
+
+            <!-- ONGLET 5 : SIMULATEUR DE VARIATIONS INTERACTIF -->
+            <div id="content-simulateur" class="tab-content space-y-6 hidden">
+
+                <div class="bg-purple-50 border-l-4 border-oifPurple p-3 rounded-r-lg text-sm">
+                    <strong>Bac à sable grammatical :</strong> Associez un démonstratif, un article, et sa localisation pour voir comment la phrase s'ajuste automatiquement. Ensuite, jouez le dialogue à deux.
+                </div>
+
+                <!-- Choix du lieu -->
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="mode-boutique" onclick="setMode('boutique')" class="py-3 rounded-xl font-bold border-2">👕 À la boutique</button>
+                    <button id="mode-marche" onclick="setMode('marche')" class="py-3 rounded-xl font-bold border-2">🧺 Au marché</button>
+                </div>
+
+                <!-- Formulaire interactif -->
+                <div class="bg-white p-4 border rounded-xl shadow-sm space-y-4 text-sm">
+                    <div>
+                        <label for="sim-item" class="block font-bold text-slate-700 mb-1">1. Choisissez <span id="lbl-item">un vêtement / accessoire</span> :</label>
+                        <select id="sim-item" onchange="updateSimulator()" class="w-full border p-2.5 rounded bg-slate-50 outline-none focus:ring-1 focus:ring-oifPurple font-semibold"></select>
+                    </div>
+
+                    <div>
+                        <label for="sim-loc" class="block font-bold text-slate-700 mb-1">2. Localisez l'objet dans l'espace :</label>
+                        <select id="sim-loc" onchange="updateSimulator()" class="w-full border p-2.5 rounded bg-slate-50 outline-none focus:ring-1 focus:ring-oifPurple"></select>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="sim-price" class="block font-bold text-slate-700 mb-1">3. Déterminez un prix (en €) :</label>
+                            <input type="number" id="sim-price" value="39" min="0" step="0.5" inputmode="decimal" oninput="updateSimulator()" class="w-full border p-2.5 rounded bg-slate-50 outline-none focus:ring-1 focus:ring-oifPurple font-mono">
+                        </div>
+                        <div id="box-extra1">
+                            <label for="sim-extra1" id="lbl-extra1" class="block font-bold text-slate-700 mb-1">Couleur :</label>
+                            <select id="sim-extra1" onchange="updateSimulator()" class="w-full border p-2.5 rounded bg-slate-50 outline-none focus:ring-1 focus:ring-oifPurple"></select>
+                        </div>
+                        <div id="box-extra2">
+                            <label for="sim-extra2" id="lbl-extra2" class="block font-bold text-slate-700 mb-1">Taille :</label>
+                            <select id="sim-extra2" onchange="updateSimulator()" class="w-full border p-2.5 rounded bg-slate-50 outline-none focus:ring-1 focus:ring-oifPurple"></select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="block font-bold text-slate-700 mb-1">4. Choisissez le mode de paiement :</p>
+                        <div class="flex gap-2">
+                            <button onclick="setSimPaiement('carte')" data-pay="carte" class="sim-pay-btn flex-1 py-2.5 rounded">par carte</button>
+                            <button onclick="setSimPaiement('espèces')" data-pay="espèces" class="sim-pay-btn flex-1 py-2.5 rounded">en espèces</button>
+                        </div>
+                    </div>
+
+                    <button onclick="randomize()" class="w-full py-3 rounded-xl bg-slate-800 text-white font-bold">🎲 Au hasard : une nouvelle situation</button>
+                </div>
+
+                <!-- Résultat dynamique -->
+                <div class="bg-slate-900 text-white p-4 rounded-xl shadow-inner space-y-3 font-mono text-sm">
+                    <p class="text-slate-400 text-[11px] uppercase tracking-wider">// Phrases générées automatiquement :</p>
+                    <div class="space-y-2" id="out-phrases"></div>
+                    <p id="out-why" class="text-[12px] text-slate-300 border-t border-slate-700 pt-2"></p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
+                    <div class="flex items-center justify-between gap-2">
+                        <h3 class="text-base font-extrabold text-slate-900">Le dialogue complet</h3>
+                        <button onclick="speakDialogue()" class="shrink-0 text-sm font-bold bg-slate-100 border border-slate-200 rounded-lg px-3 py-2">🔊 Écouter</button>
+                    </div>
+                    <div id="out-dialogue" class="space-y-2 text-sm"></div>
+                    <p class="text-xs text-slate-500">À deux : lisez le dialogue, puis cachez l'écran et jouez la scène de mémoire. Changez les éléments et recommencez !</p>
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- Pied de page -->
+        <footer class="bg-slate-900 text-slate-400 p-6 text-center text-[11px] space-y-1">
+            <p>© 2026 Espace d'apprentissage autonome • Conçu par Nadia Aguilar Neri</p>
+            <p class="opacity-75">Méthode Inspire 1 - Activités complémentaires pour l'expression orale</p>
+        </footer>
+
+    </div>
+
+    <div id="toast" class="hidden fixed bottom-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-sm px-4 py-2 rounded-lg shadow-lg z-50 max-w-[90vw] text-center"></div>
+
+    <!-- JS Engine -->
+    <script>
+        /* =========================================================
+           OUTILS COMMUNS
+        ========================================================= */
+        const LETTERS = 'abcdefgh';
+        let frVoice = null;
+        function pickVoice() {
+            if (!('speechSynthesis' in window)) return;
+            const v = speechSynthesis.getVoices();
+            frVoice = v.find(x => x.lang === 'fr-FR') || v.find(x => x.lang && x.lang.startsWith('fr')) || null;
+        }
+        if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+        function toast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg; t.classList.remove('hidden');
+            clearTimeout(t._h); t._h = setTimeout(() => t.classList.add('hidden'), 3500);
+        }
+        const plain = s => s.replace(/<[^>]+>/g, '').replace(/\*/g, '').replace(/\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
+        function speak(texts) {
+            if (!('speechSynthesis' in window)) { toast("La synthèse vocale n'est pas disponible sur cet appareil."); return; }
+            speechSynthesis.cancel();
+            (Array.isArray(texts) ? texts : [texts]).forEach(t => {
+                const u = new SpeechSynthesisUtterance(plain(t));
+                u.lang = 'fr-FR'; u.rate = 0.85;
+                if (frVoice) u.voice = frVoice;
+                speechSynthesis.speak(u);
+            });
+        }
+        const star = s => s.replace(/\*/g, '<span class="text-oifRed font-black">*</span>');
+        const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+
+        function buildQCM(containerId, items, scoreId) {
+            const box = document.getElementById(containerId);
+            box.innerHTML = '';
+            let score = 0;
+            const scoreEl = document.getElementById(scoreId);
+            const refresh = () => scoreEl.textContent = `${score} / ${items.length}`;
+            items.forEach((it, i) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-slate-200 rounded-xl p-3 space-y-2';
+                card.innerHTML = `<div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-slate-400 w-5">${i + 1}.</span>
+                        ${it.emoji ? `<span class="emoji text-3xl">${it.emoji}</span>` : ''}
+                        <p class="flex-1 text-base font-semibold">${star(it.q)}</p>
+                    </div>
+                    <div class="opts grid gap-2 ${it.opts.length > 3 ? 'grid-cols-2' : 'grid-cols-1'}"></div>
+                    <p class="fb text-sm hidden"></p>`;
+                const optsBox = card.querySelector('.opts');
+                const fb = card.querySelector('.fb');
+                const btns = it.opts.map((o, k) => {
+                    const b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'opt text-left px-3 py-2 rounded-lg border-2 border-slate-200 bg-slate-50 hover:bg-slate-100 text-sm font-semibold';
+                    b.innerHTML = `<span class="text-slate-400 mr-1">${LETTERS[k]})</span> ${star(o)}`;
+                    b.onclick = () => {
+                        btns.forEach(x => x.disabled = true);
+                        const ok = k === it.a;
+                        if (ok) score++;
+                        const set = (el, good) => { el.classList.remove('border-slate-200', 'bg-slate-50'); el.classList.add(good ? 'border-emerald-500' : 'border-red-400', good ? 'bg-emerald-50' : 'bg-red-50'); };
+                        set(b, ok);
+                        if (!ok) set(btns[it.a], true);
+                        fb.innerHTML = (ok ? '✅ <strong>Bravo !</strong> ' : `❌ <strong>Réponse : ${LETTERS[it.a]}) ${star(it.opts[it.a])}</strong>. `) + (it.expl ? star(it.expl) : '');
+                        fb.className = 'fb text-sm ' + (ok ? 'text-emerald-700' : 'text-red-700');
+                        if (it.say) speak(it.say);
+                        refresh();
+                    };
+                    optsBox.appendChild(b);
+                    return b;
+                });
+                box.appendChild(card);
+            });
+            refresh();
+        }
+
+        /* =========================================================
+           ONGLETS
+        ========================================================= */
+        const TABS = ['revision', 'repertoire', 'scenarios', 'marche', 'simulateur'];
+        function switchTab(tabId) {
+            TABS.forEach(t => {
+                document.getElementById(`content-${t}`).classList.toggle('hidden', t !== tabId);
+                const b = document.getElementById(`tab-${t}`);
+                b.className = 'tab-btn flex-auto py-2.5 px-3 rounded-md font-semibold whitespace-nowrap transition-all ' +
+                    (t === tabId ? 'bg-white text-slate-900 shadow' : 'hover:bg-white/10');
+                b.setAttribute('aria-selected', t === tabId);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* =========================================================
+           ONGLET 1 : RÉVISION DU FUTUR PROCHE
+        ========================================================= */
+        const FP_TABLE = [
+            ['Je', 'vais', 'prendre ce pull.'], ['Tu', 'vas', 'essayer cette robe* ?'], ['Il / Elle / On', 'va', 'payer par carte.'],
+            ['Nous', 'allons', 'acheter des tomates*.'], ['Vous', 'allez', 'payer en espèces ?'], ['Ils / Elles', 'vont', 'prendre ces bottes*.']
+        ];
+        document.getElementById('fp-table').innerHTML = FP_TABLE.map(([s, v, r]) =>
+            `<li><button type="button" class="text-left w-full hover:bg-blue-50 rounded px-1" onclick="speak('${(s.split(' / ')[0] + ' ' + v + ' ' + r).replace(/'/g, "\\'")}')">🔊 ${s} <strong class="text-oifBlue">${v}</strong> ${star(r)}</button></li>`).join('');
+
+        const FP_Q = [
+            { q: 'Je ___ prendre ce pull.', opts: ['vais', 'vas', 'va'], a: 0, expl: 'je → vais.' },
+            { q: 'Nous ___ acheter des fraises*.', opts: ['allez', 'allons', 'vont'], a: 1, expl: 'nous → allons.' },
+            { q: 'Vous ___ payer par carte ?', opts: ['allez', 'allons', 'vas'], a: 0, expl: 'vous → allez.' },
+            { q: 'Elles ___ essayer ces robes*.', opts: ['va', 'allons', 'vont'], a: 2, expl: 'ils / elles → vont.' },
+            { q: 'La phrase négative correcte :', opts: ['Je vais ne pas prendre ce pull.', 'Je ne vais pas prendre ce pull.', 'Je ne pas vais prendre ce pull.'], a: 1, expl: 'ne … pas autour du verbe aller.' },
+            { q: 'Ce pantalon ? Je vais ___ prendre.', opts: ['la', 'les', 'le'], a: 2, expl: 'pantalon est masculin singulier → le.' },
+            { q: 'Au magasin, pour être poli, je dis :', opts: ['Je veux un pull !', "Je voudrais un pull, s'il vous plaît.", 'Je vais vouloir un pull.'], a: 1, expl: 'Je voudrais = formule polie.' }
+        ];
+        function buildFP() { buildQCM('ex-fp', FP_Q.map(x => ({ ...x, q: x.q.replace('___', '<span class="inline-block min-w-[3rem] border-b-2 border-slate-400 text-center">…</span>'), say: x.q.includes('___') ? x.q.replace('___', x.opts[x.a]) : null })), 'score-fp'); }
+
+        /* =========================================================
+           ONGLET 2 : boîte à outils — chaque phrase s'écoute
+        ========================================================= */
+        document.querySelectorAll('.says li').forEach(li => {
+            li.classList.add('cursor-pointer', 'hover:text-slate-900');
+            li.title = 'Écouter';
+            li.addEventListener('click', () => speak(li.textContent.replace(/\s\/\s/g, ', ')));
+        });
+
+        /* =========================================================
+           ONGLET 3 : SCÉNARIOS (V = vendeur, C = client, M = marchand)
+           Les passages entre [ ] sont soulignés (éléments à varier).
+        ========================================================= */
+        const SCENARIOS = [
+            { badge: 'bg-oifGreen text-white', title: 'Option A • Achat simple avec localisation', lines: [
+                ['V', 'Bonjour ! Je peux vous renseigner ?'],
+                ['C', 'Oui. [Ce pull à gauche], il coûte combien ?'],
+                ['V', '[Les pulls à gauche ? Ils sont à 45 euros].'],
+                ['C', "Parfait. Je voudrais un pull [en taille M], s'il vous plaît."],
+                ['V', "Oui, tenez. Vous voulez l'essayer ?"],
+                ['C', "Oui, s'il vous plaît."],
+                ['V', "Les cabines d'essayage sont [à côté de la caisse]."],
+                ['C', 'Merci.'],
+                ['V', 'Alors ?'],
+                ['C', 'Il est parfait. Je vais le prendre. Je vais payer [par carte].'],
+                ['V', 'Très bien. Voici votre ticket. Merci !']
+            ] },
+            { badge: 'bg-oifYellow text-slate-900', title: "Option B • L'essayage en cabine", lines: [
+                ['V', 'Bonjour ! Je peux vous aider ?'],
+                ['C', "Oui, je voudrais essayer [ces bottes à droite], s'il vous plaît."],
+                ['V', 'Bien sûr. [Les bottes sous la table blanche ?]'],
+                ['C', "Oui, c'est ça."],
+                ['V', 'Quelle est votre pointure ?'],
+                ['C', 'Je fais du [38].'],
+                ['V', 'Voilà le modèle. Elles coûtent [89 euros].'],
+                ['C', 'Elles sont très confortables ! Je vais les prendre.'],
+                ['V', 'Vous allez payer comment ?'],
+                ['C', 'Je vais payer [en espèces].'],
+                ['V', 'Merci. Voici votre ticket et votre monnaie.']
+            ] },
+            { badge: 'bg-oifRed text-white', title: 'Option C • Choix multiples', lines: [
+                ['C', 'Bonjour. Excusez-moi, [le foulard derrière la caisse] et [la ceinture devant], ils sont à combien ?'],
+                ['V', 'Le foulard derrière est à [12 euros] et la ceinture devant est à [15 euros].'],
+                ['C', 'Très bien. Je vais prendre les deux : [le foulard en rouge] et [la ceinture en noir].'],
+                ['V', 'Parfait. Le total est de [27 euros].'],
+                ['C', 'Je vais payer en espèces.'],
+                ['V', 'Merci. Et voici votre monnaie. Bonne journée.'],
+                ['C', 'Bonne journée.']
+            ] }
+        ];
+        const SCEN_MARCHE = { badge: 'bg-oifPurple text-white', title: 'Option D • Au marché', lines: [
+            ['M', 'Bonjour madame ! Vous désirez ?'],
+            ['C', "Bonjour ! Je voudrais [des tomates], s'il vous plaît. [Ces tomates à gauche], c'est combien ?"],
+            ['M', '[Elles sont à 3 euros le kilo].'],
+            ['C', 'Je vais prendre [un kilo].'],
+            ['M', 'Voilà. Et avec ça ?'],
+            ['C', 'Je voudrais aussi [du fromage]. [Ce fromage à côté des œufs], il coûte combien ?'],
+            ['M', '[Il est à 5 euros].'],
+            ['C', "Parfait, je vais le prendre. C'est tout, merci."],
+            ['M', 'Ça fait [8 euros], madame.'],
+            ['C', 'Voilà. Je vais payer [en espèces].'],
+            ['M', 'Merci, bonne journée !']
+        ] };
+        const WHO = { V: ['Vendeur', 'text-oifBlue'], C: ['Client', 'text-oifPurple'], M: ['Marchand', 'text-oifBlue'] };
+        function renderScenario(sc) {
+            const card = document.createElement('div');
+            card.className = 'bg-white p-4 border rounded-xl shadow-sm space-y-3';
+            const head = document.createElement('div');
+            head.className = 'flex items-center justify-between gap-2 flex-wrap';
+            head.innerHTML = `<span class="${sc.badge} text-[11px] font-bold px-2 py-0.5 rounded-full uppercase">${sc.title}</span>`;
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'text-xs font-bold bg-slate-100 border border-slate-200 rounded-lg px-3 py-2';
+            b.textContent = '🔊 Écouter';
+            b.onclick = () => speak(sc.lines.map(l => l[1].replace(/[\[\]]/g, '')));
+            head.appendChild(b);
+            card.appendChild(head);
+            const body = document.createElement('div');
+            body.className = 'text-sm space-y-2 font-mono';
+            body.innerHTML = sc.lines.map(([w, t]) => {
+                const col = w === 'C' ? 'decoration-oifPurple' : 'decoration-oifBlue';
+                const html = t.replace(/\[([^\]]+)\]/g, `<span class="underline ${col} decoration-2">$1</span>`);
+                return `<p><strong class="${WHO[w][1]}">${WHO[w][0]} :</strong> ${html}</p>`;
+            }).join('');
+            card.appendChild(body);
+            return card;
+        }
+        SCENARIOS.forEach(sc => document.getElementById('scenarios-box').appendChild(renderScenario(sc)));
+        document.getElementById('scenario-marche').appendChild(renderScenario(SCEN_MARCHE));
+
+        /* =========================================================
+           ONGLET 4 : AU MARCHÉ
+        ========================================================= */
+        const LEXIQUE = [
+            ['🍎 Les fruits', [['🍎', 'des pommes*'], ['🍌', 'des bananes*'], ['🍊', 'des oranges*'], ['🍓', 'des fraises*'], ['🍇', 'du raisin'], ['🍍', 'un ananas'], ['🍋', 'des citrons'], ['🍐', 'des poires*']]],
+            ['🥕 Les légumes', [['🍅', 'des tomates*'], ['🥕', 'des carottes*'], ['🥔', 'des pommes de terre*'], ['🥬', 'de la salade*'], ['🧅', 'des oignons'], ['🥒', 'des concombres'], ['🫑', 'des poivrons']]],
+            ['🧀 Les produits laitiers et les œufs', [['🥛', 'du lait'], ['🧀', 'du fromage'], ['🧈', 'du beurre'], ['🥣', 'des yaourts'], ['🥚', 'des œufs']]],
+            ['🛒 L\'épicerie', [['🍞', 'du pain'], ['🍚', 'du riz'], ['🍝', 'des pâtes*'], ['☕', 'du café'], ['🍫', 'du chocolat'], ['🫒', "de l'huile*"], ['🧂', 'du sel'], ['🍬', 'du sucre'], ['💧', "de l'eau*"]]],
+            ['🍗 La viande et le poisson', [['🍗', 'du poulet'], ['🐟', 'du poisson'], ['🍖', 'de la viande*']]]
+        ];
+        document.getElementById('lexique-marche').innerHTML = LEXIQUE.map(([title, items]) => `
+            <div class="bg-white border border-slate-200 rounded-xl p-3">
+                <p class="font-bold text-slate-900 mb-2">${title}</p>
+                <div class="grid grid-cols-2 gap-1.5">
+                    ${items.map(([e, w]) => `<button type="button" onclick="speak('${w.replace(/'/g, "\\'")}')" class="flex items-center gap-2 text-left bg-slate-50 hover:bg-slate-100 rounded-lg px-2 py-1.5 min-h-[44px]"><span class="emoji text-2xl">${e}</span><span class="text-sm font-semibold">${star(w)}</span></button>`).join('')}
+                </div>
+            </div>`).join('');
+
+        const P4 = ['du', 'de la', "de l'", 'des'];
+        const PART = [
+            ['🧀', 'Je vais acheter ___ fromage.', 0], ['🍅', 'Tu vas prendre ___ tomates* ?', 3], ['🥬', 'Nous allons acheter ___ salade*.', 1],
+            ['🫒', "Elle va prendre ___ huile* d'olive.", 2], ['🍇', "Je voudrais ___ raisin, s'il vous plaît.", 0], ['🥚', 'Vous allez acheter ___ œufs ?', 3],
+            ['🍞', 'Ils vont manger ___ pain.', 0], ['🍝', 'On va prendre ___ pâtes*.', 3], ['🍖', 'Je voudrais ___ viande*.', 1], ['💧', 'Tu vas boire ___ eau* ?', 2]
+        ];
+        const PEXPL = ['Masculin singulier → du.', 'Féminin singulier (*) → de la.', "Le nom commence par une voyelle → de l'.", 'Pluriel → des.'];
+        function buildPart() {
+            buildQCM('ex-part', PART.map(([e, s, a]) => ({
+                emoji: e, q: s.replace('___', '<span class="inline-block min-w-[3rem] border-b-2 border-slate-400 text-center">…</span>'),
+                opts: P4, a, expl: PEXPL[a], say: s.replace("___ ", a === 2 ? "de l'" : P4[a] + ' ')
+            })), 'score-part');
+        }
+        const COURSES = [['🍅', 'des tomates*'], ['🧀', 'du fromage'], ['🍞', 'du pain'], ['🥛', 'du lait'], ['🍓', 'des fraises*'], ['🫒', "de l'huile*"],
+            ['🥬', 'de la salade*'], ['🥚', 'des œufs'], ['🍌', 'des bananes*'], ['🍚', 'du riz'], ['🍗', 'du poulet'], ['🍇', 'du raisin'], ['🥕', 'des carottes*'], ['☕', 'du café']];
+        function tirerListe() {
+            const pool = [...COURSES].sort(() => Math.random() - 0.5).slice(0, 3);
+            document.getElementById('liste-courses').innerHTML = pool.map(([e, w]) => `<li><span class="emoji text-2xl mr-2">${e}</span>${star(w)}</li>`).join('');
+        }
+
+        /* =========================================================
+           ONGLET 5 : SIMULATEUR
+           g : genre (m/f) · n : nombre (s/p) · v : commence par une voyelle
+        ========================================================= */
+        const ITEMS = {
+            boutique: [
+                { id: 'pull', name: 'pull', g: 'm', n: 's', e: '🧶', group: 'Masculin singulier' },
+                { id: 'blouson', name: 'blouson', g: 'm', n: 's', e: '🧥', group: 'Masculin singulier' },
+                { id: 'pantalon', name: 'pantalon', g: 'm', n: 's', e: '👖', group: 'Masculin singulier' },
+                { id: 'robe', name: 'robe', g: 'f', n: 's', e: '👗', group: 'Féminin singulier' },
+                { id: 'jupe', name: 'jupe', g: 'f', n: 's', e: '👗', group: 'Féminin singulier' },
+                { id: 'ceinture', name: 'ceinture', g: 'f', n: 's', e: '🪢', group: 'Féminin singulier' },
+                { id: 'chemise', name: 'chemise', g: 'f', n: 's', e: '👔', group: 'Féminin singulier' },
+                { id: 'impermeable', name: 'imperméable', g: 'm', n: 's', v: true, e: '☔', group: "Masculin + voyelle (usage de « cet »)" },
+                { id: 'anorak', name: 'anorak', g: 'm', n: 's', v: true, e: '🧥', group: "Masculin + voyelle (usage de « cet »)" },
+                { id: 'echarpe', name: 'écharpe', g: 'f', n: 's', v: true, e: '🧣', group: "Féminin + voyelle (« cette » quand même !)" },
+                { id: 'bottes', name: 'bottes', g: 'f', n: 'p', e: '👢', shoe: true, group: 'Pluriel' },
+                { id: 'chaussures', name: 'chaussures', g: 'f', n: 'p', e: '👟', shoe: true, group: 'Pluriel' },
+                { id: 'jeans', name: 'jeans', g: 'm', n: 'p', e: '👖', group: 'Pluriel' }
+            ],
+            marche: [
+                { id: 'tomates', name: 'tomates', g: 'f', n: 'p', e: '🍅', unit: 'kilo', group: 'Fruits et légumes' },
+                { id: 'pommes', name: 'pommes', g: 'f', n: 'p', e: '🍎', unit: 'kilo', group: 'Fruits et légumes' },
+                { id: 'oranges', name: 'oranges', g: 'f', n: 'p', v: true, e: '🍊', unit: 'kilo', group: 'Fruits et légumes' },
+                { id: 'carottes', name: 'carottes', g: 'f', n: 'p', e: '🥕', unit: 'kilo', group: 'Fruits et légumes' },
+                { id: 'raisin', name: 'raisin', g: 'm', n: 's', e: '🍇', unit: 'kilo', group: 'Fruits et légumes' },
+                { id: 'ananas', name: 'ananas', g: 'm', n: 's', v: true, e: '🍍', unit: 'piece', part: 'un', group: 'Fruits et légumes' },
+                { id: 'fromage', name: 'fromage', g: 'm', n: 's', e: '🧀', unit: 'piece', group: 'Produits laitiers et œufs' },
+                { id: 'lait', name: 'lait', g: 'm', n: 's', e: '🥛', unit: 'bouteille', group: 'Produits laitiers et œufs' },
+                { id: 'oeufs', name: 'œufs', g: 'm', n: 'p', v: true, e: '🥚', unit: 'boite', group: 'Produits laitiers et œufs' },
+                { id: 'pain', name: 'pain', g: 'm', n: 's', e: '🍞', unit: 'piece', group: 'Épicerie' },
+                { id: 'huile', name: 'huile', g: 'f', n: 's', v: true, e: '🫒', unit: 'bouteille', group: 'Épicerie' }
+            ]
+        };
+        const LOCS = {
+            boutique: ['à gauche', 'à droite', 'devant la vitrine', 'derrière la caisse', 'sur la table', 'sous la table', 'à côté de la cabine', 'entre les pulls et les chemises'],
+            marche: ['à gauche', 'à droite', 'devant vous', 'sur la table', 'derrière les pommes', 'à côté des œufs', 'entre le fromage et le lait']
+        };
+        const COLORS = ['', 'bleu', 'noir', 'blanc', 'rouge', 'vert', 'gris', 'rose'];
+        const SIZES = ['S', 'M', 'L', 'XL'];
+        const SHOE = ['36', '37', '38', '39', '40', '41', '42', '43', '44'];
+        const QTY = { kilo: ['un kilo', 'deux kilos', 'un demi-kilo'], bouteille: ['une bouteille', 'deux bouteilles'], boite: ['une boîte', 'deux boîtes'], piece: [] };
+        const UNIT_PRICE = { kilo: ' le kilo', bouteille: ' la bouteille', boite: ' la boîte', piece: '' };
+
+        let mode = 'boutique';
+        let selectedPayment = 'carte';
+
+        function fillSelect(sel, values, labelFn, def) {
+            const prev = sel.value;
+            sel.innerHTML = values.map(v => `<option value="${v}">${labelFn ? labelFn(v) : v}</option>`).join('');
+            if (values.includes(prev)) sel.value = prev;
+            else if (def !== undefined && values.includes(def)) sel.value = def;
+        }
+        function fillItems() {
+            const sel = document.getElementById('sim-item');
+            const groups = {};
+            ITEMS[mode].forEach(it => (groups[it.group] = groups[it.group] || []).push(it));
+            sel.innerHTML = Object.entries(groups).map(([g, list]) =>
+                `<optgroup label="${g}">${list.map(it => `<option value="${it.id}">${it.e} ${join(art(it), it.name)}${it.g === 'f' ? ' *' : ''}</option>`).join('')}</optgroup>`).join('');
+        }
+        // Article défini pour la liste (le, la, l', les)
+        const art = it => it.n === 'p' ? 'les' : (it.v ? "l'" : (it.g === 'm' ? 'le' : 'la'));
+
+        function setMode(m) {
+            mode = m;
+            ['boutique', 'marche'].forEach(k => {
+                document.getElementById('mode-' + k).className = 'py-3 rounded-xl font-bold border-2 ' +
+                    (k === m ? 'border-oifPurple bg-purple-50 text-oifPurple' : 'border-slate-200 bg-white text-slate-600');
+            });
+            document.getElementById('lbl-item').textContent = m === 'boutique' ? 'un vêtement / accessoire' : 'un produit';
+            fillItems();
+            fillSelect(document.getElementById('sim-loc'), LOCS[m]);
+            document.getElementById('sim-price').value = m === 'boutique' ? 39 : 3;
+            updateSimulator();
+        }
+
+        function setSimPaiement(type) {
+            selectedPayment = type;
+            document.querySelectorAll('.sim-pay-btn').forEach(b => {
+                b.className = 'sim-pay-btn flex-1 py-2.5 rounded border-2 ' +
+                    (b.dataset.pay === type ? 'border-oifPurple bg-purple-50 text-oifPurple font-bold' : 'border-slate-200 bg-slate-50 text-slate-700');
+            });
+            updateSimulator();
+        }
+
+        // Prix : 39 → « 39 euros » ; 2.5 → « 2,50 euros » ; 1 → « 1 euro »
+        function formatPrice(raw) {
+            const n = parseFloat(String(raw).replace(',', '.'));
+            if (!isFinite(n) || n < 0) return '… euros';
+            const txt = Number.isInteger(n) ? String(n) : n.toFixed(2).replace('.', ',');
+            return txt + (n < 2 ? ' euro' : ' euros');
+        }
+
+        function grammar(it) {
+            const pl = it.n === 'p';
+            return {
+                demo: pl ? 'ces' : (it.g === 'm' ? (it.v ? 'cet' : 'ce') : 'cette'),
+                pron: pl ? (it.g === 'm' ? 'ils' : 'elles') : (it.g === 'm' ? 'il' : 'elle'),
+                etre: pl ? 'sont' : 'est',
+                couter: pl ? 'coûtent' : 'coûte',
+                cod: pl ? 'les' : (it.g === 'm' ? 'le' : 'la'),
+                codV: pl ? 'les' : "l'",                       // devant un verbe à voyelle : l'essayer / les‿essayer
+                indef: pl ? 'des' : (it.g === 'm' ? 'un' : 'une'),
+                part: it.part || (pl ? 'des' : (it.v ? "de l'" : (it.g === 'm' ? 'du' : 'de la'))),
+                parfait: 'parfait' + (it.g === 'f' ? 'e' : '') + (pl ? 's' : '')
+            };
+        }
+        const join = (a, b) => /'$/.test(a) ? a + b : a + ' ' + b;   // « l' » + « essayer » sans espace
+
+        let dialogueLines = [];
+        function updateSimulator() {
+            const it = ITEMS[mode].find(x => x.id === document.getElementById('sim-item').value) || ITEMS[mode][0];
+            const gr = grammar(it);
+
+            // Localisations : on évite « ces pommes derrière les pommes »
+            const locSel = document.getElementById('sim-loc');
+            const locs = LOCS[mode].filter(l => !l.includes(it.name));
+            fillSelect(locSel, locs);
+            const loc = locSel.value;
+
+            // Champs complémentaires selon le lieu
+            const ex1 = document.getElementById('sim-extra1'), ex2 = document.getElementById('sim-extra2');
+            const lbl1 = document.getElementById('lbl-extra1'), lbl2 = document.getElementById('lbl-extra2');
+            const box2 = document.getElementById('box-extra2');
+            if (mode === 'boutique') {
+                lbl1.textContent = 'Couleur :';
+                fillSelect(ex1, COLORS, c => c ? 'en ' + c : '— sans couleur —');
+                lbl2.textContent = it.shoe ? 'Pointure :' : 'Taille :';
+                fillSelect(ex2, it.shoe ? SHOE : SIZES, null, it.shoe ? '38' : 'M');
+                box2.classList.remove('hidden');
+            } else {
+                lbl1.textContent = 'Quantité :';
+                const q = QTY[it.unit];
+                fillSelect(ex1, q.length ? q : ['—'], v => v === '—' ? 'à la pièce' : v);
+                box2.classList.add('hidden');
+            }
+
+            const price = formatPrice(document.getElementById('sim-price').value);
+            const pay = selectedPayment === 'carte' ? 'par carte' : 'en espèces';
+            const color = mode === 'boutique' && ex1.value ? ' en ' + ex1.value : '';
+            const S = (t, c = 'text-sky-400') => `<span class="${c} var">${t}</span>`;
+            const nameH = `<span class="underline">${it.name}</span>`;
+            const locH = S(loc, 'text-emerald-400');
+            const unitTxt = mode === 'marche' ? UNIT_PRICE[it.unit] : '';
+
+            // ----- Phrases clés (bloc d'origine, enrichi) -----
+            const phrases = [
+                ['Question', `Combien ${S(gr.couter, 'text-amber-300')} ${S(gr.demo)} ${nameH} ${locH} ?`],
+                ['Prix', `${S(cap(gr.pron))} ${S(gr.etre, 'text-amber-300')} à ${S(price)}${unitTxt}.`],
+                ['Achat', `Je vais prendre ${S(gr.demo)} ${nameH}.`],
+                ['Achat', `Je vais ${S(gr.cod)} prendre.`],
+                ['Paiement', `Je vais payer ${S(pay)}.`]
+            ];
+            document.getElementById('out-phrases').innerHTML = phrases.map(([k, v]) =>
+                `<p><strong class="text-oifYellow">${k} :</strong> ${v}</p>`).join('');
+
+            const regle = it.n === 'p' ? 'pluriel' : (it.g === 'm' ? (it.v ? 'masculin singulier + voyelle' : 'masculin singulier + consonne') : (it.v ? 'féminin singulier (même avec une voyelle)' : 'féminin singulier'));
+            document.getElementById('out-why').innerHTML = `💡 <strong>${it.name}</strong> = ${regle} → ${gr.demo} · ${gr.pron} ${gr.etre} · ${gr.couter} · je vais ${gr.cod} prendre${mode === 'marche' ? ` · je voudrais ${join(gr.part, it.name)}` : ''}` +
+                (it.n === 'p' && it.v ? ` · liaison : ces‿${it.name} [z]` : '');
+
+            // ----- Dialogue complet -----
+            const D = cap(gr.demo) + ' ' + it.name + ' ' + loc;
+            let lines;
+            if (mode === 'boutique') {
+                const size = it.shoe ? `Je fais du ${ex2.value}.` : `Je voudrais la taille ${ex2.value}.`;
+                lines = [
+                    ['V', 'Bonjour ! Je peux vous aider ?'],
+                    ['C', `Oui, je voudrais voir ${gr.demo} ${it.name} ${loc}${color}. ${cap(gr.pron)} ${gr.couter} combien ?`],
+                    ['V', `${D} ? ${cap(gr.pron)} ${gr.etre} à ${price}. Vous voulez ${join(gr.codV, 'essayer')} ?`],
+                    ['C', `Oui, s'il vous plaît. ${size}`],
+                    ['V', 'Voilà. La cabine est à côté de la caisse.'],
+                    ['C', `${cap(gr.pron)} ${gr.etre} ${gr.parfait} ! Je vais ${gr.cod} prendre.`],
+                    ['V', 'Très bien. Vous allez payer comment ?'],
+                    ['C', `Je vais payer ${pay}.`],
+                    ['V', `Merci ! Voici votre ticket${selectedPayment === 'espèces' ? ' et votre monnaie' : ''}. Bonne journée !`],
+                    ['C', 'Merci, bonne journée !']
+                ];
+            } else {
+                const q = ex1.value && ex1.value !== '—' ? ex1.value : null;
+                const buy = q ? `Je vais prendre ${q}, s'il vous plaît.` : `Je vais ${gr.cod} prendre.`;
+                // Total : prix × quantité (un demi-kilo = 0,5 ; deux = 2)
+                const mult = !q ? 1 : (q.startsWith('deux') ? 2 : (q.includes('demi') ? 0.5 : 1));
+                const unitPrice = parseFloat(String(document.getElementById('sim-price').value).replace(',', '.'));
+                const total = isFinite(unitPrice) ? formatPrice(Math.round(unitPrice * mult * 100) / 100) : price;
+                lines = [
+                    ['M', 'Bonjour ! Vous désirez ?'],
+                    ['C', `Bonjour ! Je voudrais ${join(gr.part, it.name)}, s'il vous plaît.`],
+                    ['C', `${D}, c'est combien ?`],
+                    ['M', `${cap(gr.pron)} ${gr.etre} à ${price}${unitTxt}.`],
+                    ['C', `Parfait ! ${buy}`],
+                    ['M', 'Voilà. Et avec ça ?'],
+                    ['C', "C'est tout, merci. Ça fait combien ?"],
+                    ['M', `Ça fait ${total}.`],
+                    ['C', `Je vais payer ${pay}.`],
+                    ['M', `Merci ! Voici votre ticket${selectedPayment === 'espèces' ? ' et votre monnaie' : ''}. Bonne journée !`]
+                ];
+            }
+            dialogueLines = lines;
+            document.getElementById('out-dialogue').innerHTML = lines.map(([w, t]) =>
+                `<p class="${w === 'C' ? 'bg-purple-50' : 'bg-blue-50'} rounded-lg px-3 py-2"><strong class="${WHO[w][1]}">${WHO[w][0]} :</strong> ${t}</p>`).join('');
+        }
+        function speakDialogue() { speak(dialogueLines.map(l => l[1])); }
+
+        function randomize() {
+            const pick = a => a[Math.floor(Math.random() * a.length)];
+            const itSel = document.getElementById('sim-item');
+            itSel.value = pick(ITEMS[mode]).id;
+            updateSimulator();
+            const locSel = document.getElementById('sim-loc');
+            locSel.value = pick([...locSel.options].map(o => o.value));
+            const ex1 = document.getElementById('sim-extra1');
+            ex1.value = pick([...ex1.options].map(o => o.value));
+            const ex2 = document.getElementById('sim-extra2');
+            if (ex2.options.length) ex2.value = pick([...ex2.options].map(o => o.value));
+            document.getElementById('sim-price').value = mode === 'boutique' ? pick([15, 19, 25, 29, 35, 39, 45, 59, 79, 89]) : pick([1, 1.5, 2, 2.5, 3, 4, 5, 6]);
+            selectedPayment = pick(['carte', 'espèces']);
+            setSimPaiement(selectedPayment);
+        }
+
+        /* =========================================================
+           INITIALISATION
+        ========================================================= */
+        window.addEventListener('DOMContentLoaded', () => {
+            buildFP();
+            buildPart();
+            setSimPaiement('carte');
+            setMode('boutique');
+            switchTab('revision');
+        });
+    </script>
+</body>
+</html>

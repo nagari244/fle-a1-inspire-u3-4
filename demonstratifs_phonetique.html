@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Démonstratifs : phonétique et révision - FLE A1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: {
+                oifBlue: '#009EE0', oifPurple: '#7D247E', oifGreen: '#009640', oifYellow: '#FFD100', oifRed: '#E2001A'
+            } } }
+        }
+    </script>
+    <style>
+        html { -webkit-text-size-adjust: 100%; }
+        body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+        .tabs { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .emoji { font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; line-height: 1; }
+        .opt { min-height: 44px; }
+        .opt[disabled] { cursor: default; }
+        .lz { color: #E2001A; font-weight: 800; }
+        button { touch-action: manipulation; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased">
+
+<div class="max-w-md mx-auto min-h-screen bg-white shadow-2xl flex flex-col md:max-w-4xl">
+
+    <!-- En-tête -->
+    <header class="bg-oifPurple text-white p-5 shadow-md">
+        <a href="index.html" class="inline-block text-xs font-semibold opacity-90 hover:opacity-100 mb-3">← Retour aux activités</a>
+        <span class="block w-max bg-white/20 text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Grammaire et phonétique • A1</span>
+        <h1 class="text-2xl font-extrabold mt-2">Ce, cet, cette, ces</h1>
+        <p class="text-sm opacity-90 mt-1">Les démonstratifs avec les vêtements et les produits à manger : prononcer et réviser.</p>
+
+        <nav class="tabs flex flex-wrap mt-5 gap-1 bg-black/20 p-1 rounded-lg text-sm" role="tablist">
+            <button onclick="switchTab('tableau')" id="tab-tableau" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">1. Le tableau</button>
+            <button onclick="switchTab('phonetique')" id="tab-phonetique" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">2. Phonétique</button>
+            <button onclick="switchTab('revision')" id="tab-revision" class="tab-btn flex-1 py-2.5 px-3 rounded-md font-semibold whitespace-nowrap">3. Révision</button>
+        </nav>
+    </header>
+
+    <main class="flex-1 p-4 md:p-6">
+
+        <!-- ============ ONGLET 1 : TABLEAU ============ -->
+        <section id="content-tableau" class="tab-content space-y-5">
+            <div class="bg-purple-50 border-l-4 border-oifPurple p-3 rounded-r-lg text-sm text-slate-700">
+                <strong>Rappel :</strong> le démonstratif montre un objet précis. Il s'accorde avec le nom : masculin ou féminin, singulier ou pluriel.
+                Les noms avec un <strong class="text-oifRed">*</strong> sont <strong>féminins</strong>. Touchez 🔊 pour écouter.
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="tableau-cards"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                <div class="bg-white border border-slate-200 rounded-xl p-4">
+                    <p class="font-bold text-oifPurple mb-1">👂 Attention à l'oral</p>
+                    <p><strong>cet</strong> et <strong>cette</strong> se prononcent de la même façon : [sɛt].<br>
+                    <span class="text-slate-500">cet anorak = [sɛ.ta.na.ʁak] • cette robe = [sɛt ʁɔb]</span></p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4">
+                    <p class="font-bold text-oifPurple mb-1">🇲🇽 Comparez avec l'espagnol</p>
+                    <p>este / ese → <strong>ce</strong> ou <strong>cet</strong> • esta / esa → <strong>cette</strong><br>
+                    estos, estas / esos, esas → <strong>ces</strong></p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="switchTab('phonetique')" class="bg-oifPurple text-white font-bold py-3 px-6 rounded-xl shadow">Continuer : la phonétique →</button>
+            </div>
+        </section>
+
+        <!-- ============ ONGLET 2 : PHONÉTIQUE ============ -->
+        <section id="content-phonetique" class="tab-content space-y-6 hidden">
+
+            <!-- A. ce / ces -->
+            <div class="space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">A. Écoutez et répétez : ce [sə] ou ces [se] ?</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                    <div class="bg-white border-2 border-oifBlue/40 rounded-xl p-4">
+                        <p class="text-2xl font-black text-oifBlue">ce <span class="font-mono text-lg">[sə]</span></p>
+                        <p class="mt-1">Comme dans <strong>le</strong>, <strong>de</strong>, <strong>je</strong>.<br>Le son est court. La bouche est arrondie et détendue.</p>
+                    </div>
+                    <div class="bg-white border-2 border-oifRed/40 rounded-xl p-4">
+                        <p class="text-2xl font-black text-oifRed">ces <span class="font-mono text-lg">[se]</span></p>
+                        <p class="mt-1">Comme dans <strong>les</strong>, <strong>des</strong>, <strong>mes</strong>.<br>On sourit : les lèvres sont tirées, le son est fermé.</p>
+                    </div>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm">
+                    💡 À l'oral, <strong>pull</strong> et <strong>pulls</strong> se prononcent pareil ! C'est <strong>ce</strong> ou <strong>ces</strong> qui dit s'il y a un ou plusieurs objets.
+                </div>
+                <div id="pairs-ce-ces" class="space-y-2"></div>
+            </div>
+
+            <!-- B. Discrimination -->
+            <div class="space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                    <h2 class="text-lg font-extrabold text-slate-900">B. Écoutez : un ou plusieurs ?</h2>
+                    <span id="score-ecoute" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 8</span>
+                </div>
+                <p class="text-sm text-slate-600">Touchez 🔊, écoutez bien <strong>ce</strong> ou <strong>ces</strong>, puis choisissez l'image.</p>
+                <div id="ex-ecoute" class="space-y-3"></div>
+                <button onclick="buildEcoute()" class="text-sm font-semibold text-oifPurple underline">↺ Recommencer l'exercice B</button>
+            </div>
+
+            <!-- C. Liaison -->
+            <div class="space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">C. La liaison : cet anorak → ces‿anoraks</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                    <div class="bg-white border border-slate-200 rounded-xl p-4">
+                        <p class="font-bold mb-1">Singulier : on prononce le <span class="lz">t</span></p>
+                        <p class="font-mono">ce<span class="lz">t‿a</span>ppartement<br>[sɛ.<span class="lz">t</span>a.paʁ.tə.mɑ̃]</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-4">
+                        <p class="font-bold mb-1">Pluriel : le <strong>s</strong> se prononce <span class="lz">[z]</span></p>
+                        <p class="font-mono">ce<span class="lz">s‿a</span>ppartements<br>[se.<span class="lz">z</span>a.paʁ.tə.mɑ̃]</p>
+                    </div>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm">
+                    💡 <strong>ces + voyelle</strong> (a, e, i, o, u, é…) ou <strong>h muet</strong> → liaison [z].<br>
+                    <strong>ces + consonne</strong> → pas de liaison : ces pantalons, ces tomates*.
+                </div>
+                <div id="pairs-liaison" class="space-y-2"></div>
+            </div>
+
+            <!-- D. Liaison ou pas -->
+            <div class="space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                    <h2 class="text-lg font-extrabold text-slate-900">D. Liaison [z] ou pas ?</h2>
+                    <span id="score-liaison" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 10</span>
+                </div>
+                <p class="text-sm text-slate-600">Lisez à voix haute, choisissez, puis touchez 🔊 pour vérifier votre prononciation.</p>
+                <div id="ex-liaison" class="space-y-3"></div>
+                <button onclick="buildLiaison()" class="text-sm font-semibold text-oifPurple underline">↺ Recommencer l'exercice D</button>
+            </div>
+
+            <!-- E. Lecture en binôme -->
+            <div class="space-y-3 bg-blue-50 border border-blue-100 rounded-xl p-4">
+                <h2 class="text-lg font-extrabold text-slate-900">E. À deux : lisez à voix haute 🗣️</h2>
+                <p class="text-sm text-slate-600">L'étudiant A lit la phrase. L'étudiant B écoute la liaison et dit « oui » ou « non ». Puis changez de rôle.</p>
+                <div id="lecture" class="space-y-2"></div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="switchTab('revision')" class="bg-oifPurple text-white font-bold py-3 px-6 rounded-xl shadow">Continuer : la révision →</button>
+            </div>
+        </section>
+
+        <!-- ============ ONGLET 3 : RÉVISION ============ -->
+        <section id="content-revision" class="tab-content space-y-6 hidden">
+            <div class="bg-purple-50 border-l-4 border-oifPurple p-3 rounded-r-lg text-sm text-slate-700">
+                <strong>Révision générale :</strong> vêtements et produits à manger. Les noms avec un <strong class="text-oifRed">*</strong> sont féminins.
+            </div>
+
+            <div class="space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                    <h2 class="text-lg font-extrabold text-slate-900">1. Choisissez : ce, cet, cette ou ces ?</h2>
+                    <span id="score-r1" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 15</span>
+                </div>
+                <div id="ex-r1" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                    <h2 class="text-lg font-extrabold text-slate-900">2. Singulier ↔ pluriel</h2>
+                    <span id="score-r2" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 6</span>
+                </div>
+                <div id="ex-r2" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                    <h2 class="text-lg font-extrabold text-slate-900">3. Au magasin et au marché (futur proche)</h2>
+                    <span id="score-r3" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 6</span>
+                </div>
+                <div id="ex-r3" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-3">
+                <p class="font-bold text-slate-900">Bilan de la révision</p>
+                <p id="bilan" class="text-2xl font-black text-oifPurple">0 / 27</p>
+                <button onclick="buildRevision()" class="bg-white border-2 border-oifPurple text-oifPurple font-bold py-2.5 px-5 rounded-xl">↺ Recommencer la révision</button>
+                <p class="text-sm"><a href="demonstratifs.html" class="text-oifBlue font-semibold underline">Encore plus d'exercices : activité 5 « Les adjectifs démonstratifs »</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 p-6 text-center text-xs space-y-1">
+        <p class="font-semibold text-slate-300">Conception pédagogique : Nadia Aguilar Neri</p>
+        <p class="opacity-75">Méthode Inspire 1 • Activités complémentaires FLE A1</p>
+    </footer>
+</div>
+
+<div id="toast" class="hidden fixed bottom-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-sm px-4 py-2 rounded-lg shadow-lg z-50 max-w-[90vw] text-center"></div>
+
+<script>
+    /* ---------- Outils communs ---------- */
+    const LETTERS = 'abcdefgh';
+    let frVoice = null;
+    function pickVoice() {
+        if (!('speechSynthesis' in window)) return;
+        const v = speechSynthesis.getVoices();
+        frVoice = v.find(x => x.lang === 'fr-FR') || v.find(x => x.lang && x.lang.startsWith('fr')) || null;
+    }
+    if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+    function toast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg; t.classList.remove('hidden');
+        clearTimeout(t._h); t._h = setTimeout(() => t.classList.add('hidden'), 3500);
+    }
+    function speak(text) {
+        if (!('speechSynthesis' in window)) { toast("La synthèse vocale n'est pas disponible sur cet appareil."); return; }
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'fr-FR'; u.rate = 0.8;
+        if (frVoice) u.voice = frVoice;
+        speechSynthesis.speak(u);
+    }
+    function spkBtn(text, label) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'shrink-0 w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-lg flex items-center justify-center';
+        b.setAttribute('aria-label', 'Écouter : ' + (label || text));
+        b.textContent = '🔊';
+        b.onclick = () => speak(text);
+        return b;
+    }
+    // Affiche une étoile rouge pour les féminins : "robe*" -> robe<span>*</span>
+    function star(s) { return s.replace(/\*/g, '<span class="text-oifRed font-black">*</span>'); }
+
+    /**
+     * QCM avec options a) b) c)… — une seule tentative par question, correction immédiate.
+     * item : { emoji, html, opts:[], a:index, expl, say }
+     */
+    function buildQCM(containerId, items, scoreId, onChange) {
+        const box = document.getElementById(containerId);
+        box.innerHTML = '';
+        let score = 0, done = 0;
+        const scoreEl = document.getElementById(scoreId);
+        const refresh = () => { scoreEl.textContent = `${score} / ${items.length}`; if (onChange) onChange(); };
+        box._score = () => score;
+        items.forEach((it, i) => {
+            const card = document.createElement('div');
+            card.className = 'bg-white border border-slate-200 rounded-xl p-3 space-y-2';
+            card.innerHTML = `<div class="flex items-center gap-3">
+                    <span class="text-xs font-bold text-slate-400 w-5">${i + 1}.</span>
+                    ${it.emoji ? `<span class="emoji text-3xl">${it.emoji}</span>` : ''}
+                    <p class="flex-1 text-base font-semibold">${star(it.html)}</p>
+                </div>
+                <div class="opts grid gap-2 ${it.opts.length > 3 ? 'grid-cols-2' : 'grid-cols-1'}"></div>
+                <p class="fb text-sm hidden"></p>`;
+            const optsBox = card.querySelector('.opts');
+            const fb = card.querySelector('.fb');
+            const buttons = it.opts.map((o, k) => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'opt text-left px-3 py-2 rounded-lg border-2 border-slate-200 bg-slate-50 hover:bg-slate-100 text-sm font-semibold';
+                b.innerHTML = `<span class="text-slate-400 mr-1">${LETTERS[k]})</span> ${star(o)}`;
+                b.onclick = () => {
+                    buttons.forEach(x => x.disabled = true);
+                    const ok = k === it.a;
+                    if (ok) score++;
+                    done++;
+                    b.className = b.className.replace('border-slate-200 bg-slate-50', ok ? 'border-emerald-500 bg-emerald-50' : 'border-red-400 bg-red-50');
+                    if (!ok) buttons[it.a].className = buttons[it.a].className.replace('border-slate-200 bg-slate-50', 'border-emerald-500 bg-emerald-50');
+                    fb.innerHTML = (ok ? '✅ <strong>Bravo !</strong> ' : `❌ <strong>Réponse : ${LETTERS[it.a]}) ${star(it.opts[it.a])}.</strong> `) + (it.expl ? star(it.expl) : '');
+                    fb.className = 'fb text-sm ' + (ok ? 'text-emerald-700' : 'text-red-700');
+                    if (it.say) speak(it.say);
+                    refresh();
+                };
+                optsBox.appendChild(b);
+                return b;
+            });
+            box.appendChild(card);
+        });
+        refresh();
+    }
+
+    /* ---------- Onglets ---------- */
+    const TABS = ['tableau', 'phonetique', 'revision'];
+    function switchTab(id) {
+        TABS.forEach(t => {
+            document.getElementById('content-' + t).classList.toggle('hidden', t !== id);
+            const b = document.getElementById('tab-' + t);
+            b.className = 'tab-btn flex-auto py-2.5 px-3 rounded-md font-semibold whitespace-nowrap transition ' +
+                (t === id ? 'bg-white text-slate-900 shadow' : 'hover:bg-white/10');
+            b.setAttribute('aria-selected', t === id);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ---------- Onglet 1 : tableau ---------- */
+    const TABLEAU = [
+        { d: 'CE', ipa: '[sə]', bc: 'border-oifBlue', tc: 'text-oifBlue', rule: 'Masculin singulier + consonne',
+          ex: [['👖', 'ce pantalon'], ['🧀', 'ce fromage'], ['🎩', 'ce chapeau']] },
+        { d: 'CET', ipa: '[sɛt]', bc: 'border-oifGreen', tc: 'text-oifGreen', rule: 'Masculin singulier + voyelle ou h muet',
+          ex: [['🧥', 'cet anorak'], ['🍍', 'cet ananas'], ['🥚', 'cet œuf']] },
+        { d: 'CETTE', ipa: '[sɛt]', bc: 'border-oifPurple', tc: 'text-oifPurple', rule: 'Féminin singulier (consonne ou voyelle)',
+          ex: [['👗', 'cette robe*'], ['🍎', 'cette pomme*'], ['🍊', 'cette orange*']] },
+        { d: 'CES', ipa: '[se] / [sez]', bc: 'border-oifRed', tc: 'text-oifRed', rule: 'Pluriel : masculin et féminin',
+          ex: [['👢', 'ces bottes*'], ['🍅', 'ces tomates*'], ['🍊', 'ces‿oranges*']] }
+    ];
+    function buildTableau() {
+        const box = document.getElementById('tableau-cards');
+        TABLEAU.forEach(r => {
+            const c = document.createElement('div');
+            c.className = `bg-white border-t-4 ${r.bc} rounded-b-xl shadow-sm p-4 space-y-3`;
+            c.innerHTML = `<div class="flex items-baseline justify-between gap-2">
+                    <span class="text-3xl font-black ${r.tc}">${r.d}</span>
+                    <span class="font-mono text-sm bg-slate-100 px-2 py-0.5 rounded">${r.ipa}</span>
+                </div>
+                <p class="text-sm font-semibold text-slate-600">${r.rule}</p>
+                <ul class="space-y-1.5"></ul>`;
+            const ul = c.querySelector('ul');
+            r.ex.forEach(([e, w]) => {
+                const li = document.createElement('li');
+                li.className = 'flex items-center gap-3';
+                li.innerHTML = `<span class="emoji text-3xl w-9 text-center">${e}</span><span class="flex-1 text-base font-semibold">${star(w)}</span>`;
+                li.appendChild(spkBtn(w.replace(/[*‿]/g, ' ').replace(/\s+/g, ' ')));
+                ul.appendChild(li);
+            });
+            box.appendChild(c);
+        });
+    }
+
+    /* ---------- Onglet 2 : phonétique ---------- */
+    const PAIRS_CE = [
+        ['👖', 'ce pantalon', 'ces pantalons'],
+        ['🧀', 'ce fromage', 'ces fromages'],
+        ['🎩', 'ce chapeau', 'ces chapeaux'],
+        ['🧶', 'ce pull', 'ces pulls'],
+        ['🍰', 'ce gâteau', 'ces gâteaux'],
+        ['🍋', 'ce citron', 'ces citrons']
+    ];
+    const PAIRS_LIAISON = [
+        ['🏠', 'cet appartement', 'ces‿appartements', '[sɛ.ta.paʁ.tə.mɑ̃]', '[se.za.paʁ.tə.mɑ̃]'],
+        ['🧥', 'cet anorak', 'ces‿anoraks', '[sɛ.ta.na.ʁak]', '[se.za.na.ʁak]'],
+        ['☔', 'cet imperméable', 'ces‿imperméables', '[sɛ.tɛ̃.pɛʁ.me.abl]', '[se.zɛ̃.pɛʁ.me.abl]'],
+        ['🍍', 'cet ananas', 'ces‿ananas', '[sɛ.ta.na.nas]', '[se.za.na.nas]'],
+        ['🍊', 'cette orange*', 'ces‿oranges*', '[sɛ.tɔ.ʁɑ̃ʒ]', '[se.zɔ.ʁɑ̃ʒ]'],
+        ['🧣', 'cette écharpe*', 'ces‿écharpes*', '[sɛ.te.ʃaʁp]', '[se.ze.ʃaʁp]']
+    ];
+    const clean = s => s.replace(/[*‿]/g, ' ').replace(/\s+/g, ' ').trim();
+    function pairRow(emoji, sing, plur, ipaS, ipaP) {
+        const row = document.createElement('div');
+        row.className = 'bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-2';
+        row.innerHTML = `<span class="emoji text-3xl w-10 text-center shrink-0">${emoji}</span>`;
+        const mk = (txt, ipa, cls) => {
+            const d = document.createElement('div');
+            d.className = 'flex-1 flex items-center gap-2 min-w-0';
+            const t = document.createElement('div');
+            t.className = 'min-w-0 flex-1';
+            t.innerHTML = `<p class="font-semibold text-sm sm:text-base ${cls} break-words">${star(txt.replace(/(\S)‿(\S)/, '$1<span class="lz">‿</span>$2'))}</p>` +
+                (ipa ? `<p class="font-mono text-[11px] text-slate-500 break-all">${ipa}</p>` : '');
+            d.appendChild(spkBtn(clean(txt)));
+            d.appendChild(t);
+            return d;
+        };
+        row.appendChild(mk(sing, ipaS, 'text-oifBlue'));
+        row.appendChild(mk(plur, ipaP, 'text-oifRed'));
+        return row;
+    }
+    function buildPairs() {
+        const a = document.getElementById('pairs-ce-ces');
+        PAIRS_CE.forEach(p => a.appendChild(pairRow(p[0], p[1], p[2], '', '')));
+        const b = document.getElementById('pairs-liaison');
+        PAIRS_LIAISON.forEach(p => b.appendChild(pairRow(...p)));
+    }
+
+    // B. Discrimination auditive : un ou plusieurs ?
+    const ECOUTE = [
+        ['🧶', 'ces pulls', true], ['👖', 'ce pantalon', false], ['🧀', 'ces fromages', true], ['🎩', 'ce chapeau', false],
+        ['🍰', 'ce gâteau', false], ['🍋', 'ces citrons', true], ['🍐', 'ces poires', true], ['👕', 'ce tee-shirt', false]
+    ];
+    function buildEcoute() {
+        const box = document.getElementById('ex-ecoute');
+        box.innerHTML = '';
+        let score = 0;
+        const sc = document.getElementById('score-ecoute');
+        sc.textContent = `0 / ${ECOUTE.length}`;
+        ECOUTE.forEach(([e, phrase, plural], i) => {
+            const card = document.createElement('div');
+            card.className = 'bg-white border border-slate-200 rounded-xl p-3 flex flex-wrap items-center gap-2';
+            card.innerHTML = `<span class="text-xs font-bold text-slate-400 w-5">${i + 1}.</span>`;
+            card.appendChild(spkBtn(phrase, 'phrase ' + (i + 1)));
+            const opts = document.createElement('div');
+            opts.className = 'flex-1 grid grid-cols-2 gap-2 min-w-[200px]';
+            const fb = document.createElement('p');
+            fb.className = 'w-full text-sm hidden';
+            const choices = [['a', `<span class="emoji text-2xl">${e}</span><br><span class="text-xs">un objet</span>`, false],
+                             ['b', `<span class="emoji text-2xl">${e}${e}${e}</span><br><span class="text-xs">plusieurs objets</span>`, true]];
+            const btns = choices.map(([l, html, val]) => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'opt px-2 py-2 rounded-lg border-2 border-slate-200 bg-slate-50 hover:bg-slate-100 text-center';
+                b.innerHTML = `<span class="text-slate-400 text-xs">${l})</span> ${html}`;
+                b.onclick = () => {
+                    btns.forEach(x => x.disabled = true);
+                    const ok = val === plural;
+                    if (ok) score++;
+                    b.classList.remove('border-slate-200', 'bg-slate-50');
+                    b.classList.add(ok ? 'border-emerald-500' : 'border-red-400', ok ? 'bg-emerald-50' : 'bg-red-50');
+                    fb.innerHTML = (ok ? '✅ ' : '❌ ') + `On entend : <strong>${phrase}</strong> ${plural ? '[se]' : '[sə]'}`;
+                    fb.className = 'w-full text-sm ' + (ok ? 'text-emerald-700' : 'text-red-700');
+                    sc.textContent = `${score} / ${ECOUTE.length}`;
+                };
+                opts.appendChild(b);
+                return b;
+            });
+            card.appendChild(opts);
+            card.appendChild(fb);
+            box.appendChild(card);
+        });
+    }
+
+    // D. Liaison ou pas ?
+    const LIAISON = [
+        ['🍊', 'ces oranges*', true], ['🍌', 'ces bananes*', false], ['🧣', 'ces écharpes*', true],
+        ['🍅', 'ces tomates*', false], ['🍍', 'ces ananas', true], ['👟', 'ces chaussures*', false],
+        ['🫒', 'ces olives*', true], ['☔', 'ces imperméables', true], ['🍓', 'ces fraises*', false], ['🧥', 'ces anoraks', true]
+    ];
+    function buildLiaison() {
+        buildQCM('ex-liaison', LIAISON.map(([e, w, yes]) => ({
+            emoji: e, html: w,
+            opts: ['Oui : liaison [z]', 'Non : pas de liaison'],
+            a: yes ? 0 : 1,
+            expl: yes ? `Le nom commence par une voyelle : ${w.replace('ces ', 'ces‿')}` : 'Le nom commence par une consonne.',
+            say: clean(w)
+        })), 'score-liaison');
+    }
+
+    // E. Lecture
+    const LECTURE = [
+        'Je vais prendre ces‿oranges* et cet‿ananas.',
+        'Tu vas acheter ce pull ou ces pulls ?',
+        'Nous allons essayer ces‿anoraks.',
+        'Elle va prendre cette‿écharpe* et ces bottes*.',
+        'Vous allez manger ce fromage et ces‿olives* ?'
+    ];
+    function buildLecture() {
+        const box = document.getElementById('lecture');
+        LECTURE.forEach(s => {
+            const row = document.createElement('div');
+            row.className = 'bg-white rounded-xl p-2.5 flex items-center gap-3';
+            row.appendChild(spkBtn(clean(s)));
+            const p = document.createElement('p');
+            p.className = 'text-base font-semibold';
+            p.innerHTML = star(s.replace(/‿/g, '<span class="lz">‿</span>'));
+            row.appendChild(p);
+            box.appendChild(row);
+        });
+    }
+
+    /* ---------- Onglet 3 : révision ---------- */
+    const D4 = ['ce', 'cet', 'cette', 'ces'];
+    const R1 = [
+        ['🧀', 'fromage', 0], ['🍍', 'ananas', 1], ['🍎', 'pomme*', 2], ['🥕', 'carottes*', 3], ['👗', 'robe*', 2],
+        ['🧥', 'anorak', 1], ['👖', 'pantalon', 0], ['👢', 'bottes*', 3], ['🥛', 'lait', 0], ['🍊', 'orange*', 2],
+        ['🥚', 'œufs', 3], ['🧣', 'écharpe*', 2], ['🍞', 'pain', 0], ['🍓', 'fraises*', 3], ['☔', 'imperméable', 1]
+    ];
+    const EXPL = [
+        'Masculin singulier + consonne.',
+        'Masculin singulier + voyelle : cet (on prononce [sɛt]).',
+        'Féminin singulier (*) : cette.',
+        'Pluriel : ces.'
+    ];
+    const R2 = [
+        { emoji: '🧥', html: 'cet anorak → pluriel ?', opts: ['ces anorak', 'ces anoraks', 'cets anoraks'], a: 1, expl: 'ces + nom au pluriel (-s). On dit : ces‿anoraks [z].' },
+        { emoji: '👗', html: 'cette robe* → pluriel ?', opts: ['ces robes*', 'cettes robes*', 'ce robes*'], a: 0, expl: 'Au pluriel, une seule forme : ces.' },
+        { emoji: '🧀', html: 'ce fromage → pluriel ?', opts: ['ces fromage', 'ce fromages', 'ces fromages'], a: 2, expl: 'Le démonstratif ET le nom changent : ces fromages.' },
+        { emoji: '🍊', html: 'ces oranges* → singulier ?', opts: ['cet orange*', 'cette orange*', 'ce orange*'], a: 1, expl: 'orange* est féminin : cette orange.' },
+        { emoji: '🎩', html: 'ces chapeaux → singulier ?', opts: ['ce chapeau', 'cet chapeau', 'ces chapeau'], a: 0, expl: 'Masculin + consonne : ce chapeau.' },
+        { emoji: '🥚', html: 'ces œufs → singulier ?', opts: ['ce œuf', 'cet œuf', 'cette œuf'], a: 1, expl: 'Masculin + voyelle : cet œuf.' }
+    ];
+    const R3 = [
+        ['🍅', 'Je vais prendre ___ tomates*.', 3],
+        ['🧥', 'Tu vas essayer ___ anorak ?', 1],
+        ['🧀', 'Nous allons acheter ___ fromage.', 0],
+        ['👗', 'Elle va porter ___ robe* rouge.', 2],
+        ['🍍', 'Vous allez manger ___ ananas ?', 1],
+        ['👢', 'Ils vont prendre ___ bottes*.', 3]
+    ];
+    const blank = '<span class="inline-block min-w-[3rem] border-b-2 border-slate-400 text-center">…</span>';
+    function updateBilan() {
+        const total = ['ex-r1', 'ex-r2', 'ex-r3'].reduce((s, id) => s + (document.getElementById(id)._score ? document.getElementById(id)._score() : 0), 0);
+        document.getElementById('bilan').textContent = `${total} / 27`;
+    }
+    function buildRevision() {
+        buildQCM('ex-r1', R1.map(([e, w, a]) => ({ emoji: e, html: `${blank} ${w}`, opts: D4, a, expl: EXPL[a] })), 'score-r1', updateBilan);
+        buildQCM('ex-r2', R2, 'score-r2', updateBilan);
+        buildQCM('ex-r3', R3.map(([e, s, a]) => ({ emoji: e, html: s.replace('___', blank), opts: D4, a, expl: EXPL[a], say: clean(s.replace('___', D4[a])) })), 'score-r3', updateBilan);
+        updateBilan();
+    }
+
+    /* ---------- Initialisation ---------- */
+    buildTableau();
+    buildPairs();
+    buildEcoute();
+    buildLiaison();
+    buildLecture();
+    buildRevision();
+    switchTab('tableau');
+</script>
+</body>
+</html>
