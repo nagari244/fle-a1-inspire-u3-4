@@ -51,19 +51,25 @@
                 <strong>Consigne :</strong> regardez la vidéo. Il y a une souris dans la cuisine… Où est la souris ? Répondez aux questions. Touchez <strong>▶ Revoir</strong> pour regarder le passage encore une fois.
             </div>
 
-            <div class="md:sticky md:top-2 z-10 bg-white rounded-xl">
-                <video id="video" class="w-full rounded-xl shadow bg-black aspect-video" controls playsinline preload="metadata" poster="medias/prepositions_poster.jpg">
-                    <source src="medias/prepositions_espace_virtuel.mp4" type="video/mp4">
-                    Votre navigateur ne peut pas lire cette vidéo.
-                </video>
-                <p class="text-[11px] text-slate-400 mt-1">Vidéo : Grammaclips « Prépositions 1 – Situer dans l'espace », © Éditions Maison des Langues 2016 (espacevirtuel.emdl.fr).</p>
-            </div>
+            <!-- Ordinateur et tablette : vidéo à gauche, questions à droite (la vidéo ne couvre jamais les questions).
+                 Smartphone : vidéo au-dessus, questions en dessous. -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
+                <div id="video-box" class="md:sticky md:top-4">
+                    <video id="video" class="w-full rounded-xl shadow bg-black aspect-video" controls playsinline preload="metadata" poster="medias/prepositions_poster.jpg">
+                        <source src="medias/prepositions_espace_virtuel.mp4" type="video/mp4">
+                        Votre navigateur ne peut pas lire cette vidéo.
+                    </video>
+                    <p class="text-[11px] text-slate-400 mt-1">Vidéo : Grammaclips « Prépositions 1 – Situer dans l'espace », © Éditions Maison des Langues 2016 (espacevirtuel.emdl.fr).</p>
+                </div>
 
-            <div class="flex items-center justify-between gap-2">
-                <h2 class="text-lg font-extrabold text-slate-900">Où est la souris ? 🐭</h2>
-                <span id="score-video" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 11</span>
+                <div class="space-y-3 min-w-0">
+                    <div class="flex items-center justify-between gap-2">
+                        <h2 class="text-lg font-extrabold text-slate-900">Où est la souris ? 🐭</h2>
+                        <span id="score-video" class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">0 / 11</span>
+                    </div>
+                    <div id="ex-video" class="grid grid-cols-1 gap-3"></div>
+                </div>
             </div>
-            <div id="ex-video" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
             <div class="text-center space-y-3">
                 <button onclick="buildVideo()" class="text-sm font-semibold text-oifBlue underline">↺ Recommencer</button><br>
                 <button onclick="switchTab('regle')" class="bg-slate-800 text-white font-bold py-3 px-6 rounded-xl shadow">Continuer : les prépositions →</button>
@@ -325,7 +331,8 @@
         video.currentTime = start;
         const p = video.play();
         if (p && p.catch) p.catch(() => toast('Touchez ▶ sur la vidéo pour la lancer.'));
-        video.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Sur smartphone, on remonte jusqu'à la vidéo ; sur ordinateur, elle est déjà visible à gauche
+        if (window.innerWidth < 768) video.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
     const VIDEO_Q = [
